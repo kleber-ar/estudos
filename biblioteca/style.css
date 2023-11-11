@@ -1,0 +1,541 @@
+@charset "UTF-8";
+
+/*Midias*/
+
+video {
+
+    display: block;
+    height: 90vh;
+    width: 380px;
+
+}
+
+.vexterno {
+
+    display: block;
+    max-width: 380px;
+}
+
+#vimeo {
+
+    display: block;
+    max-width: 600px;
+}
+
+/*---------------------------*/
+
+
+/*PSEUDO CLASSES E PSEUDO ELEMENTOS*/
+
+
+.d, #d2{
+
+    display:inline-block ;
+    text-align: center;
+    background-color: gray;
+    border: 1px solid black;
+    width: 200px;
+    height: 200px;
+
+}
+
+#d2:hover{
+    
+    background-color: green;
+ 
+}
+
+
+#d2  p {
+
+    display: none;
+    background-color: rebeccapurple;
+    text-decoration: white;
+
+}
+
+.d:hover{
+    background-color: yellow;
+    cursor: pointer;
+}
+
+#d2:hover  p{
+
+    display: block;
+    
+}
+
+#pseudo a {
+
+    color: darkred;
+    text-decoration: none;
+    font-weight: bold;
+
+}
+
+#pseudo a:hover{
+
+    text-decoration: line-through;
+}
+
+#pseudo a:active{
+
+    color: black;
+
+}
+
+#pseudo a:visited{
+
+    color: darkgreen;
+}
+
+#pseudo a::before{
+
+    content: '➟ ';
+
+}
+
+#pseudo a::after{
+
+    content: ' ⚓';
+
+}
+
+/*-----------------------------------*/
+
+
+/*Tabelas*/
+
+table {
+
+    width: 400px;
+    border-collapse: collapse;
+}
+
+caption{
+
+    background-color: lightgrey;
+
+}
+
+thead { 
+
+    position: sticky;
+    top: -1px;
+
+}
+
+ th {
+
+    background-color: darkgrey;
+    border: 1px solid black;
+    color: white;
+    text-shadow: 1px 1px 2px  black;
+}
+
+.area {
+
+    background-color: white;
+    color: black;
+    text-shadow: none;
+
+}
+
+.media {
+
+    text-align: left;
+}
+
+.valor {
+
+    background-color: darkgrey;
+    border: 1px solid black;
+    color: white;
+    text-shadow: 1px 1px 2px  black;
+    
+}
+
+td {
+
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+    font-size: small;
+
+}
+
+/*----------------------------------------*/
+
+/*Iframe*/
+
+#frame {
+
+    width: 95vw;
+    height: 500px;
+}
+
+/*-----------------------------------------*/
+
+/*Animação e transiçoes*/
+
+@keyframes anime {
+
+    0% {background-color: red; top: 0; left: 90%;}
+    25% {background-color: yellow; top: 0; left: 0%;}
+    50% {background-color: blue; top: 0; left: 0%;}
+    75% {background-color: green; top: 0; left: 0%;}
+    100% {background-color: red; top: 0; left: 90%;}
+    
+}
+
+div .area-anime { width: 90vw; }
+
+div .anime {
+
+    position: relative;
+    margin-bottom: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: red;
+    animation-name: anime;
+    animation-duration: 3s;
+    animation-delay:1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-out;
+
+}
+
+#trans {
+    
+    height: 100px;
+    width: 100px;
+    background-color: red;
+    transition: all 200ms linear;
+}
+
+#trans:hover {
+
+    border-radius: 50%;
+    background-color: blue;
+}
+/*-----------------------------------------*/
+
+/*Seletores CSS*/
+
+/* Por atributo*/
+.seletores [name=usuario] {
+
+    background-color: grey;
+
+}
+
+.seletores [required] {
+
+    background-color: lightgray;
+
+}
+/*------------------*/
+
+/*Por texto dentro da TAG*/
+
+.seletores a[href^="https:"] {
+
+    background-color: rgb(206, 188, 188);
+
+}
+
+.seletores a[href$="a"] {
+
+    background-color: gray;
+
+}
+
+.seletores a[href*="tia"] {
+
+    background-color: rgb(235, 68, 235);
+
+}
+
+/*---------------------*/
+
+/*TAG vazia*/
+
+div:empty {
+    
+    height: 14px;
+    width: 45px;
+    background-color:black;
+
+}
+
+/*---------------*/
+
+/*Seleção de primeira letra e linha de um para grafo*/
+
+ .letra  p::first-letter {
+
+    margin: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    
+}
+
+.linha p::first-line {
+
+    background-color: yellow;
+
+}
+
+/*-----------------*/
+
+/* Seleção de primeiro e ultimo elemento*/
+
+.elemento div {
+
+    height: 30px;
+    width: 30px;
+    background-color: blue;
+
+}
+
+.elemento div:first-child {
+
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    background-color: blueviolet;
+
+}
+
+.elemento div:last-child {
+
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: blueviolet;
+
+}
+
+/*--------------------*/
+
+/*Seleção negativa*/
+
+.negativo :not(p) {
+
+    background-color: lightslategray;
+
+}
+
+/*----------------*/
+
+/*Seleção por ordem NTH*/
+
+.nth :nth-child(2) {
+
+    background-color: lightgray;
+
+}
+
+.nth :nth-last-child(2) {
+
+    background-color: lightgray;
+
+}
+
+/*------------------*/
+
+/*Seletor before/after*/
+
+.ba div::before {
+
+    content: ">";
+    background-color: lightgray;
+
+}
+
+.ba div::after {
+
+    content: "";
+    display: inline-block;
+    background-color: lightgray;
+    height: 10px;
+    width: 10px;
+    
+}
+
+.balao {
+
+    margin-top: 20px;
+    display: inline-block;
+    padding: 20px;
+    background-color: lightslategray;
+    border-radius: 20px;
+
+}
+
+.balao::after {
+
+    content: "";
+    display: block;
+    position: absolute;
+    margin-top: 20px;
+
+    border:20px solid;
+    border-color: lightslategray transparent transparent transparent;
+
+}
+
+/*-------------------*/
+
+/* Transparencia RGBA */
+
+div.transparencia {
+
+    height: 100px;
+    width: 100px;
+    background-color: rgba(0,0,0,0.2);
+
+}
+
+/*----------------*/
+
+/*Seletor transform */
+
+div.form1 {
+
+    height: 100px;
+    width: 100px;
+    background-color: gray;
+    transform: scale(0.5);
+
+}
+
+div.form2 {
+
+    height: 100px;
+    width: 100px;
+    background-color: gray;
+    transform: rotate(45deg);
+    margin-left: 20px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+
+}
+
+div.form3 {
+
+    height: 100px;
+    width: 100px;
+    background-color: gray;
+    transform: skew(10deg, 10deg);
+    margin-left: 20px;
+    margin-top: 30px;
+
+}
+
+/*------------------------*/
+
+/*Estilo do placeholder*/
+
+.holder::placeholder {
+
+    color: red;
+    background-color: rgba(0, 0, 255, 0.419);
+
+}
+
+/*-----------------*/
+
+/*CSS GRID*/
+
+.grid {
+
+    display: grid;
+    width: 70vw;
+    height: 200px;
+    background-color: lightgray;
+    padding: 5px;
+    gap: 5px;
+    grid-template-areas: 
+
+    "item1 item1 item1 "
+    "item2 item3 item4"
+    "item5 item6 item7"
+    "item8 item8 item7"
+
+    ;
+
+}
+
+.item {
+
+    display: grid;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+
+
+}
+
+.item1 {
+
+    grid-area: item1;
+
+}
+
+.item2 {
+
+    grid-area: item2;
+    
+}
+
+.item3 {
+
+    grid-area: item3;
+    
+}
+
+.item4 {
+
+    grid-area: item4;
+    
+}
+
+.item5 {
+
+    grid-area: item5;
+    
+}
+
+.item6 {
+
+    grid-area: item6;
+    
+}
+
+.item7 {
+
+    grid-area: item7;
+    
+}
+
+.item8 {
+
+    grid-area: item8;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

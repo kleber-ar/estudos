@@ -1,0 +1,160 @@
+@charset "UTF-8";
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+
+    html {
+
+        background-image: linear-gradient(to top, #49a09d, #5f2c82);
+    }
+
+    section#login { width: 80vw; }
+
+    section div#imagem {
+
+        float: right;
+        width: 40%;
+        height: 100%;
+
+    }
+
+    section div#formulario {
+
+        width: 60%;
+        margin-top: 50px;
+
+    }
+
+    hr {
+        
+        width: 70%;
+        margin: auto;
+        margin-bottom: 90px;
+    }
+
+    form div.campo {
+
+        background-color: rgb(206, 47, 47);
+        border-radius: 5px;
+        margin: 5px;
+        margin-right: 25px;
+        height: 30px;
+        margin-top: 12px;
+    }
+
+    div.campo input {
+    
+        height: 100%;
+        width: calc(100% - 8.5%);
+        transform: translatey(-8px);
+        border-radius: 5px;
+        border: none;
+        margin-top: 0px;
+        
+    }
+
+    form input[type=submit] {
+
+        display: block;
+        width: 95%;
+        height: 30px;
+        background-color: rgb(233, 52, 52);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 100px;
+    }
+
+    form a {
+
+        display: block;
+        margin-top: 12px;
+        border: 1px solid #5f2c82;
+        border-radius: 5px;
+        height: 30px;
+        width: 95%;
+        color: rgb(182, 3, 3);
+        text-decoration: none;
+
+
+    }
+    
+}
+
+@media screen and (min-width: 992px) {
+
+    html {
+
+        background-image: linear-gradient(to top, #49a09d, #5f2c82);
+    }
+
+    section#login { width: 990px; }
+
+
+    section div#imagem {
+
+        float: left;
+        width: 50%;
+        height: 100%;
+        background-position: center center;
+
+    }
+
+    section div#formulario {
+        
+        float: right;
+        width: 47%;
+        margin-top: 50px;
+
+
+    }
+
+    hr {
+    
+        width: 70%;
+        margin: auto;
+        margin-bottom: 80px;
+    }
+    
+    div.campo input {
+
+        height: 100%;
+        width: calc(100% - 6.4%);
+        transform: translatey(-8px);
+        border-radius: 5px;
+        border: none;
+
+    
+    }
+
+    form label { display: none; }
+
+    form input[type=submit] {
+
+        display: block;
+        width: 100%;
+        height: 30px;
+        background-color: rgb(233, 52, 52);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        margin-top: 80px;
+    }
+
+    form a {
+
+        display: block;
+        margin-top: 12px;
+        border: 1px solid #5f2c82;
+        border-radius: 5px;
+        height: 30px;
+        color: rgb(182, 3, 3);
+        text-decoration: none;
+        padding: 5px;
+
+    }
+
+}
+
+   

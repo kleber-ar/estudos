@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Sono&display=swap');
+/*fonte do google fonts*/
+
+@font-face {
+    font-family: 'cloister';
+    src: url(fonts/CloisterBlack.ttf) format('truetype');
+    /*fonte externa em arquivo*/
+}
+
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-image: radial-gradient(circle, #1313c7e8, #070771c5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+main{
+
+    width: 600px;
+    background-color: white;
+    padding: 10px;
+    padding-bottom: 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    box-shadow: 5px 5px 10px #0707719a ;
+    overflow: auto;
+    margin-top: 4vh;
+    margin-bottom: 3vh;
+}
+
+h1{
+    text-align: center;
+    color: rgb(189, 13, 189);
+    text-shadow: 1px 1px 1px black;
+    margin:0;
+    padding-bottom: 10px;
+}
+
+h2{
+
+    color: rgb(67, 67, 225);
+    text-shadow: 1px 1px 1px black;
+}
+
+p{
+    text-align: justify;
+    font-family: 'Sono', Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    text-indent: 20px; /*Espaço no começo do paragrafo*/
+
+
+
+}
+.fist::first-letter{
+    
+    font-family: 'cloister', serif; /*fonte externa em arquivo usando o "@font-face"*/
+    font-size: 3.3rem;
+    color: red;
+    text-transform: uppercase;
+    margin-top: -.4rem;
+    margin-left: 1rem;
+    padding-right: 1rem;
+    float:left;
+    font-weight: normal;
+}

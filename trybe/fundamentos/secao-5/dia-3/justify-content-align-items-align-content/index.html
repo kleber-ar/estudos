@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox - Justify Content</title>
+    <style>
+      .box {
+        color: #9069EF;
+        background-color: rgb(243, 243, 243);
+        border: 2px solid #232525;
+        font-size: 50px;
+        height: 60px;
+        margin: 10px 5px;
+        text-align: center;
+        width: 20%;
+      }
+      .box-one {
+        color: #9069EF;
+        background-color: rgb(243, 243, 243);
+        border: 2px solid #232525;
+        font-size: 70px;
+        min-height: 80px;
+        margin: 10px 5px;
+        text-align: center;
+        width: 50px;
+      }
+
+      .box-two {
+        color: #9069EF;
+        background-color: rgb(243, 243, 243);
+        border: 2px solid #232525;
+        font-size: 50px;
+        min-height: 60px;
+        margin: 10px 5px;
+        text-align: center;
+        width: 50px;
+      }
+
+      .box-three {
+        color: #9069EF;
+        background-color: rgb(243, 243, 243);
+        border: 2px solid #232525;
+        font-size: 30px;
+        margin: 10px 5px;
+        min-height: 50px;
+        text-align: center;
+        width: 50px;
+      }
+
+      .box-container {
+        background-color: #0fa36b;
+        display: flex;
+        margin: 5px;
+        /* ADICIONE AQUI SEUS TESTES */
+      }
+
+      .box-container-g {
+        background-color: #0fa36b;
+        margin: 5px;
+        display: flex;
+        flex-wrap: wrap;
+        height: 600px;
+      }
+      .g2 {
+        background-color: #0fa36b;
+        margin: 5px;
+        display: flex;
+        flex-wrap: wrap;
+        height: 600px;
+        align-content: center;
+      }
+      .g3 {
+        background-color: #0fa36b;
+        margin: 5px;
+        display: flex;
+        flex-wrap: wrap;
+        height: 600px;
+        align-content: flex-start;
+      }
+      .g4 {
+        background-color: #0fa36b;
+        margin: 5px;
+        display: flex;
+        flex-wrap: wrap;
+        height: 600px;
+        align-content: flex-end;
+      }
+      .g5 {
+        background-color: #0fa36b;
+        margin: 5px;
+        display: flex;
+        flex-wrap: wrap;
+        height: 600px;
+        align-content: stretch;
+      }
+      .g6 {
+        background-color: #0fa36b;
+        margin: 5px;
+        display: flex;
+        flex-wrap: wrap;
+        height: 600px;
+        align-content: space-around;
+      }
+      .g7 {
+        background-color: #0fa36b;
+        margin: 5px;
+        display: flex;
+        flex-wrap: wrap;
+        height: 600px;
+        align-content: space-between;
+      }
+
+      .b2 {
+        background-color: #0fa36b;
+        display: flex;
+        justify-content: flex-end;
+      }
+      .b3 {
+        background-color: #0fa36b;
+        margin: 5px;
+        justify-content: flex-start;
+      }
+      .b4 {
+        background-color: #0fa36b;
+        margin: 5px;
+        justify-content: center;
+      }
+      .b5 {
+        background-color: #0fa36b;
+        margin: 5px;
+        justify-content: space-around;
+      }
+      .b6 {
+        background-color: #0fa36b;
+        margin: 5px;
+        justify-content: space-between;
+      }
+      .b7 {
+        background-color: #0fa36b;
+        margin: 5px;
+        align-items: center;
+      }
+      .b8 {
+        background-color: #0fa36b;
+        margin: 5px;
+        align-items: flex-start;
+      }
+      .b9 {
+        background-color: #0fa36b;
+        margin: 5px;
+        align-items: flex-end;
+      }
+      .b10 {
+        background-color: #0fa36b;
+        display: flex;
+        margin: 5px;
+        align-items: stretch;
+      }
+      .b11 {
+        background-color: #0fa36b;
+        display: flex;
+        margin: 5px;
+        align-items: baseline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box-container">
+      <div class="box">1</div>
+      <div class="box">2</div>
+      <div class="box">3</div>
+    </div>
+    <div class="box-container b2">
+      <div class="box">1</div>
+      <div class="box">2</div>
+      <div class="box">3</div>
+    </div>
+    <div class="box-container b3">
+      <div class="box">1</div>
+      <div class="box">2</div>
+      <div class="box">3</div>
+    </div>
+    <div class="box-container b4">
+      <div class="box">1</div>
+      <div class="box">2</div>
+      <div class="box">3</div>
+    </div>
+    <div class="box-container b5">
+      <div class="box">1</div>
+      <div class="box">2</div>
+      <div class="box">3</div>
+    </div>
+    <div class="box-container b6">
+      <div class="box">1</div>
+      <div class="box">2</div>
+      <div class="box">3</div>
+    </div>
+    <hr>
+    <div class="box-container b7">
+      <div class="box-one">1</div>
+      <div class="box-two">2</div>
+      <div class="box-three">3</div>
+    </div>
+    <div class="box-container b8">
+        <div class="box-one">1</div>
+        <div class="box-two">2</div>
+        <div class="box-three">3</div>
+    </div>
+    <div class="box-container b9">
+        <div class="box-one">1</div>
+        <div class="box-two">2</div>
+        <div class="box-three">3</div>
+    </div>
+    <div class="box-container b10">
+        <div class="box-one">1</div>
+        <div class="box-two">2</div>
+        <div class="box-three">3</div>
+    </div>
+    <div class="box-container b11">
+       <div class="box-one">1</div>
+       <div class="box-two">2</div>
+       <div class="box-three">3</div>
+    </div>
+    <hr>
+    <div class="box-container-g ">
+       <div class="box">1</div>
+       <div class="box">2</div>
+       <div class="box">3</div>
+       <div class="box">4</div>
+       <div class="box">5</div>
+       <div class="box">6</div>
+       <div class="box">7</div>
+       <div class="box">8</div>
+       <div class="box">9</div>
+    </div>
+    <div class="box-container-g g2">
+       <div class="box">1</div>
+       <div class="box">2</div>
+       <div class="box">3</div>
+       <div class="box">4</div>
+       <div class="box">5</div>
+       <div class="box">6</div>
+       <div class="box">7</div>
+       <div class="box">8</div>
+       <div class="box">9</div>
+    </div>
+    <div class="box-container-g g3">
+       <div class="box">1</div>
+       <div class="box">2</div>
+       <div class="box">3</div>
+       <div class="box">4</div>
+       <div class="box">5</div>
+       <div class="box">6</div>
+       <div class="box">7</div>
+       <div class="box">8</div>
+       <div class="box">9</div>
+    </div>
+    <div class="box-container-g g4">
+       <div class="box">1</div>
+       <div class="box">2</div>
+       <div class="box">3</div>
+       <div class="box">4</div>
+       <div class="box">5</div>
+       <div class="box">6</div>
+       <div class="box">7</div>
+       <div class="box">8</div>
+       <div class="box">9</div>
+    </div>
+    <div class="box-container-g g5">
+       <div class="box">1</div>
+       <div class="box">2</div>
+       <div class="box">3</div>
+       <div class="box">4</div>
+       <div class="box">5</div>
+       <div class="box">6</div>
+       <div class="box">7</div>
+       <div class="box">8</div>
+       <div class="box">9</div>
+    </div>
+    <div class="box-container-g g6">
+       <div class="box">1</div>
+       <div class="box">2</div>
+       <div class="box">3</div>
+       <div class="box">4</div>
+       <div class="box">5</div>
+       <div class="box">6</div>
+       <div class="box">7</div>
+       <div class="box">8</div>
+       <div class="box">9</div>
+    </div>
+    <div class="box-container-g g7">
+       <div class="box">1</div>
+       <div class="box">2</div>
+       <div class="box">3</div>
+       <div class="box">4</div>
+       <div class="box">5</div>
+       <div class="box">6</div>
+       <div class="box">7</div>
+       <div class="box">8</div>
+       <div class="box">9</div>
+    </div>
+
+  </body>
+</html>

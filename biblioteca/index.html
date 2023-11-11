@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <title>Biblioteca</title>
+</head>
+<body>
+    <h1>HTML-CSS</h1>
+    <details>
+        <!--Todo o conteudo do corpo feito com Emmet. " h2{Olá,Mundo!}+hr(h3{Paragrafo $}+p>lorem*3+hr)*5"-->
+        <h2>Emmet</h2>
+        <details>
+            <code><strong>| h2{Olá,Mundo!}+hr(h3{Paragrafo $}+p>lorem*3+hr)*5 |</strong></code>
+            <h3>Paragrafo 1</h3>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore dolorum blanditiis voluptatibus dolor ex ipsum reiciendis similique, odit veritatis ullam maxime? Nihil iusto debitis quae consectetur aliquam doloribus maiores perspiciatis!
+                 <br>
+                quasi eius voluptates? Veniam maiores nulla enim fuga, iusto ipsam autem nihil? Cumque ducimus natus impedit doloremque sint autem fuga fugiat dolor error non deleniti quidem, aspernatur ipsum praesentium?Ratione, unde ex inventore deserunt adipisci molestiae aperiam mollitia laborum nostrum reiciendis culpa nisi minus sit consequuntur tempora dicta nihil? Dolore iste repudiandae nam? Cum eos atque esse ab quod?
+            </p>
+            <h3>Paragrafo 2</h3>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro quasi perferendis error molestiae vel eligendi maiores nihil hic voluptates recusandae architecto consequuntur, odio autem qui doloremque dolorem beatae voluptatem officia.Totam obcaecati, expedita debitis eius labore unde soluta in doloremque iure libero accusantium blanditiis delectus velit molestiae, rerum dolores deleniti magni a, aspernatur et. Necessitatibus inventore distinctio reprehenderit consequatur non?Odio, assumenda nesciunt ab tempora eos earum, esse eius, facilis rerum autem non ipsum modi saepe at alias explicabo minima quam. Hic voluptatibus cum quisquam libero, adipisci laboriosam quo provident.
+            </p>
+        </details>
+        <hr>
+        <!--Exemplos de forma e semantica-->
+        <h2>Forma/Semantica</h2>
+        <details>
+            <h3>Negrito</h3>
+            <p>
+                Exemplo de <b>FORMA</b>
+                <code><strong>(&ltb&gt)</strong></code>
+                <br>
+                Exemplo de <strong>SEMANTICA</strong><code><strong>(&ltstrong&gt)</strong></code>
+            </p>
+            <h3>Italico</h3>
+            <p>
+                Exemplo de <i>FORMA</i>
+                <code><strong>(&lti&gt)</strong></code>
+                <br>
+                Exemplo de <em>SEMANTICA</em> <code><strong>(&ltem&gt)</strong></code>
+            </p>
+            <p>
+                <strong><mark>*USE SEMPRE A SEMANTICA NO HTML, SE POR ACASO QUISER DA UMA FORMA/ESTILO USE CSS</mark></strong> <code><strong>|(&ltmark&gt)</strong></code>
+            </p>
+            <h3>Texto riscado</h3>
+            <P>
+                Assim e <del>assado</del>
+                <code><strong>(&ltdel&gt)</strong></code>
+            </P>
+            <h3>Texto sublinhado</h3>
+            <p>
+                Assim e <ins>assado</ins>
+                <code><strong>(&ltins&gt)</strong></code>
+            </p>
+            <h3>Letras miudas</h3>
+            <p>
+                Letras miudas <small>como as que existem em contratos</small>
+                <code><strong>(&ltsmall&gt)</strong></code>
+            </p>
+            <h3>Texto sobrescrito</h3>
+            <p>Como usado na matematica: X<sup>20</sup>+3
+                <code><strong>(&ltsup&gt)</strong></code>
+            </p>
+            <h3>Texto subscrito</h3>
+            <p>
+                Como usado em quimica: H<sub>2</sub>O
+                <code><strong>(&ltsub&gt)</strong></code>
+            </p>
+        
+            <h3>Citaçoes simples</h3>
+            <p>
+                Como diria meu pai: <q>Para quem não tem nada a metade é o dobro</q>
+                <code>
+                    <strong>(&ltq&gt)</strong>
+                </code>
+            </p>
+            <h3>Citaçoes completas</h3>
+            <p>
+                Douglas Adans escreveu,em seu livro <q>Guia do Mochileiro das Galáxias</q>
+            </p>
+            <blockquote cite="https://www.amazon.com.br/guia-mochileiro-das-gal%C3%A1xias/dp/8599296574/ref=asc_df_8599296574/?tag=googleshopp00-20&linkCode=df0&hvadid=379708337442&hvpos=&hvnetw=g&hvrand=3040143483619467514&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=9100950&hvtargid=pla-834074917354&psc=1">
+                <q>
+                    Existe uma teoria que diz que, se um dia alguém descobrir exatamente para que serve o Universo e por que ele está aqui, ele desaparecerá instantaneamente e será substituído por algo ainda mais estranho e inexplicável. Existe uma segunda teoria que diz que isso já aconteceu.
+                </q>
+            </blockquote>
+            <p>
+                Para uma citação mais completa no caso do livro citado foi usado a tag: <code><strong>&ltblockquote cite = "<ins>Link do livro</ins>"&gt</strong></code>
+            </p>
+            <h3>Abreviação</h3>
+            <P>
+                Estou aprendendo <abbr title="HyperText Markup Language">HTML</abbr> e <abbr title="Cascading Style Sheet">CSS</abbr>. <code><strong>(&ltabbr&gt)</strong></code>
+            </P>
+            <h3>Texto invertido</h3>
+            <bdo dir="rtl">Socorram-me, Subi No Ônibus Em Marrocos.</bdo>
+            <code><strong>(&ltbdo&gt)</strong></code>
+        </details>
+        <hr>
+        <h2>Outras formataçoes</h2>
+        <details>
+            <h3>Exemplo de código em Python</h3>
+            <P>
+                <pre>
+                    <code>
+                        num = int(input('Digite um numero'))
+                        if num % 2 == 0:
+                        print(f'0 número {num} é par')
+                        else:
+                        print(f'0 número {num} é ímpar')
+                        print('FIM DO PROGRAMA')
+                    </code>
+                </pre>
+                Formatação para ser exatamente igual foi escrito em HTML com a tag: <code><strong>&ltpre&gt</strong></code>
+            </P>
+        </details>
+        <hr>
+        <h2>Listas</h2>
+        <details>
+            <h3>Ordenadas</h3>
+            <ol type="1" start="0"> <!--Os type são:1,A,a,I,i,. O start serve para determinar em que ordem irá começar.i-->
+                <li>Lorem, ipsum.</li>
+                <li>Placeat, in!</li>
+                <li>Minima, dolorum!</li>
+                <li>Rerum, eaque!</li>
+                <li>Accusantium, eius.</li>
+            </ol>
+            <ol type="A">
+                <li>Lorem.</li>
+                <li>Ea.</li>
+                <li>Soluta.</li>
+                <li>Aspernatur!</li>
+                <li>Iusto.</li>
+            </ol>
+            <ol type="a">
+                <li>Lorem.</li>
+                <li>Eos.</li>
+                <li>Sunt.</li>
+                <li>Placeat.</li>
+                <li>Est.</li>
+            </ol>
+            <ol type="I">
+                <li>Lorem.</li>
+                <li>Reiciendis.</li>
+                <li>Quod.</li>
+                <li>Dolorem?</li>
+                <li>Suscipit.</li>
+            </ol>
+            <ol type="i">
+                <li>Lorem.</li>
+                <li>Reiciendis.</li>
+                <li>Quod.</li>
+                <li>Dolorem?</li>
+                <li>Suscipit.</li>
+            </ol>
+            <h3>Não ordenadas</h3>
+            <ul><!--Os type são: disc,circle,square.-->
+                <li>Lorem, ipsum.</li>
+                <li>Asperiores, natus.</li>
+                <li>Officiis, vitae.</li>
+                <li>Perspiciatis, eligendi.</li>
+                <li>Aperiam, natus?</li>
+            </ul>
+            <ul type="circle">
+                <li>Lorem.</li>
+                <li>Labore.</li>
+                <li>Minus?</li>
+                <li>Accusantium?</li>
+                <li>Praesentium!</li>
+            </ul>
+            <ul type="square">
+                <li>Lorem.</li>
+                <li>Eius!</li>
+                <li>Numquam!</li>
+                <li>Ab.</li>
+                <li>Nostrum.</li>
+            </ul>
+            <h3>Junção de lista</h3>
+            <ol>
+                <li>
+                    Lorem, ipsum.
+                    <ol type="a">
+                        <li>Lorem.</li>
+                        <li>Vero.</li>
+                        <li>Dicta.</li>
+                    </ol>
+                </li>
+                <li>
+                    Lorem, ipsum.
+                    <ol type="I">
+                        <li>Lorem.</li>
+                        <li>Vero.</li>
+                        <li>Dicta.</li>
+                    </ol>
+                </li>
+                <li>
+                    Lorem, ipsum.
+                    <ul>
+                        <li>Lorem.</li>
+                        <li>Vero.</li>
+                        <li>Dicta.</li>
+                    </ul>
+                </li>
+                <li>
+                    Id, expedita?
+                    <ul type="disc">
+                        <li>Lorem.</li>
+                        <li>Rerum!</li>
+                        <li>Veritatis?</li>
+                    </ul>
+                </li>
+                <li>
+                    Quod, voluptates.
+                    <ul type="square">
+                        <li>Lorem.</li>
+                        <li>Accusamus?</li>
+                        <li>Temporibus?</li>
+                    </ul>
+                </li>
+            </ol>
+            <h3>Lista de definiçoes</h3>
+            <dl>
+                <dt>HTML</dt>
+                <dd>HyperText Markup Language</dd>
+                <dt>CSS</dt>
+                <dd>Cascading Style Sheet</dd>
+            </dl>
+        </details>
+        <hr>
+        <h2>Links</h2>
+        <details>
+            <h3>Externos</h3>
+            <P>Meu <a href="https://www.youtube.com/channel/UC4Wz-fyGpoHRbPguGkZyS1A" target="_blank" rel="external">youtube</a>.</P>
+            <p>site de <a href="https://github.com/gustavoguanabara" target="_blank" rel="nofollow">citação</a> de uma marca ou site sem permição.</p>
+            <p>site de <a href="https://github.com/gustavoguanabara" target="_blank" rel="dofollow">propaganda</a> citação de uma marca ou site paga.</p>
+            <h3>interno</h3>
+            <p><a href="pag002.html" target="_self" rel="next">Pagina 2</a></p>
+            <p>Pagina de <a href="noticias/pag003.html" target="_self" rel="self">Noticias</a>.</p>
+            <!--"target" tipo "_blank" (tipo "self" para abrir na mesma aba)é usado para link em outro aba. "rel" do tipo "external"(tipo "next"para a proxima pagina,"prev" para a pagina anterior.Isso se for para um site interno) indica q o link é para um site externo.-->
+            <h3>Links para download</h3>
+            <p>Meu PDF <a href="PDFs/11 - Imagens dinâmicas, áudios e vídeos.pdf" target="_blank">abrir</a>.</p>
+            <p>PDF zipado <a href="PDFs/11 - Imagens dinâmicas, áudios e vídeos.rar">download</a>.</p>
+        </details>
+        <hr>
+        <h2>Midias</h2>
+        <details>
+            <h3>Foto com descrição semantica</h3>
+            <figure>
+                <img src="imagens/imagens-e-gifs-de-loading-44.gif" alt="" style="height: 200px; width: 200px;">
+                <figcaption>Um gif de Loading.</figcaption>
+            </figure>
+            <h3>Imagens dinâmicas</h3>
+            <p>Abra em dispositivos com tamanho de tela diferente.</p>
+            <picture>
+                <source media="(max-width: 730px )" srcset="imagens/p.png" type="image/png">
+                <source media="(max-width: 1030px)" srcset="imagens/m.png" type="image/png">
+                <img src="imagens/g.png" alt="Imagem dinamica">
+            </picture>
+            <h3>Reprodução de audio</h3>
+            <audio preload="metadata" controls>
+                <source src="mp3/The Gentlemen - DivKid.mp3" type="audio/mp3">
+                <source src="mp3/The Gentlemen - DivKid.mp3" type="audio/ogg">
+                <source src="mp3/The Gentlemen - DivKid.mp3" type="audio/wav">
+                <p>Seu navegador não suporta o audio,faça o download <a href="mp3/The Gentlemen - DivKid.mp3">aqui</a></p>
+            <!--Há tres tipos de audio para o navegador fazer a leitura caso nenhum funcione ele ira exibir o paragrafo(p) com o link para download.-->
+            </audio>
+            <h3>Videos</h3>
+            <p>Video local</p>
+            <video width="80%" height="50%" autoplay loop controls> <!--use a tag "poster" para colocar uma capa no video-->
+                <source src="videos/pexels-anna-shvets-6624849.mp4" type="video/mp4">
+                </video>
+            <!--Funciona da mesma forma q o MP3, pode colocar varios formatos de video colocando em ordem no "source" mais o paragrafo "p" no caso do navegador não ler.-->
+            <h3>Videos externos</h3>
+            <p>Video do youtube</p>
+        
+                <div class="vexterno" >
+                    <iframe width="100%" height="215" src="https://www.youtube.com/embed/FdE5G95B7Mg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+        
+            <p>Video do vimeo</p>
+        
+                <div id="vimeo" >
+                    <iframe  src="https://player.vimeo.com/video/49053801?h=595eefb595" width="100%" height="360" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                </div>
+        </details>
+        <hr>
+        <h2>Pseudo classes e Pseudo elementos</h2>
+        <details>
+        
+            <h3>Exemplos de Hover</h3>
+            <div class="d">01</div>
+            <div id="d2">02
+            <p>Achou!!!</p>
+            </div>
+            <div class="d">03</div>
+        <h3>Pseudo elemento</h3>
+        <ul id="pseudo">
+            <li><a href="https://github.com/Kleber-ar">Git hub</a></li>
+            <li><a href="https://www.youtube.com/">You tube</a></li>
+            <li><a href="https://www.facebook.com/">Face Book</a></li>
+        </ul>
+        </details>
+        <hr>
+        <h2>Tabelas</h2>
+        <details>
+            <h3>Exemplo de tabela</h3>
+            <h3>Dados</h>
+            <table>
+                <caption>Notas 3° ano letivo</caption>
+                <thead>
+                    <tr>
+                        <th rowspan="2" scope="col">Área</th>
+                        <th rowspan="2" scope="col">Disciplinas</th>
+                        <th colspan="2" scope="colgroup">Notas</th>
+                        <th rowspan="2" scope="col">Média</th>
+                    </tr>
+                    <tr>
+                        <th>Nota 1</th>
+                        <th>Nota 2</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <th class="area" rowspan="4" scope="rowgroup">Exatas</th>
+                    <td>Matemática</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                </tr>
+                <tr>
+                    <td>Física</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                </tr>
+                <tr>
+                    <td>Química</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                </tr>
+                <tr>
+                    <td>Biologia</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                </tr>
+                <tr>
+                    <th class="media" colspan="4" scope="row">Média de Exatas</th>
+                    <td class="valor">0.0</td>
+                </tr>
+                <tr>
+                    <th class="area" rowspan="2" scope="rowgroup">Humanas</th>
+                    <td>História</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                </tr>
+                <tr>
+                    <td>Geografia</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                    <td>0.0</td>
+                </tr>
+                <tr>
+                    <th class="media" colspan="4" scope="row">Média de Humanas</th>
+                    <td class="valor">0.0</td>
+                </tr>
+                <tfoot>
+                    <tr>
+                        <th colspan="5">Boa Sorte!</th>
+                    </tr>
+                </tfoot>
+        
+            </table>
+        </details>
+        <hr>
+        <h2>Iframes</h2>
+        <details>
+            <h3>Uso de Iframaes</h3>
+            <ul>
+                <li><a href="/projetos/cordel-moderno(paralax)" target="frame">Cordel moderno</a></li>
+                <li><a href="/Projetos/sobre-o-android/index.html" target="frame">Sobre o android</a></li>
+            </ul>
+            <iframe
+            id="frame" name="frame" srcdoc="<img src='imagens\imagens-e-gifs-de-loading-44.gif' alt='Loading' width='400px' height='450px'>" frameborder="0" sandbox="sadbox" referrerpolicy="no-referrer">
+            <!--"sandbox" é referente a interaçoes dentro do frame. "referrerpolicy" é referente a anuncios ou o bot do google.-->
+            </iframe>
+        </details>
+        <hr>
+        <h2>Formularios</h2>
+        <details>
+            <h3>Exemplos de formularios</h3>
+            <form action="cadastro.php" method="post" autocomplete="on">
+                <fieldset>
+                    <legend>Login Basico</legend>
+                    <p>
+        
+                        <label for="iusu">Usuário:</label>
+                        <input type="text" name="usu" id="iusu" required minlength="3" maxlength="30" size="15" placeholder="Id,Telefone ou E-mail">
+                    </p>
+                    <p>
+                        <label for="isenha">Senha:</label>
+                        <input type="password" name="senha" id="isenha" required autocomplete="current-password" placeholder="Digite aqui sua senha" size="15">
+                    </p>
+                    <P>
+        
+                        <input type="submit" value="Enviar">
+                        <input type="reset" value="Limpar">
+                    </P>
+                </fieldset>
+            </form>
+            <br>
+            <form action="cadastro.php" method="get" autocomplete="on">
+                <fieldset>
+                    <legend>Cadastro de Notas</legend>
+                    <p>
+                        <label for="inome">Nome:</label>
+                        <input type="text" name="nome" id="inome" placeholder="Completo conforme no RG"  size="22" autocomplete="name" required >
+                    </p>
+                    <p>
+                        <label for="imedia">Média:</label>
+                        <input type="number" name="media" id="imedia" min="0" max="10" step="0.1" placeholder="0,0" required>
+        
+                    </p>
+        
+                    <P>
+                        <label for="imes">Mes:</label>
+                        <input type="month" name="mes" id="imes" required>
+                    </P>
+                    <p>
+                        <label for="idata">Dia da prova:</label>
+                        <input type="date" name="data" id="idata" required>
+                    </p>
+                    <p>
+                        <label for="ihora">Hora da prova:</label>
+                        <input type="time" name="hora" id="ihora"required>
+                    </p>
+        
+                    <P>
+        
+                        <input type="submit" value="Enviar">
+                        <input type="reset" value="Limpar">
+                    </P>
+                </fieldset>
+            </form>
+            <br>
+            <form action="cadastro.php" method="get" autocomplete="on">
+                <fieldset>
+                    <legend>Cadastro basico</legend>
+                    <p>
+                        <label for="inome">Nome:</label>
+                        <input type="text" name="nome" id="inome" required autocomplete="name" size="22" placeholder="Nome completo">
+                    </p>
+                    <p>
+        
+                        <label for="iemail">E-mail:</label>
+                        <input type="email" name="email" id="iemail" autocomplete="email" required>
+                    </p>
+                    <p>
+                        <label for="itel">Telefone:</label>
+                        <input type="tel" name="tel" id="itel" autocomplete="tel" pattern="^\([0-9]{2}\)[0-9]{4,5}-[0-9]{4}$" required placeholder="(xx) xxxxx-xxxx" >
+                          <!--Estudar RegEx (expreçoes regulares)"pattern"-->
+                    </p>
+                    <p>
+                        <input type="submit" value="Enviar">
+                        <input type="reset" value="Limpar">
+                    </p>
+                </fieldset>
+            </form>
+            <br>
+            <form action="cadastro.php" method="get" autocomplete="on" >
+        
+                <fieldset>
+                    <legend>Exemplos de Check-box</legend>
+                    <p>
+                        <input type="radio" name="sexo" id="imasc" checked>
+                        <label for="sexo">Masculino</label>
+                        <input type="radio" name="sexo" id="ifem">
+                        <label for="sexo">Feminino</label>
+                        <input type="radio" name="sexo" id="ioutros">
+                        <label for="sexo">Outros</label>
+                        <!-- O "name" de todos os radios tem q ser o mesmo.E no label tem q ser usadp o dado do "name" e não o dado do id. Do contrario não tem como desmarcar a escolha do sexo. -->
+                    </p>
+                    <hr>
+                    <p>
+                        <input type="checkbox" name="fut" id="ifut">
+                        <label for="ifut">Futbol</label><br>
+                        <input type="checkbox" name="bas" id="ibas" checked>
+                        <label for="ibas">Basquete</label><br>
+                        <input type="checkbox" name="nat" id="inat" checked>
+                        <label for="inat">Natação</label><br>
+                        <input type="checkbox" name="ten" id="iten">
+                        <label for="iten">Tenis</label><br>
+        
+                    </p>
+                    <p>
+                        <input type="submit" value="Enviar">
+                        <input type="reset" value="Limpar">
+                    </p>
+                </fieldset>
+            </form>
+            <br>
+            <form action="cadastro.php" method="post" autocomplete="on">
+        
+                <fieldset>
+                    <legend>Outros tipo de form.</legend>
+                    <p>
+        
+                        <label for="icor">Cor:</label>
+                        <input type="color" name="cor" id="icor" value="#1520b7">
+                    </p>
+                    <p>
+                        <label for="irange">Nivel de satisfação:</label>
+                        <input type="range" name="range" id="irange" min="1" max="5" value="3">
+                    </p>
+                    <p>
+                        <label for="ifoto">Foto de perfil:</label>
+                        <input type="file" name="foto" id="ifoto">
+                        <!--Formularios q usam envio de arquivo o "method" do "form" tem q ser "post" não "get"(o get tem uma limitação de 3000bit).-->
+                    </p>
+                    <p>
+                        <input type="submit" value="Enviar">
+                        <input type="reset" value="Limpar">
+                    </p>
+                </fieldset>
+            </form>
+            <br>
+            <form action="cadastro.php" method="post">
+                <fieldset>
+                    <legend>Form de seleção, data list e caixa de texto</legend>
+                    <p>
+        
+                        <label for="iest">Estado:</label>
+                        <select name="estado"   id="iest">
+        
+                            <option value="" selected>--- Escolha ---</option>
+                            <optgroup label="Região sudeste">
+                                <option value="SP">São Paulo</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                            </optgroup>
+                            <optgroup label="Região nordeste">
+                                <option value="MA">Maranhão</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                            </optgroup>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="iprof">Profição:</label>
+                        <input type="text" name="profição" id="iprof"   list="lstprof" placeholder="Escolha aqui">
+                        <datalist id="lstprof">
+                            <option>Administrador</option>
+                            <option>Contabilista</option>
+                            <option>Desenvolvedor</option>
+                            <option>Professor</option>
+                        </datalist>
+                    </p>
+                    <p>
+                        <label for="imsg">Mensagem:</label>
+                        <br>
+                        <textarea name="msg" id="imsg" cols="30" rows="10"></textarea>
+                    </p>
+                    <p>
+                        <input type="submit" value="Enviar">
+                        <input type="reset" value="Limpar">
+                    </p>
+                </fieldset>
+            </form>
+            <br>
+            <form action="cadastro.php" method="get">
+                <fieldset>
+                    <legend>Amostra de valores e Soma</legend>
+                    <p>
+        
+                        <label for="in1">Numero 1:</label>
+                        <input type="number" name="n1" id="in1" required
+                        oninput="isoma.innerHTML = Number(in1.value)+Number(in2.value)">
+                    </p>
+                    <p>
+        
+                        <label for="in2">Numero 2:</label>
+                        <input type="number" name="n2" id="in2" required
+                        oninput="isoma.innerHTML = Number(in1.value)+Number(in2.value)">
+                    </p>
+                    <p>
+        
+                        <label for="isoma">Soma:</label>
+                        <output name="soma" id="isoma">--</output>
+                    </p>
+                    <hr>
+                    <p>
+                        <label for="irange">Range:</label>
+                        <input type="range" name="range" id="irange" min="0" max="10" value="0"
+                        oninput="ival.innerHTML = Number(irange.value)">
+                        <output id="ival">--</output>
+                    </p>
+                    <hr>
+                    <p>
+                        <label for="iano">Em que ano voce nasceu?</label>
+                        <input type="number" name="ano" id="iano"
+                        oninput="calcIdade()">
+                    </p>
+                    <p>
+        
+                        <label for="iidade">Sua idade é:</label>
+                        <output id="iidade" >--</output>
+                    </p>
+                    <p>
+                        <input type="submit" value="Enviar">
+                        <input type="reset" value="Limpar">
+                    </p>
+                </fieldset>
+            </form>
+            <script>
+                function calcIdade() {
+                    let atual = new Date().getFullYear()
+                    iidade.innerHTML = Number(atual) - Number(iano.value)
+                }
+            </script>
+        </details>
+        <hr>
+        <h2>Animação e transiçoes</h2>
+        <details>
+            <h3>Animação CSS</h3>
+            <div class="area-anime">
+                <div class="anime">
+                </div>
+            </div>
+            <h3>Transição</h3>
+            <div id="trans"></div>
+        </details>
+        <hr>
+        <h2>Seletores CSS</h2>
+        <details class="seletores">
+            <h3>Seleção por atributo</h3>
+            <input type="text" name="usuario">
+            <input type="password" name="senha" required>
+            <h3>Seleção por texto dentro da TAG</h3>
+            <p>Pelo inicio do texto</p>
+            <a href="https://www.google.com/">Google</a>
+            <p>Pelo fim do texto</p>
+            <a href="https://www.google.com/a">Google</a>
+            <p>Por um texto específico</p>
+            <a href="https://www.tia.com/">Google</a>
+            <h3>Seleção de elementos vazio</h3>
+        
+            <di>Texto1</div>
+            <div></div>
+            <div>Texto3</div>
+        
+            <h3>Seleção de primeira letra e linha de um paragrafo</h3>
+            <div class="letra">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium soluta quibusdam ea sapiente fugit veniam ducimus error nesciunt, veritatis in ratione, aut reiciendis laudantium, nihil maiores ipsum autem. Laudantium, necessitatibus.</p>
+            </div>
+            <div class="linha">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum ex impedit nostrum cupiditate enim culpa quibusdam officia placeat reiciendis inventore praesentium odio, iure id deleniti aut temporibus accusantium magni cumque?</p>
+            </div>
+            <h3>Seleção de primeiro e ultimo elemento</h3>
+            <div class="elemento">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <h3>Seleção negativa</h3>
+            <div class="negativo">
+                <div>exemplo</div>
+                <p>exemplo</p>
+                <a href="">exemplo</a>
+            </div>
+            <h3>Seleção por ordem de elemento NTH</h3>
+            <div class="nth">
+                <div>Exemplo 1</div>
+                <div>Exemplo 2</div>
+                <div>Exemplo 3</div>
+                <div>Exemplo 4</div>
+                <div>Exemplo 5</div>
+            </div>
+            <h3>Seletor before/after</h3>
+            <div class="ba">
+                <div>exemplo</div>
+            </div>
+            <div class="balao">bla bla bla bla bla</div>
+            <h3>Transparencia RGBA</h3>
+            <div class="transparencia"></div>
+            <h3>Seletor Transform</h3>
+            <p>Transform scale</p>
+            <div class="form1"></div>
+            <p>Transform rotate</p>
+            <div class="form2"></div>
+            <p>Transform skew</p>
+            <div class="form3"></div>
+            <h3>Estilisação do placeholder</h3>
+            <input class="holder" type="text" name="nome" placeholder="Nome aqui">
+        </details>
+        <hr>
+        <h2>Grid CSS</h2>
+        <details>
+            <h3>Exemplo de GRID</h3>
+            <div class="grid">
+                <div class="item item1">1</div>
+                <div class="item item2">2</div>
+                <div class="item item3">3</div>
+                <div class="item item4">4</div>
+                <div class="item item5">5</div>
+                <div class="item item6">6</div>
+                <div class="item item7">7</div>
+                <div class="item item8">8</div>
+            </div>
+        </details>
+    </details>
+<hr>
+    <h1>JavaScript</h1>
+    <details>
+
+        <h2>Interação com a janela (window)</h2>
+
+        <script>
+           //window.alert('Bem vindo a minha biblioteca de estudos!')//alert assim q entrar
+
+           //window.confirm('Essas janelas são testes, ok?')// Janela com botão ok e cancel
+
+           //window.prompt('Qual é o seu nome?')//janela com prompt para txt
+        </script>
+
+         <code>
+
+            window.alert('Bem vindo a minha biblioteca de estudos!') //alert assim q entrar
+            <br>
+            window.confirm('Essas janelas são testes, ok?') // Janela com botão ok e cancel
+            <br>
+            window.prompt('Qual é o seu nome?') //janela com prompt para txt
+
+         </code>
+
+    </details>
+
+</body>
+</html>

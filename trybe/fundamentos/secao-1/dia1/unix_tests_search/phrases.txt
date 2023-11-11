@@ -1,0 +1,6 @@
+eu
+tu
+ele
+nós
+vós
+eles

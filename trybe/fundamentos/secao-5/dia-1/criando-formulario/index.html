@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+<body>
+    <h1>Formulario</h1>
+
+    <form action="" method="get" >
+        <label for="input-name">
+            <p>Nome completo:</p>
+            <input type="text" name="name" id="input-name" required placeholder="Nome completo" autofocus>
+        </label>
+
+        <label for="input-email">
+            <p>E-mail:</p>
+            <input type="email" name="email" id="input-email" placeholder="Digite seu e-mail" required autocomplete="on" >
+        </label>
+
+        <label for="input-state">
+            <p>Estado onde reside:</p>
+            <select name="Estado" id="input-state">
+                <option value="ND" selected>-- Selecione --</option>
+                <option value="SP">São Paulo</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="RJ">Rio de Jnaeiro</option>
+            </select>
+        </label>
+
+        <label for="input-file">
+            <p>Enviar Sua foto:</p>
+            <input type="file" name="file" id="input-file">
+        </label>
+
+        <p>Comida favorita:</p>
+        <label for="comida-1">
+            <input type="radio" name="comida" id="comida-1" value="Pizza">Pizzza
+        </label>
+        <label for="comida-2">
+            <input type="radio" name="comida" id="comida-2" value="Hamburguer">Hamburguer
+        </label>
+        <label for="comida-3">
+            <input type="radio" name="comida" id="comida-3" value="Sorvete">Sorvete
+        </label>
+
+        <label for="text-area">
+            <p>Algum comentario:</p>
+            <textarea name="text" id="text-area" cols="30" rows="10"></textarea>
+        </label>
+        <br>
+        <br>
+        <label for="input-checkbox">
+            <input type="checkbox" name="check" id="input-checkbox">Receber promoçoes em seu e-mail?
+        </label>
+        <br>
+        <br>
+        <input type="submit" value="Enviar">
+
+    </form>
+    
+</body>
+</html>

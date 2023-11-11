@@ -1,0 +1,131 @@
+body,
+html,
+.root,
+.root > div,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-image: url('https://i.imgur.com/ZDZi25c.png');
+  background-repeat: repeat;
+  background-size: 100px;
+  color: #00742e;
+}
+
+.root,
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.greeting {
+  text-align: start;
+  align-self: flex-start;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 15%;
+  background: linear-gradient(44.86deg, #74bf48 24.55%, #479b43 75.06%);
+  width: 100%;
+  color: white;
+  padding: 0;
+  margin: 0;
+}
+
+.greeting > img {
+  width: 70px;
+}
+
+.subtitle {
+  align-self: flex-start;
+  max-width: 750px;
+  text-align: start;
+  font-size: large;
+  margin-left: 10px;
+}
+
+ul {
+  max-width: 750px;
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-color: #00ca51;
+  width: 90px;
+  height: 90px;
+  border-radius: 100%;
+  text-align: center;
+  font-size: 48px;
+  color: white;
+}
+
+@media (max-width: 590px) {
+  ul {
+    max-width: 300px;
+  }
+  h2 {
+    margin: 10px 0;
+  }
+  .greeting {
+    font-size: larger;
+  }
+}
+
+.results-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 255, 34, 0.068);
+  margin-top: 10px;
+  padding-top: 5px;
+  border-top: #00742e 3px solid;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.results-container > article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+  width: 100%;
+  max-width: 750px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00742e;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

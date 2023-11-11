@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+   <form action="" method="get">
+<!--1 - Adicione os campos de entrada para e-mail e senha.
+    Adicione os placeholder Digite seu e-mail e Digite sua senha para os campos de e-mail e senha. 
+    Adicione o atributo required para os campos de e-mail e senha. Adicione o atributo autocomplete="off" para o campo de e-mail.  Adicione o atributo autofocus para o campo de e-mail.--> 
+        <label for="input-email">
+            <p>E-mail:</p>
+            <input type="email" name="email" id="input-email" placeholder="Digite seu email" autocomplete="off" required autofocus >
+        </label>
+
+        <label for="input-password">
+            <p>Senha:</p>
+            <input type="password" name="senha" id="input-password" placeholder="Digite sua senha" required>
+        </label>
+
+<!--2 - Adicione um checkbox com o texto Lembre-me .--> 
+        <label for="input-password">
+            <p>Lembre-me:</p>
+            <input type="checkbox" name="lembrar" type="text">
+        </label>
+<!--3 - Adicione um botão com o texto Entrar .--> 
+        <br>
+        <button type="submit">Entrar</button>
+    </form>
+</body>
+
+</html>

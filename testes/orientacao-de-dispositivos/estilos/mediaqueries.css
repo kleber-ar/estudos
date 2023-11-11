@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+@media screen and (orientation: landscape){
+    /* Orientação em paisagem (landscape) no modo retrato é só mudar o "landscape" para "portrait" */
+
+    body {
+
+        background-image: url(../imagens/cev-landscape.jpg);
+        background-position: left bottom;
+
+    }
+
+}

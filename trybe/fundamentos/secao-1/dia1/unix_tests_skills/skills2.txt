@@ -1,0 +1,9 @@
+Internet
+Unix
+Bash
+eu
+tu
+ele
+nós
+vós
+eles

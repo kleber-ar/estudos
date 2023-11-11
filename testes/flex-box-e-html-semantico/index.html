@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos/style.css">
+    <link rel="stylesheet" href="estilos/media-queries.css">
+
+    <script type="text/javascript">
+
+        window.onload = function(){
+            document.querySelector(".menuMobile").addEventListener("click", function(){
+                if(document.querySelector(".menu nav ul").style.display == 'flex') {
+                    document.querySelector(".menu nav ul").style.display = 'none';
+                } else {
+                    document.querySelector(".menu nav ul").style.display = 'flex';
+                }
+            });
+        };
+
+    </script>
+
+    <title>Medi Center</title>
+</head>
+<body>
+
+    <header>
+
+        <div class="container">
+
+            <div class="cabeca">
+
+                <div class="logo">
+                
+                    <img src="imagens/logo.png" alt="logo">
+
+                </div>
+
+                <div class="menu">
+
+                    <nav>
+
+                        <div class="menuMobile">
+
+                            <div class="mmline"></div>
+                            <div class="mmline"></div>
+                            <div class="mmline"></div>
+
+                        </div>
+
+                        <ul>
+                            <li><a href="">home</a></li>
+                            <li><a href="">blog</a></li>
+                            <li><a href="">pages</a></li>
+                            <li><a href="">departments</a></li>
+                            <li><a href="">timetable</a></li>
+                            <li><a href="">gallery</a></li>
+                            <li><a href="">contact</a></li>
+                        </ul>
+                    </nav>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <section id="banner">
+        
+        <div class="container column">
+
+            <div class="banner-text">
+
+                <h1>Top notch experience</h1>
+                <h2>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime consectetur laudantium odio beatae.</h2>
+
+            </div>
+
+            <div class="banner-options">
+
+                <div class="option1">
+                    
+                    <h1>Emergency Case</h1>
+
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi in quasi non, consequuntur fugit optio maiores ipsum aperiam quae doloremque delectus</p>
+
+                    <a href="">Read more</a>
+
+                </div>
+
+                <div class="option2">  
+                    
+                    <h1>Doctors Timetable</h1>
+
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim accusamus blanditiis, architecto officiis exercitationem praesentium </p>
+
+                    <a href="">Read more</a>
+                    
+                </div>
+
+                <div class="option3">
+
+                    <h1>Opening Hours</h1>
+
+                    <div class="semana">
+                        
+                        <p>Monday - Friday</p>
+                        <p>8:00 - 17:00</p>
+
+                    </div>
+
+                    <hr class="hr-list">
+
+                    <div class="semana">
+
+                        <p>Saturday</p>
+                        <p>9:30 - 17:30</p>
+
+                    </div>
+
+                    <hr class="hr-list">
+
+                    <div class="semana">
+
+                        <p>Sunday</p>
+                        <p>9:30 - 15:00</p>
+
+                    </div>
+
+                    <hr class="hr-list">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="geral">
+        
+        <div class="container">
+            <section>
+                <div class="title">
+
+                    <h1>Latest News</h1>
+                    <hr class="hr-title">
+
+                </div>
+
+                <div class="conteudo flex">
+                    
+                        <article>
+
+                            <a href="">
+
+                            <div class="data">
+                                <div class="dt">12 DEC 12</div>
+                                <div class="ct">2</div>
+                            </div>
+
+                            <div class="thumb">
+                                <img src="imagens/pexels-jonathan-borba-3259629.jpg" alt="Medicos fazendo parto.">
+                            </div>
+
+                            <div class="ctitle">
+
+                                <h1>Lorem ipsum dolor sit amat velum </h1>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius, commodi. Quis nisi quas soluta mollitia repudiandae perspiciatis non voluptates, consequuntur laudantium cumque optio, architecto voluptate nesciunt amet culpa voluptatum recusandae!</p>
+                        
+                            </div>
+
+                            </a>
+
+                        </article>
+
+                        <article>
+
+                            <a href="">
+
+                            <div class="data">
+                                <div class="dt">12 DEC 12</div>
+                                <div class="ct">2</div>
+                            </div>
+
+                            <div class="thumb">
+                                <img src="imagens/pexels-jonathan-borba-3259629.jpg" alt="Medicos fazendo parto.">
+                            </div>
+
+                            <div class="ctitle">
+
+                                <h1>Lorem ipsum dolor sit amat velum </h1>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius, commodi. Quis nisi quas soluta mollitia repudiandae perspiciatis non voluptates, consequuntur laudantium cumque optio, architecto voluptate nesciunt amet culpa voluptatum recusandae!</p>
+                        
+                            </div>
+
+                            </a>
+                            
+                        </article>
+
+                        <article>
+
+                            <a href="">
+
+                            <div class="data">
+                                <div class="dt">12 DEC 12</div>
+                                <div class="ct">2</div>
+                            </div>
+
+                            <div class="thumb">
+                                <img src="imagens/pexels-jonathan-borba-3259629.jpg" alt="Medicos fazendo parto.">
+                            </div>
+
+                            <div class="ctitle">
+
+                                <h1>Lorem ipsum dolor sit amat velum </h1>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius, commodi. Quis nisi quas soluta mollitia repudiandae perspiciatis non voluptates, consequuntur laudantium cumque optio, architecto voluptate nesciunt amet culpa voluptatum recusandae!</p>
+                        
+                            </div>
+
+                            </a>
+                            
+                        </article>
+
+                        <article>
+
+                            <a href="">
+
+                            <div class="data">
+                                <div class="dt">12 DEC 12</div>
+                                <div class="ct">2</div>
+                            </div>
+
+                            <div class="thumb">
+                                <img src="imagens/pexels-jonathan-borba-3259629.jpg" alt="Medicos fazendo parto.">
+                            </div>
+
+                            <div class="ctitle">
+
+                                <h1>Lorem ipsum dolor sit amat velum </h1>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius, commodi. Quis nisi quas soluta mollitia repudiandae perspiciatis non voluptates, consequuntur laudantium cumque optio, architecto voluptate nesciunt amet culpa voluptatum recusandae!</p>
+                        
+                            </div>
+
+                            </a>
+                            
+                        </article>
+
+
+                </div>
+
+            </section>
+
+            <aside>
+
+                <div class="title">
+
+                    <h1>Departments</h1>
+                    <hr class="hr-title">
+
+                </div>
+
+                <div class="conteudo flex">
+
+                    <div>1</div>
+                    <div>2</div>
+                    <div>3</div>
+                    <div>4</div>
+                    <div>5</div>
+                    <div>6</div>
+
+                </div>
+
+                <div class="title">
+
+                    <h1>Make An Appointment</h1>
+                    <hr class="hr-title">
+
+                </div>
+
+                <div class="conteudo flex">
+                    
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium ratione assumenda deserunt minus quae dignissimos libero voluptatem fuga harum itaque cupiditate consectetur ad, dolorum voluptates ullam fugiat quaerat, repellendus sit.</p>
+
+                </div>
+
+                <div class="contact">
+
+                    <hr>
+                    <p>Phone: <a href="">(21) 98231-5498</a></p>
+                    <hr>
+                    <p>Email: <a href="mailto:medicenter@atendimento.com.br">medicenter@mail.com.br</a></p>
+                    <hr>
+                    <p> Acesse nosso forum <a href="">AQUI.</a></p>
+                    <hr>
+
+                </div>
+
+            </aside>
+
+
+        </div>
+            
+    </section>
+
+    <footer>
+
+        <div class="container column">
+            
+            <div class="footer-options">
+
+                <div class="option1">
+                
+                    <h1>Health Insurance</h1>
+    
+                    <p>Here in medicenter we have individual &#8594;</p>
+
+                </div>
+
+                <div class="option2">
+                
+                    <h1>Medical Records</h1>
+
+                    <p>Here in medicenter we have individual &#8594;</p>
+                
+                </div>
+
+                <div class="option3">
+                
+                    <h1>Online Bill Pay</h1>
+
+                    <p>Here in medicenter we have individual &#8594;</p>
+                
+                </div>
+
+            </div>
+
+            <div class="footer-content">
+
+                <div class="content1">
+
+                    <div class="title">
+
+                        <h1>Medicenter Clinic</h1>
+                        <hr class="hr-title">
+    
+                    </div>
+
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum quaerat assumenda at ipsam. Ex voluptate quidem minus repudiandae cum?</p>
+
+                    <div class="info">
+
+                        <div class="info1">
+                            Medicenter Clinic <br>
+                            33 Farlane street <br>
+                            Kalor East <br>
+                            VIC 3033, Australia
+                        </div>
+                        <div class="info2">
+                            +123 655 655 <br>
+                            +123 655 655 <br>
+                            <a href="">Medicenter@mail.com</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="content2">
+
+                    <div class="title">
+
+                        <h1>Latest Posts</h1>
+                        <hr class="hr-title">
+
+                        <p><spam>&#8594;</spam> Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia.
+                        </p>
+                        <div class="att">6 years ago</div>
+
+                        <p><spam>&#8594;</spam>  Lorem ipsum dolor sit amet consectetur.
+                        </p>
+                        <div class="att">6 years ago</div>
+                        
+                        <p><spam>&#8594;</spam>  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non.
+                        </p>
+                        <div class="att">6 years ago</div>
+    
+                    </div>
+
+                </div>
+
+                <div class="content3">
+
+                    <div class="title">
+
+                        <h1>Latest Tweets</h1>
+                        <hr class="hr-title">
+
+                        <p><spam>&#8594;</spam>  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque at nam rem saepe veritatis magnam dolorem nulla temporibus harum! Iusto beatae, minus velit delectus iure dolore aliquam laborum blanditiis ratione.
+                        </p>
+                        <div class="att">6 years ago</div>
+
+                        <p><spam>&#8594;</spam>  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel dicta temporibus cum voluptas molestias, similique exercitationem architecto sit veritatis aperiam quo eos ipsam ab et obcaecati qui delectus repudiandae assumenda?
+                        </p>
+                        <div class="att">6 years ago</div>
+                        
+                        <p><spam>&#8594;</spam>  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quam eos eaque laboriosam atque. Aliquam neque beatae earum, provident possimus maxime voluptatibus eveniet saepe blanditiis voluptatem iure suscipit quo aspernatur!
+                        </p>
+                        <div class="att">6 years ago</div>
+    
+                    </div>
+
+                </div>
+
+            </div>
+            
+        </div>
+            
+    </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+</body>
+</html>
