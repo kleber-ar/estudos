@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "oINWagK7jC3jT2ZyQRMKPd3zzkBoiiYFuH3x7iAdZ20n/kR3+wIZ8HZ0y2zdY9OISfHcyiHDHsNBbFjv4gdD4g==",
+  "success": true,
+  "projectFilePath": "/home/kleber/estudos/trybe/C#/webapi/webapi.csproj",
+  "expectedPackageFiles": [
+    "/home/kleber/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/home/kleber/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/home/kleber/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
+    "/home/kleber/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
+    "/home/kleber/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
+    "/home/kleber/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+  ],
+  "logs": []
+}

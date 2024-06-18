@@ -1,0 +1,15 @@
+/home/kleber/estudos/trybe/C#/HelloWorld/bin/Debug/net6.0/HelloWorld
+/home/kleber/estudos/trybe/C#/HelloWorld/bin/Debug/net6.0/HelloWorld.deps.json
+/home/kleber/estudos/trybe/C#/HelloWorld/bin/Debug/net6.0/HelloWorld.runtimeconfig.json
+/home/kleber/estudos/trybe/C#/HelloWorld/bin/Debug/net6.0/HelloWorld.dll
+/home/kleber/estudos/trybe/C#/HelloWorld/bin/Debug/net6.0/ref/HelloWorld.dll
+/home/kleber/estudos/trybe/C#/HelloWorld/bin/Debug/net6.0/HelloWorld.pdb
+/home/kleber/estudos/trybe/C#/HelloWorld/obj/Debug/net6.0/HelloWorld.csproj.AssemblyReference.cache
+/home/kleber/estudos/trybe/C#/HelloWorld/obj/Debug/net6.0/HelloWorld.GeneratedMSBuildEditorConfig.editorconfig
+/home/kleber/estudos/trybe/C#/HelloWorld/obj/Debug/net6.0/HelloWorld.AssemblyInfoInputs.cache
+/home/kleber/estudos/trybe/C#/HelloWorld/obj/Debug/net6.0/HelloWorld.AssemblyInfo.cs
+/home/kleber/estudos/trybe/C#/HelloWorld/obj/Debug/net6.0/HelloWorld.csproj.CoreCompileInputs.cache
+/home/kleber/estudos/trybe/C#/HelloWorld/obj/Debug/net6.0/HelloWorld.dll
+/home/kleber/estudos/trybe/C#/HelloWorld/obj/Debug/net6.0/ref/HelloWorld.dll
+/home/kleber/estudos/trybe/C#/HelloWorld/obj/Debug/net6.0/HelloWorld.pdb
+/home/kleber/estudos/trybe/C#/HelloWorld/obj/Debug/net6.0/HelloWorld.genruntimeconfig.cache
