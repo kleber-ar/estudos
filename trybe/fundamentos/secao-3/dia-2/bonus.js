@@ -41,4 +41,3 @@ for (let lineIndex = 0; lineIndex <= midOfMatrix; lineIndex += 1) {
   controlLeft -= 1
 };
 
-    

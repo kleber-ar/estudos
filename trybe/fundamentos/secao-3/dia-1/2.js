@@ -4,7 +4,8 @@ let a = 10
 let b = 8
 
 if (a > b) {
-    console.log("'a' é maior que 'b'");
+    console.log(`A ${a} é amaior q B ${b}`)
 } else {
-    console.log("'a' é menor que  'b'");
+  console.log("B é maior q A")
 }
+
