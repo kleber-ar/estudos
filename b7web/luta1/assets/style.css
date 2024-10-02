@@ -1,0 +1,7 @@
+.section {
+  display: flex;
+}
+
+#char, #char2 { flex: 1;}
+
+
