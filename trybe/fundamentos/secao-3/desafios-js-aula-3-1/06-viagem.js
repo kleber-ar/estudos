@@ -9,13 +9,15 @@ São Paulo até Belo Horizonte = 7 horas e 23 minutos;
 Belo Horizonte até Salvador = 19 horas e 57 minutos;
 Salvador até Natal = 15 horas e 32 minutos. */
 
-let spBh = 7 + 23 / 60;
-let bhSa = 19 + 57 / 60;
-let saNa = 15 + 32 / 60;
+let spXbh = 7 + 23 / 60;
+let bhXsa = 19 + 57 / 60;
+let saXna = 15 + 32 / 60;
 
-let total = spBh + bhSa + saNa;
+let soma = spXbh + bhXsa + saXna;
 
-let totalDays = total / 24;
+let totalInDay = soma / 24;
+let totalInHoras = soma % 24;
 
-console.log(totalDays.toFixed(3));
-
+console.log(
+  `A viagem levará ${Math.floor(totalInDay)} Dia(s) e ${Math.floor(totalInHoras)} Horas.`,
+);

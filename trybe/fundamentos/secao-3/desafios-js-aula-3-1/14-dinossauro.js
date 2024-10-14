@@ -8,19 +8,19 @@ nenhuma            | português
 as duas            | Ai eu caio, né!!
 */
 
-function falar(perna) {
+function choose(perna) {
   switch (perna) {
     case "esquerda":
       return "english";
     case "direita":
-      return "franceis";
+      return "frannçais";
     case "nenhuma":
-      return "português";
+      return "portuguese";
     case "as duas":
       return "Ai eu caio, né!";
-
     default:
-      return "Oprção inválida";
+      return "Escollhe ai";
   }
 }
 
+console.log(choose());

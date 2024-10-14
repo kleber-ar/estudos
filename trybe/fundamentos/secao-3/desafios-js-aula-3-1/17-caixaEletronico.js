@@ -8,22 +8,13 @@ Se estiver tudo certo com o valor do saque, subtraia o valor do saldo e exiba a 
 let saldo = 1000;
 
 function caixa(saldo, saque) {
-  if (saque === 0) {
-    return "Valor inválido";
+  if (saque > saldo) return "Sem dinheiro";
+  if (saque % 10 !== 0) return "Temos nota de 10,50 e 100";
+  else {
+    saldo -= saque;
+
+    return `Saque de ${saque} efetuado! Saldo de: ${saldo}`;
   }
-
-  if (saque > saldo) {
-    return "Saldo insuficiente";
-  }
-
-  if (saque % 10 !== 0) {
-    return "Saque indisponivel para as notas: R$10, R$50, R$100";
-  }
-
-  saldo -= saque;
-
-  return `Saque efetuado! Valor do saldo: ${saldo}`;
 }
 
-console.log(caixa(saldo, 300));
-
+console.log(caixa(saldo, 100));

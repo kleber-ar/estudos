@@ -4,7 +4,7 @@ Crie uma solução para calcular o valor final da conta sendo que você também 
 let price = 100;
 let tax = price * 0.1;
 let tip = price * 0.05;
+
 let total = price + tax + tip;
 
 console.log(total);
-

@@ -8,7 +8,7 @@ let person1 = {
 
 let person2 = {
   name: "Silvia",
-  idade: 28,
+  idade: 30,
 };
 
 let person3 = {
@@ -21,10 +21,8 @@ let maisNova = person1;
 if (person2.idade < maisNova.idade) {
   maisNova = person2;
 }
-
 if (person3.idade < maisNova.idade) {
   maisNova = person3;
 }
 
 console.log(maisNova);
-

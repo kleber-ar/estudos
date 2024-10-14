@@ -11,21 +11,20 @@ function battle() {
   let player1 = escolherJogada();
   let player2 = escolherJogada();
 
-  console.log(`Player 1 escolheu: ${player1}`);
-  console.log(`Player 2 escolheu: ${player2}`);
-
   if (player1 === player2) {
-    return "A Ties";
-  } else if (
-    (player1 === "Pedra" && player2 === "Tesoura") ||
-    (player1 === "Tesoura" && player2 === "Papel") ||
-    (player1 === "Papel" && player2 === "Pedra")
-  ) {
-    return "Player 1 won";
+    return "Tie";
+  }
+  if (player1 === "Pedra" && player2 === "Tesoura") {
+    return "Player1 win";
+  }
+  if (player1 === "Tesoura" && player2 === "Papel") {
+    return "Player 1 win";
+  }
+  if (player1 === "Papel" && player2 === "Pedra") {
+    return "Player 1 win";
   } else {
-    return "Player 2 won";
+    return "Player 2 win";
   }
 }
 
 console.log(battle());
-

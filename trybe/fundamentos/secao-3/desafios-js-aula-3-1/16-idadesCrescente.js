@@ -24,4 +24,3 @@ pessoas.sort((a, b) => {
 pessoas.forEach((pessoa) => {
   console.log(pessoa.nome, pessoa.idade);
 });
-

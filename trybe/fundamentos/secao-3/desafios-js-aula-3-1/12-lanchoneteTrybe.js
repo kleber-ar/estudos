@@ -19,11 +19,10 @@ let cardapio = {
 
 function select(valor) {
   if (typeof valor !== "number" || !cardapio[valor]) {
-    return "Não temos essa opçao ainda";
+    return "Opa";
+  } else {
+    return cardapio[valor];
   }
-
-  return cardapio[valor];
 }
 
 console.log(select());
-

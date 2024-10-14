@@ -2,11 +2,12 @@
 Crie um algoritmo que calcula e imprime o tempo em minutos que Ana levará para ler todo o livro seguindo o formato:
 Ana levará X minutos para ler o livro todo. */
 
-let person = "Ana";
-let book = "Guia do mochileiro das galaxias";
-let page = 208;
-let pageRead = 4;
+let person = "Jensen";
+let book = "O guia do mochileiro das galáxias";
+let pages = 208;
+let readed = 4;
 let timeInMin = 2;
-let endBookTime = (page - pageRead) * (pageRead / timeInMin);
 
-console.log(`${person} levara ${endBookTime} Min para ler o livro.`);
+let totalTime = (pages - readed) * (readed / timeInMin);
+
+console.log(totalTime);

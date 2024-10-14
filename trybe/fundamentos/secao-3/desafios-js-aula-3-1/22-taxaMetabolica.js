@@ -24,14 +24,12 @@ function calcBMR(person) {
 
   if (person.sexo === "M") {
     bmr = person.altura * 6.25 + person.peso * 9.99 - person.idade * 4.92 + 5;
-  } else if (person.sexo === "F") {
+  }
+  if (person.sexo === "F") {
     bmr = person.altura * 6.25 + person.peso * 9.99 - person.idade * 4.92 - 161;
-  } else {
-    return "Sexo inválido";
   }
 
-  return `A taxa metabólica basal é: ${bmr.toFixed(0)} Kcal.`;
+  return `A taxa é de ${bmr.toFixed(0)}`;
 }
 
 console.log(calcBMR(person));
-

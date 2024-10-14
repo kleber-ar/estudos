@@ -9,13 +9,12 @@ Seu algoritmo deverá receber os 5 booleanos e mostrar a mensagem:
 - "Things I do for love...", caso deva executar a tarefa.
 - "Not today.", caso não deva executar. */
 
-function order(mom, dad, me, brother, sister) {
-  if (mom || dad || me || (brother && sister)) {
-    return "things I do for love...";
+function order(me, mom, dad, sister, brother) {
+  if (me || mom || dad || (sister && brother)) {
+    return "I do for love";
   } else {
-    return "Not today...";
+    return "Not to day";
   }
 }
 
-console.log(order(false, false, false, true, false));
-
+console.log(order(true, true, true, false, false));
