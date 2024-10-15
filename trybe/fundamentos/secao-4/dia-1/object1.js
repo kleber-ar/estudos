@@ -42,6 +42,6 @@ reader.favoriteBooks.push({
   publisher: "Rocco",
 });
 
-console.log(
-  `Os livros faritos de ${reader.name} são: "${reader.favoriteBooks[0].title}" | "${reader.favoriteBooks[1].title}"`,
-);
+const listBooks = reader.favoriteBooks.map((book) => book.title).join(", ");
+
+console.log(`Os livros favoritos de ${reader.name} são: ${listBooks}`);
