@@ -43,31 +43,25 @@ const order = {
 
 const customerInfo = (fullOrder) => {
   // Adicione abaixo as informações necessárias.
-
   const orderPerson = fullOrder.name;
   const deliveryPerson = fullOrder.order.delivery.deliveryPerson;
   const phone = fullOrder.phoneNumber;
-  const address = fullOrder.address.street;
-  const number = fullOrder.address.number;
-  const ap = fullOrder.address.apartment;
-
-  return `Olá, ${deliveryPerson}, entrega para: ${orderPerson}, Telefone: ${phone}, ${address}, Número: ${number}, AP: ${ap}`;
+  const address = fullOrder.address;
 
   //  'Olá, Ana Silveira, entrega para: Rafael Andrade, Telefone: 11-98763-1416, Rua das Flores, Número: 389, AP: 701.'
+  return `Olá, ${deliveryPerson}, entrega para: ${orderPerson}, Telefone: ${phone}, ${address.street}, Número: ${address.number}, AP: ${address.apartment}.`;
 };
 
 console.log(customerInfo(order));
 
 const orderModifier = (fullOrder) => {
   // Adicione abaixo as informações necessárias.
-
   fullOrder.name = "Luiz Silva";
   fullOrder.payment.total = 50;
 
   const pizzas = Object.keys(fullOrder.order.pizza).join(", ");
 
-  return `Olá, ${fullOrder.name}, o valor total de seu pedido de ${pizzas} e ${fullOrder.order.drinks.coke.type} é R$${fullOrder.payment.total}.`;
-
+  return `Olá, ${fullOrder.name}, o valor total do seu pedido de: ${pizzas} e ${fullOrder.order.drinks.coke.type} é de R$${fullOrder.payment.total}`;
   // Olá, Luiz Silva, o valor total de seu pedido de marguerita, pepperoni e Coca-Cola Zero é R$ 50,00.'.
 };
 
