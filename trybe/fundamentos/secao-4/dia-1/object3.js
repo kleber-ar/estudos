@@ -34,17 +34,16 @@ const school = {
   ],
 };
 
-const getValueByNumber = (obj, index) => Object.values(obj)[index];
+const getValueByNumber = (obj, index) => Object.values(obj)[index]; //obj[index]
 
-console.log(getValueByNumber(school, 0));
+console.log(getValueByNumber(school.lessons, 0));
 
 const getNumberOfStudents = (obj) =>
   obj.lessons.reduce((acc, cur) => acc + cur.students, 0);
 
 console.log(getNumberOfStudents(school));
 
-const verifyProp = (obj, key) =>
-  obj.lessons.every((lesson) => lesson[key] !== undefined);
+const verifyProp = (obj, key) => obj.lessons.every((lesson) => lesson[key]);
 
 console.log(verifyProp(school, "professor"));
 
@@ -55,7 +54,7 @@ const changeKey = (obj, course, value) => {
     findCourse.shift = value;
     return findCourse;
   } else {
-    return "Curso não encontrado.";
+    return "Tem não";
   }
 };
 

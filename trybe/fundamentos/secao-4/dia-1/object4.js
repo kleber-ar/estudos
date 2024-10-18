@@ -115,12 +115,12 @@ const basket = [
 
 const result = {};
 
-basket.forEach((fruit) => {
-  result[fruit] = (result[fruit] || 0) + 1;
-});
+basket.forEach((fruit) => (result[fruit] = (result[fruit] || 0) + 1));
+
+console.log(result);
 
 const newArray = Object.entries(result).map(([fruit, count]) =>
-  count > 1 ? `${count} ${fruit}s` : `${count} ${fruit}`,
+  count <= 1 ? `${count} ${fruit}` : `${count} ${fruit}s`,
 );
 
-console.log(`Sua cesta possui: ${newArray.join(", ")}.`);
+console.log(newArray);

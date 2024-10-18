@@ -48,8 +48,9 @@ const customerInfo = (fullOrder) => {
   const phone = fullOrder.phoneNumber;
   const address = fullOrder.address;
 
-  //  'Olá, Ana Silveira, entrega para: Rafael Andrade, Telefone: 11-98763-1416, Rua das Flores, Número: 389, AP: 701.'
   return `Olá, ${deliveryPerson}, entrega para: ${orderPerson}, Telefone: ${phone}, ${address.street}, Número: ${address.number}, AP: ${address.apartment}.`;
+
+  //  'Olá, Ana Silveira, entrega para: Rafael Andrade, Telefone: 11-98763-1416, Rua das Flores, Número: 389, AP: 701.'
 };
 
 console.log(customerInfo(order));
@@ -61,7 +62,7 @@ const orderModifier = (fullOrder) => {
 
   const pizzas = Object.keys(fullOrder.order.pizza).join(", ");
 
-  return `Olá, ${fullOrder.name}, o valor total do seu pedido de: ${pizzas} e ${fullOrder.order.drinks.coke.type} é de R$${fullOrder.payment.total}`;
+  return `Olá, ${fullOrder.name}, o valor total de seu pedido de: ${pizzas} e ${fullOrder.order.drinks.coke.type} é de R$${fullOrder.payment.total}`;
   // Olá, Luiz Silva, o valor total de seu pedido de marguerita, pepperoni e Coca-Cola Zero é R$ 50,00.'.
 };
 
