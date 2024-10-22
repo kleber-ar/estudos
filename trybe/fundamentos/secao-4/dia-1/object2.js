@@ -60,9 +60,9 @@ const orderModifier = (fullOrder) => {
   fullOrder.name = "Luiz Silva";
   fullOrder.payment.total = 50;
 
-  const pizzas = Object.keys(fullOrder.order.pizza).join(", ");
+  const pizzas = Object.keys(fullOrder.order.pizza);
 
-  return `Olá, ${fullOrder.name}, o valor total de seu pedido de: ${pizzas} e ${fullOrder.order.drinks.coke.type} é de R$${fullOrder.payment.total}`;
+  return `As pizzas são: ${pizzas}`;
   // Olá, Luiz Silva, o valor total de seu pedido de marguerita, pepperoni e Coca-Cola Zero é R$ 50,00.'.
 };
 

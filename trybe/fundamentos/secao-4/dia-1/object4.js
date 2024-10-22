@@ -11,6 +11,7 @@
 // Em seguida, imprima esse resultado na tela com uma mensagem no seguinte formato: Sua cesta possui: x Melancias, x Abacates....
 
 const basket = [
+  "Conde",
   "Melancia",
   "Abacate",
   "Melancia",
@@ -119,8 +120,8 @@ basket.forEach((fruit) => (result[fruit] = (result[fruit] || 0) + 1));
 
 console.log(result);
 
-const newArray = Object.entries(result).map(([fruit, count]) =>
+const newBasket = Object.entries(result).map(([fruit, count]) =>
   count <= 1 ? `${count} ${fruit}` : `${count} ${fruit}s`,
 );
 
-console.log(newArray);
+console.log(`Tem: ${newBasket}`);

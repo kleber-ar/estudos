@@ -34,7 +34,7 @@ const school = {
   ],
 };
 
-const getValueByNumber = (obj, index) => Object.values(obj)[index]; //obj[index]
+const getValueByNumber = (obj, index) => Object.values(obj)[index];
 
 console.log(getValueByNumber(school.lessons, 0));
 
@@ -47,11 +47,12 @@ const verifyProp = (obj, key) => obj.lessons.every((lesson) => lesson[key]);
 
 console.log(verifyProp(school, "professor"));
 
-const changeKey = (obj, course, value) => {
+const changeKey = (obj, course, valor) => {
   const findCourse = obj.lessons.find((lesson) => lesson.course === course);
 
   if (findCourse) {
-    findCourse.shift = value;
+    findCourse.shift = valor;
+
     return findCourse;
   } else {
     return "Tem não";
