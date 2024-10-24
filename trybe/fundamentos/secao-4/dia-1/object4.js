@@ -120,8 +120,8 @@ basket.forEach((fruit) => (result[fruit] = (result[fruit] || 0) + 1));
 
 console.log(result);
 
-const newBasket = Object.entries(result).map(([fruit, count]) =>
+const newResult = Object.entries(result).map(([fruit, count]) =>
   count <= 1 ? `${count} ${fruit}` : `${count} ${fruit}s`,
 );
 
-console.log(`Tem: ${newBasket}`);
+console.log(`Tem: ${newResult}`);

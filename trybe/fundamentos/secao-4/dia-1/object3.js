@@ -52,10 +52,9 @@ const changeKey = (obj, course, valor) => {
 
   if (findCourse) {
     findCourse.shift = valor;
-
     return findCourse;
   } else {
-    return "Tem não";
+    return "Não tem";
   }
 };
 
