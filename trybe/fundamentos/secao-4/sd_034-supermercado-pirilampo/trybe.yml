@@ -1,0 +1,7 @@
+ignore_files:
+  - tests/
+  - src/data.json
+  - .editorconfig
+  - .eslintignore
+  - .eslintrc.json
+

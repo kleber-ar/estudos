@@ -1,6 +1,6 @@
-let char = new Knight("Kar");
-let monster = new LittleMonster();
-let log = new Log(document.querySelector('.log'));
+let char = new Sorcerer("Mayara");
+let monster = new BigMonster();
+let log = new Log(document.querySelector(".log"));
 
 const stage = new Stage(
   char,
