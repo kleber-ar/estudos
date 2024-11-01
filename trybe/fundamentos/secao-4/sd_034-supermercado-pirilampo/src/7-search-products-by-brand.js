@@ -1,15 +1,11 @@
 const stockProducts = require('./data.json');
 
-const searchProductsByBrand = (brand) => {
+const searchProductsByBrand = (item) =>
   // Desenvolva seu código dentro dessa função...
-  const products = stockProducts.filter((item) => item.brand === brand);
-
-  if (!products) return [];
-
-  return products.map((item) => ({
-    description: item.description,
-    formattedPrice: `R$ ${item.price}`,
-  }));
-};
-
+  stockProducts
+    .filter(({ brand }) => brand === item)
+    .map((product) => ({
+      description: product.description,
+      formattedPrice: `R$ ${product.price}`,
+    }));
 module.exports = { searchProductsByBrand };

@@ -2,16 +2,11 @@ const stockProducts = require('./data.json');
 
 const getProductsWithAllergyOrIntoleranceInfo = () =>
   // Desenvolva seu código dentro dessa função...
-  stockProducts.map((item) => {
-    const productInfo = {
-      description: item.description,
-      formattedPrice: `R$ ${item.price}`,
-    };
-
-    if (item.allergyOrIntolerance) {
-      productInfo.allergyOrIntoleranceMessage = `Pode conter: ${item.allergyOrIntolerance.join(' ')}`;
-    }
-
-    return productInfo;
-  });
+  stockProducts.map((item) => ({
+    description: item.description,
+    formattedPrice: `R$ ${item.price}`,
+    ...(item.allergyOrIntolerance && {
+      allergyOrIntoleranceMessage: `Pode conter: ${item.allergyOrIntolerance.join(' ')}`,
+    }),
+  }));
 module.exports = { getProductsWithAllergyOrIntoleranceInfo };
