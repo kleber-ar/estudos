@@ -1,0 +1,52 @@
+{
+  "requirements": [
+    {
+      "bonus": false,
+      "description": "Exercício 1 - Alterando o texto",
+      "enabled": true,
+      "identifier": null,
+      "order": 1,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "Exercício 2 - Alterando a cor - quadrado amarelo",
+      "enabled": true,
+      "identifier": null,
+      "order": 2,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "Exercício 3 - Alterando a cor - quadrado vermelho",
+      "enabled": true,
+      "identifier": null,
+      "order": 3,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "Exercício 4 - Corrigindo o título",
+      "enabled": true,
+      "identifier": null,
+      "order": 4,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "Exercício 5 - Letras maiúsculas",
+      "enabled": true,
+      "identifier": null,
+      "order": 5,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "Exercício 6 - Exibindo tags",
+      "enabled": true,
+      "identifier": null,
+      "order": 6,
+      "skill_ids": []
+    }
+  ]
+}
