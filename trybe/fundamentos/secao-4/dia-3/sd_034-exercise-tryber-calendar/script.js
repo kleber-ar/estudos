@@ -54,31 +54,34 @@ const holydays = document.querySelectorAll(".holiday");
 const holidayBtn = document.querySelector("#btn-holiday");
 
 holidayBtn.addEventListener("click", () => {
-  holydays.forEach((holyday) => {
-    holyday.style.backgroundColor =
-      holyday.style.backgroundColor === "rgb(255, 113, 113)"
-        ? "rgb(238, 238, 238)"
-        : "rgb(255, 113, 113)";
+  holydays.forEach((day) => {
+    if (day.style.backgroundColor === "red") {
+      day.style.backgroundColor = "rgb(238, 238, 238)"; // Remove o estilo inline, voltando à cor original
+    } else {
+      day.style.backgroundColor = "red"; // Define a cor para vermelho
+    }
   });
 });
 
-const fridays = document.querySelectorAll(".friday");
 const fridayBtn = document.querySelector("#btn-friday");
 
 fridayBtn.addEventListener("click", () => {
-  fridays.forEach((friday) => {
-    if (!friday.dataset.originalText) {
-      friday.dataset.originalText = friday.textContent;
-    }
+  const fridays = document.querySelectorAll(".friday");
 
-    friday.textContent =
-      friday.textContent === "SEX" ? friday.dataset.originalText : "SEX";
+  fridays.forEach((day) => {
+    if (day.innerText === "SEX") {
+      day.innerText = day.dataset.originalText;
+    } else {
+      day.dataset.originalText = day.innerText;
+      day.innerText = "SEX";
+    }
   });
 });
 
 const daysElements = document.querySelectorAll(".day");
 
 daysElements.forEach((day) => {
+  day.style.cursor = "pointer";
   day.addEventListener("mouseover", (e) => {
     e.target.style.fontSize = "30px";
   });
@@ -92,52 +95,58 @@ const tasks = document.querySelectorAll(".task");
 let selectedColor = null;
 
 tasks.forEach((task) => {
-  task.addEventListener("click", (event) => {
-    if (event.target.classList.contains("selected")) {
-      event.target.classList.remove("selected");
+  task.addEventListener("click", (e) => {
+    if (e.target.classList.contains("selected")) {
+      e.target.classList.remove("selected");
+      e.target.style.border = "";
+
       selectedColor = null;
     } else {
-      tasks.forEach((t) => t.classList.remove("selected"));
-      event.target.classList.add("selected");
-      selectedColor = event.target.style.backgroundColor;
+      // Remove a seleção de todas as tarefas antes de adicionar a nova
+      tasks.forEach((t) => {
+        t.classList.remove("selected");
+        t.style.border = ""; // Remove bordas anteriores
+      });
+
+      // Seleciona a tarefa clicada
+      e.target.classList.add("selected");
+      e.target.style.border = "5px solid black"; // Estilo de borda
+
+      selectedColor = e.target.style.backgroundColor;
     }
   });
 });
 
-const days = document.querySelectorAll(".day");
-
-days.forEach((day) => {
-  day.addEventListener("click", (event) => {
-    if (selectedColor) {
-      const currentColor = event.target.style.color;
-      event.target.style.color =
-        currentColor === selectedColor ? "rgb(119, 119, 119)" : selectedColor;
-    }
+daysElements.forEach((day) => {
+  day.addEventListener("click", (e) => {
+    e.target.style.color =
+      e.target.style.color === selectedColor
+        ? "rgb(119,119,119)"
+        : selectedColor;
   });
 });
 
-const addButton = document.querySelector("#btn-add");
+const addTaskBtn = document.querySelector("#btn-add");
 const taskInput = document.querySelector("#task-input");
 const taskList = document.querySelector("#task-list");
 
-function addTask() {
-  const taskText = taskInput.value.trim(); // Remove espaços extras
-  if (taskText === "") {
-    alert("Por favor, insira um compromisso antes de adicionar.");
-    return;
-  }
+const addTask = () => {
+  const text = taskInput.value.trim();
 
-  const newTaskItem = document.createElement("li");
-  newTaskItem.textContent = taskText;
-  taskList.appendChild(newTaskItem);
+  if (!text) return alert("vai adc nada?!");
+
+  const newTask = document.createElement("li");
+  newTask.textContent = text;
+  taskList.appendChild(newTask);
 
   taskInput.value = "";
-}
+};
 
-addButton.addEventListener("click", addTask);
+addTaskBtn.addEventListener("click", addTask);
 
-taskInput.addEventListener("keypress", (event) => {
-  if (event.key === "Enter") {
+taskInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault(); // Evitar comportamento padrão
     addTask();
   }
 });
