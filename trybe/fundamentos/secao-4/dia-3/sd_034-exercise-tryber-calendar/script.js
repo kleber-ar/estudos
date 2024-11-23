@@ -63,18 +63,14 @@ holidayBtn.addEventListener("click", () => {
   });
 });
 
+const fridays = document.querySelectorAll(".friday");
 const fridayBtn = document.querySelector("#btn-friday");
 
-fridayBtn.addEventListener("click", () => {
-  const fridays = document.querySelectorAll(".friday");
+const originalTexts = Array.from(fridays, (day) => day.textContent);
 
-  fridays.forEach((day) => {
-    if (day.innerText === "SEX") {
-      day.innerText = day.dataset.originalText;
-    } else {
-      day.dataset.originalText = day.innerText;
-      day.innerText = "SEX";
-    }
+fridayBtn.addEventListener("click", () => {
+  fridays.forEach((day, index) => {
+    day.textContent = day.textContent === "SEX" ? originalTexts[index] : "SEX";
   });
 });
 
