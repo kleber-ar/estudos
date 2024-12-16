@@ -1,0 +1,44 @@
+{
+  "requirements": [
+    {
+      "bonus": false,
+      "description": "1 - Crie os casos de teste da funcão `Sum`",
+      "enabled": true,
+      "identifier": null,
+      "order": 1,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "2 - Implemente o caso de teste para a função `printMessage`",
+      "enabled": true,
+      "identifier": null,
+      "order": 2,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "3 - Ainda sobre a função `printMessage`, adicione os casos de teste a seguir`",
+      "enabled": true,
+      "identifier": null,
+      "order": 3,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "4 - Crie um fluxo de exceção para a função `printMessage`",
+      "enabled": true,
+      "identifier": null,
+      "order": 4,
+      "skill_ids": []
+    },
+    {
+      "bonus": true,
+      "description": "5 - Neste exercício, você irá praticar o desenvolvimento orientado a testes implementando `a função` e `os testes` para essa função",
+      "enabled": true,
+      "identifier": null,
+      "order": 5,
+      "skill_ids": []
+    }
+  ]
+}
