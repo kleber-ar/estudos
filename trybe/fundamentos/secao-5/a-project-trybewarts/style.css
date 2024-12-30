@@ -1,0 +1,106 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: azure;
+}
+
+.header {
+  display: flex;
+  background-color: rgb(50, 167, 145);
+  height: 70px;
+  justify-content: space-between;
+  padding: 15px;
+
+}
+
+h1 {
+  margin: auto 0;
+}
+
+.trybewarts-login {
+  display: flex;
+}
+
+.email-header , .password-header {
+  margin: 5px;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+}
+
+
+.login-btn {
+  border-radius: 5px;
+  margin: 5px;
+  background-color: blue;
+  color: white;
+  padding: 5px;
+  cursor: pointer;
+  border: none;
+  width: 120px;
+}
+
+main {
+  display: flex;
+  margin-left: 10%;
+  margin-top: 5%;
+  flex-direction: row;
+}
+
+#evaluation-form {
+  width: 675px;
+  display: flex;
+  flex-direction: column;
+}
+
+#trybewarts-forms-logo {
+  height: 500px;
+  right: 300px;
+}
+
+.align-inputs {
+  flex-flow: row wrap;
+  width: 500px;
+  margin: auto;
+  padding-top: 30px;
+}
+
+#input-name , #input-lastname , #input-email {
+  padding: 9px;
+  border-radius: 5px;
+  border: none;
+}
+
+#house {
+  position: absolute;
+  float: right;
+  margin-left: 5px;
+  padding: 7px;
+  border-radius: 5px;
+  border: none;
+  background-color: blueviolet;
+  color: white;
+}
+
+#submit-btn {
+  display: flex;
+  padding: 15px;
+  margin-top: 20px;
+  width: 200px;
+  justify-content: center;
+  border-radius: 5px;
+  border: none;
+  color: black;
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+}

@@ -1,0 +1,28 @@
+{
+  "requirements": [
+    {
+      "bonus": false,
+      "description": "1 - Implemente a função `formatedBookNames`",
+      "enabled": true,
+      "identifier": null,
+      "order": 1,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "2 - Implemente a função `formatedAuthorNamesBirth`",
+      "enabled": true,
+      "identifier": null,
+      "order": 1,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "3 - Implemente a função `nameAndAge`",
+      "enabled": true,
+      "identifier": null,
+      "order": 2,
+      "skill_ids": []
+    }
+  ]
+}
