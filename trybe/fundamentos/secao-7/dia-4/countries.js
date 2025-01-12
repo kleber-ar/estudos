@@ -110,13 +110,13 @@ function totalAreaByRegion(region = "Europe") {
 
 //🚀 Crie uma função chamada getLargestCountriesByRegion que retorna um objeto contendo os países com a maior área em cada região. O objeto de retorno deve ter a seguinte estrutura
 
-const getLargestCountriesByRegion = () => {
+function getLargestCountriesByRegion() {
   return countries.reduce((acc, cur) => {
     if (!acc[cur.region] || acc[cur.region].area < cur.area) {
       acc[cur.region] = { name: cur.name, area: cur.area };
     }
     return acc;
   }, {});
-};
+}
 
 console.log(getLargestCountriesByRegion());
