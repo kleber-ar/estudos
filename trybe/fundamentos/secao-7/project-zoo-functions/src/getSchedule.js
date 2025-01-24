@@ -36,7 +36,7 @@ const getSchedule = (scheduleTarget) => {
     return getAnimal(scheduleTarget);
   }
 
-  if (Object.keys(hours).includes(scheduleTarget)) {
+  if (scheduleTarget in hours) {
     return getDaySchedule(scheduleTarget);
   }
 
