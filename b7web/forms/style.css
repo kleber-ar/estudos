@@ -1,0 +1,68 @@
+/* Estiliza os campos obrigatórios */
+input:required {
+  border: 2px solid blue;
+  background-color: #f0f8ff;
+}
+
+/* Quando o campo está correto */
+input:valid {
+  border: 2px solid green;
+  background-color: #eaffea;
+}
+
+/* Quando o campo está incorreto */
+input:invalid {
+  border: 2px solid red;
+  background-color: #ffecec;
+}
+
+/* Criando o balão de erro */
+.error-message {
+  display: none;
+  position: absolute;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  margin-top: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Aparece quando o input é inválido */
+input:invalid+.error-message {
+  display: block;
+}
+
+/* Personalizando o foco */
+input:focus {
+  outline: none;
+  border: 2px solid orange;
+  box-shadow: 0 0 5px orange;
+}
+
+/* Animação de erro (faz o campo "tremer") */
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  50% {
+    transform: translateX(5px);
+  }
+
+  75% {
+    transform: translateX(-5px);
+  }
+}
+
+input:invalid {
+  animation: shake 0.3s ease-in-out;
+}
