@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casa de Câmbio</title>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Casa de <span class="cambio">Câmbio</span></h1>
+    </header>
+    <main>
+      <section>
+        <p>Digite a Moeda</p>
+        <input type="text" name="moeda" id="moeda" placeholder="USD">
+        <input type="number" id="quantidade" placeholder="1" min="0" step="any">
+        <button id="botao"><strong>Pesquisar</strong></button>
+      </section>
+
+      <section id="moedas">
+        <h2 class="moedas-titulo"></h2>
+        <ul class="moedas-lista"></ul>
+      </section>
+    </main>
+  </div>
+  <footer>
+    <p>&copy; 2025 Casa de Câmbio</p>
+  </footer>
+  <script type="module" src="./src/main.js"></script>
+</body>
+
+</html>

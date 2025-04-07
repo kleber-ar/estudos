@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #282C33;
+  color: white;
+  font-family: Fira Code, sans-serif;
+}
+
+h1 {
+  margin-bottom: 28px;
+}
+
+h2 {
+  margin: 24px 0px;
+}
+
+#quantidade {
+  background-color: rgba(217, 217, 217, 0.1);
+  height: 48px;
+  width: 171px;
+  border: none;
+  border-radius: 10px;
+  padding-left: 10px;
+  font-size: 20px;
+  color: white;
+  margin-right: 34px;
+}
+
+#moeda {
+  margin-right: 16px;
+  color: white;
+  margin-right: 34px;
+}
+
+.cambio {
+  color: #95EBA8;
+}
+
+.container {
+  max-width: 900px;
+  height: 100vh;
+  margin: auto;
+  padding-top: 65px;
+}
+
+.moeda-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 150px;
+  height: 44px;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.moeda-svg {
+  width: 16px;
+  height: 16px;
+  margin: 6px;
+
+}
+
+.moeda-valor {
+  flex: 2;
+  color: #FFE713;
+  font-size: 13px;
+  margin-left: 33px;
+
+}
+
+.moedas-lista {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  height: 480px;
+  overflow-y: auto;
+  justify-content: center;
+}
+
+#botao {
+  background-color: #95EBA8;
+  border: none;
+  border-radius: 10px;
+  color: #373737;
+  height: 48px;
+  width: 171px;
+  font-size: 20px;
+}
+
+#moeda {
+  background-color: rgba(217, 217, 217, 0.1);
+  height: 48px;
+  width: 171px;
+  border: none;
+  border-radius: 10px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+#moedas {
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  max-width: 100%;
+  height: 583px;
+  margin-top: 57px;
+  border-radius: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+}
+
+footer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding-bottom: 25px;
+}
+
+::-webkit-scrollbar {
+
+  background-color: rgb(92, 92, 92);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #282C33;
+  border-radius: 10px;
+}
