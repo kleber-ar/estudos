@@ -1,0 +1,169 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("./images/background.png");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  text-align: center;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 400px;
+  color: white;
+  margin-bottom: 50px;
+}
+
+.circle {
+  height: 300px;
+  width: 120px;
+  border: 2px solid white;
+  border-radius: 50%;
+  transform: rotate(50deg);
+  position: absolute;
+}
+
+h1 {
+  font-size: 50px;
+  font-weight: lighter;
+}
+
+.solar-system {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+h2 {
+  color: white;
+  font-size: 40px;
+  font-weight: lighter;
+}
+
+.line {
+  top: 45%;
+  border: 1px solid white;
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+}
+
+.planet-list {
+  display: flex;
+  z-index: 1;
+  position: absolute;
+  height: inherit;
+  width: inherit;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.planet-card img {
+  background-size: cover;
+  width: 200px;
+  margin-bottom: 55px;
+}
+
+img[alt="Planeta Mercúrio"] {
+  width: 40px;
+  margin-bottom: 110px;
+}
+
+img[alt="Planeta Vênus"] {
+  width: 80px;
+  margin-bottom: 95px;
+}
+
+img[alt="Planeta Terra"] {
+  width: 80px;
+  margin-bottom: 95px;
+}
+
+img[alt="Planeta Marte"] {
+  width: 50px;
+  margin-bottom: 105px;
+}
+
+img[alt="Planeta Júpter"] {
+  width: 200px;
+}
+
+img[alt="Planeta Saturno"] {
+  width: 210px;
+}
+
+img[alt="Planeta Urano"] {
+  width: 110px;
+  margin-bottom: 85px;
+}
+
+img[alt="Planeta Netuno"] {
+  width: 110px;
+  margin-bottom: 85px;
+}
+
+.planet-card p {
+  color: white;
+  font-size: 24px;
+}
+
+.missions {
+  background-color: rgba(211, 211, 211, 0.2);
+  padding: 30px 0;
+  margin: 0 15px;
+  margin-bottom: 30px;
+  border-radius: 30px;
+}
+
+.missions h2 {
+  margin-bottom: 30px;
+}
+
+.mission-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.mission-card {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  height: 200px;
+  border: 1px solid white;
+  color: white;
+  border-radius: 20px;
+}
+
+.mission-card > div:first-child,
+.mission-card > div:last-child {
+  flex: 1;
+}
+
+.mission-card > div:first-child {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 30px;
+  border-bottom: 1px solid white;
+}
+
+.mission-card > div:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-left: 20px;
+}
