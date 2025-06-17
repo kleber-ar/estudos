@@ -1,0 +1,36 @@
+{
+  "requirements": [
+    {
+      "bonus": false,
+      "description": "1 - Crie as rotas para a aplicação",
+      "enabled": true,
+      "identifier": null,
+      "order": 1,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "2- Crie dois NavLink dentro do componente Header",
+      "enabled": true,
+      "identifier": null,
+      "order": 2,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "3 - Crie um link para a página de posts de um usuário",
+      "enabled": true,
+      "identifier": null,
+      "order": 3,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "4 - Exiba os posts de um usuário",
+      "enabled": true,
+      "identifier": null,
+      "order": 4,
+      "skill_ids": []
+    }
+  ]
+}
