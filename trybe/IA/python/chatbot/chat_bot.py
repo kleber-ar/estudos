@@ -17,12 +17,15 @@ client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 #--------------------------------
 
-students_notes = client.files.upload(file="desempenho_estudantes_enem.csv")
+#ler qualquer arquivo
+
+dog1 = client.files.upload(file="cachorro_golden_retriever.png")
+dog2 = client.files.upload(file="cachorro_collie_acho.png")
 
 # Chamada direta usando o cliente
 response = client.models.generate_content(
     model='gemini-2.5-flash', # ou outro modelo como 'gemini-2.0-flash'
-    contents=[f'gere um relatorio:',students_notes]
+    contents=[f'identifique:',dog2]
 )
 
 print(response.text)
