@@ -42,7 +42,7 @@ def gradio_wrapper(message, _history):
         return response.text
     except Exception as e:
         response = chat.send_message(f"Explique que não suporta o tipo de arquivo do {e} e informe os que suporta")
-    return response.text
+        return response.text
 
 # o multimodal como True permite enviar arquivos
 chatInterface = gradio.ChatInterface(
