@@ -45,5 +45,10 @@ def gradio_wrapper(message, _history):
     return response.text
 
 # o multimodal como True permite enviar arquivos
-chatInterface = gradio.ChatInterface(gradio_wrapper, multimodal=True)
+chatInterface = gradio.ChatInterface(
+    fn=gradio_wrapper,
+    title="Analisador de Sentimentos 🎭",
+    multimodal=True
+)
+
 chatInterface.launch()
