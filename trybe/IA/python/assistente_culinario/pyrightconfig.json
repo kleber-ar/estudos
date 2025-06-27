@@ -1,0 +1,8 @@
+
+{
+  "_comment": "Esse arquivo aponta para o ambiente virtual 'dev' e para de da erro no IMPORT",
+  "venvPath": ".",
+  "venv": "dev",
+  "reportMissingImports": true,
+  "reportMissingTypeStubs": false
+}
