@@ -1,14 +1,13 @@
 
-
 # Nova importação
 from google import genai
 import os
 from dotenv import load_dotenv # Adicione esta importação
 import gradio
-import time
+#import pdb
 #imports das funçoes
 from google.genai.types import GenerateContentConfig, AutomaticFunctionCallingConfig
-from home_assistent import set_light_values, intruder_alert, start_music, good_morning
+from home_assistent import close_curtains, set_light_values,intruder_alert,start_music,good_morning,set_thermostat_temperature,open_curtains
 
 # Carrega as variáveis do arquivo .env
 load_dotenv()
@@ -17,7 +16,15 @@ client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Configuração da geração de conteúdo
 config = GenerateContentConfig(
-    tools=[set_light_values, intruder_alert, start_music, good_morning],
+    tools=[
+            set_light_values,
+            intruder_alert,
+            start_music,
+            good_morning,
+            set_thermostat_temperature,
+            open_curtains,
+            close_curtains
+           ],
     automatic_function_calling=AutomaticFunctionCallingConfig(disable=False)
 )
 
@@ -37,25 +44,14 @@ chat.send_message(
 
 #Toda a logica de como o gradio pega os arquivos. Tem q usar o PDB(debugger para ver os metadados no retorno)
 def gradio_wrapper(message, _history):
-    text = message.get("text","")
-    files_info = message.get("files", [])
-    uploaded_files = []
-
-    for file_path in files_info:
-        uploaded = client.files.upload(file=file_path)
-        while uploaded.state == "PROCESSING":
-            time.sleep(5)
-            uploaded = client.files.get(name=uploaded.state)
-
-        uploaded_files.append(uploaded)
-
     try:
-        response = chat.send_message([text] + uploaded_files)
-        return response.text
+        response = chat.send_message(message)
+        #pdb.set_trace() # DEBUG usando o PDB
     except Exception as e:
-        response = chat.send_message(f"Explique que não suporta o tipo de arquivo do {e} e informe os que suporta")
+        print(f"[ERROR]{e}") # ajuda o DEBUG
+        response = chat.send_message("Por favor,verifique o comando e tente novamente.")
     return response.text
 
 # o multimodal como True permite enviar arquivos
-chatInterface = gradio.ChatInterface(gradio_wrapper, multimodal=True)
+chatInterface = gradio.ChatInterface(gradio_wrapper, title="Assistente Residencial Inteligente 🏠")
 chatInterface.launch()
