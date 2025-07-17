@@ -17,13 +17,10 @@ function App() {
 
   return (
     <main className="App">
-<<<<<<< HEAD
       <InputTodo
         addTodo={ addTodo }
       />
-=======
       <InputTodo addTodo={addTodo} />
->>>>>>> exercise-three
       <ul>
         {listTodo.map((todo, index) => (
           <li key={index}>
