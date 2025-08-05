@@ -1,0 +1,36 @@
+.container {
+  /* POSICIOMENTO */
+  position: absolute;
+  right: 50%;
+  transform: translateX(50%);
+  top: 40%;
+  z-index: 20;
+
+  /* ESPAÇAMENTO */
+  padding: 4rem 8rem;
+  margin: auto;
+
+  /* COLORAÇÃO */
+  color: var(--gray-700);
+  background-color: var(--white);
+
+  /* BORDAS */
+  box-shadow: 0 1px 4px 0 var(--shadow);
+  border-bottom: 1px solid var(--gray-200);
+  border-radius: 0.25rem;
+
+  /* COMPORTAMENTO/ANIMAÇÃO */
+  animation: entry 0.5s ease-in;
+}
+
+@keyframes entry {
+  0% {
+    right: 0;
+  }
+
+  100% {
+    right: 50%;
+
+    transform: translateX(50%);
+  }
+}

@@ -1,0 +1,27 @@
+.container {
+  /* POSICIONAMENTO */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /* DIMENCIONAMENTO */
+  height: 100vh;
+  max-width: 34rem;
+
+  /* COLORAÇÃO */
+  background-color: var(--green-500);
+  color: var(--gray-100);
+
+  /* ESPAÇAMENTO */
+  padding: 3rem;
+  gap: 5rem;
+}
+
+.subtitle {
+  /* COLORAÇÃO */
+  color: var(--gray-100);
+
+  /* TIPOGRAFIA */
+  font-weight: normal;
+}
