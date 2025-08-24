@@ -1,0 +1,28 @@
+{
+  "requirements": [
+    {
+      "bonus": false,
+      "description": "1 - Montando a estrutura",
+      "enabled": true,
+      "identifier": null,
+      "order": 1,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "2 - Exibindo a lista de filmes na página Home",
+      "enabled": true,
+      "identifier": null,
+      "order": 2,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "3 - Exibindo a lista de filmes favoritados na página Favorites",
+      "enabled": true,
+      "identifier": null,
+      "order": 3,
+      "skill_ids": []
+    }
+  ]
+}
