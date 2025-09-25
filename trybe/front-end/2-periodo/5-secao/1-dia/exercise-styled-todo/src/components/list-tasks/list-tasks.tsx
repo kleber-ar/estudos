@@ -1,8 +1,8 @@
-import { Task as TaskType } from '../../types';
-import Task from '../task/task';
+import { Task as TaskType } from "../../types";
+import Task from "../task/task";
 
 type Props = {
-  tasks: TaskType[],
+  tasks: TaskType[];
   toggleStatusTask: (task: TaskType) => void;
   deleteTask: (task: TaskType) => void;
 };
@@ -12,10 +12,10 @@ function ListTasks({ tasks, toggleStatusTask, deleteTask }: Props) {
     <ul>
       {tasks.map((task) => (
         <Task
-          key={ task.id }
-          task={ task }
-          toggleStatusTask={ toggleStatusTask }
-          deleteTask={ deleteTask }
+          key={task.id}
+          task={task}
+          toggleStatusTask={toggleStatusTask}
+          deleteTask={deleteTask}
         />
       ))}
     </ul>
