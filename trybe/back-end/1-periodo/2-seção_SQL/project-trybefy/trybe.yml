@@ -1,0 +1,6 @@
+ignore_files:
+- __tests__/
+- package.json
+- .editorconfig
+- .eslintignore
+- .eslintrc.json
