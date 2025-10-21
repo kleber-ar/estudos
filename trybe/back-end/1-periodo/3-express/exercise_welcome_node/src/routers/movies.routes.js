@@ -55,6 +55,14 @@ router.put('/movies/:id', async (req, res) => {
   res.status(200).json(content[index]);
 });
 
+router.delete('/movies/:id', async (req, res) => {
+  const { id } = req.params;
+  const content = await readJsonData(PATH);
+  const newContent = content.filter((movie) => movie.id !== Number(id));
 
+  await writeJsonData(PATH, newContent);
+
+  res.status(200).json({ message: 'Filme excluido!' });
+})
 
 module.exports = router;
