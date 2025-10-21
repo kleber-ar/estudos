@@ -38,4 +38,23 @@ router.post('/movies', async (req, res) => {
   res.status(201).json(newMovie);
 });
 
+router.put('/movies/:id', async (req, res) => {
+  const { id } = req.params;
+  const updatedData = req.body;
+
+  const content = await readJsonData(PATH);
+
+  const index = content.findIndex((movie) => String(movie.id) === String(id));
+
+  if (index === -1) return res.status(404).json({ message: 'Filme não encontrado' });
+
+  content[index] = { ...content[index], ...updatedData };
+
+  await writeJsonData(PATH, content);
+
+  res.status(200).json(content[index]);
+});
+
+
+
 module.exports = router;
