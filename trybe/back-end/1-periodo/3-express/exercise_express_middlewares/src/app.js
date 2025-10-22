@@ -27,4 +27,17 @@ app.post('/activities',
     res.status(201).json({ message: 'Atividade cadastrada com sucesso!' });
   });
 
+app.post('/signup', (_req, res) => {
+
+  const { email, password, firstName, phone } = req.body;
+
+
+  if ([email, password, firstName, phone].includes(undefined)) {
+
+    return res.status(401).json({ message: 'Campos ausentes!' });
+
+  }
+
+});
+
 module.exports = app;
