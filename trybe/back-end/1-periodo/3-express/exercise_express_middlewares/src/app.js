@@ -2,6 +2,7 @@ const express = require('express');
 const validateName = require('./middlewares/validateName');
 const validatePrice = require('./middlewares/validatePrice');
 const validateDescription = require('./middlewares/validateDescription');
+const validateDateFormat = require('./middlewares/validateDateFormat');
 
 const app = express();
 app.use(express.json());
@@ -13,8 +14,13 @@ app.get('/', (_request, response) => {
   response.status(HTTP_OK_STATUS).send();
 });
 
-app.post('/activities', validateName, validatePrice, validateDescription, (_req, res) => {
-  res.status(201).json({ message: 'Atividade cadastrada com sucesso!' });
-});
+app.post('/activities',
+  validateName,
+  validatePrice,
+  validateDescription,
+  validateDateFormat,
+  (_req, res) => {
+    res.status(201).json({ message: 'Atividade cadastrada com sucesso!' });
+  });
 
 module.exports = app;
