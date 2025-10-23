@@ -100,3 +100,16 @@ app.put('/talker/:id', validateToken, validateTalkerFields, async (req, res) => 
 
   return res.status(200).json(updatedTalker);
 });
+
+app.delete('/talker/:id', validateToken, async (req, res) => {
+  const { id } = req.params;
+
+  const data = await fs.readFile(dataJson, 'utf-8');
+  const talkers = JSON.parse(data);
+
+  const filteredTalkers = talkers.filter((t) => t.id !== Number(id));
+
+  await fs.writeFile(dataJson, JSON.stringify(filteredTalkers));
+
+  return res.status(204).end();
+});
