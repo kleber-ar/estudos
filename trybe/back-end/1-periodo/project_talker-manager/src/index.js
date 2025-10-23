@@ -28,7 +28,25 @@ app.get('/talker', async (_req, res,) => {
 
     return res.status(200).json(talkers);
   } catch (error) {
-    return res.status(404).json({ message: 'deu ruim ' }, error)
+    console.error('Erro ao ler o arquivo talker.json:', error);
+    return res.status(500).json({ message: 'deu ruim ' })
+  }
+})
+
+app.get('/talker/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const data = await fs.readFile(dataJson);
+    const talkers = JSON.parse(data);
+    const talker = talkers.find((t) => t.id === Number(id));
+
+    if (!talker) return res.status(404).json({ message: 'Pessoa palestrante não encontrada' });
+
+    return res.status(200).json(talker);
+  } catch (error) {
+    console.error('Erro ao buscar palestrante:', error);
+    return res.status(500).json({ message: 'Erro interno no servidor' });
   }
 })
 
