@@ -81,6 +81,35 @@ app.get('/talker/search', validateToken, async (req, res) => {
   return res.status(200).json(filtered);
 });
 
+app.patch('/talker/rate/:id', validateToken, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { rate } = req.body;
+
+    if (rate === undefined || rate === null) return res.status(400).json({ message: 'O campo "rate" é obrigatório' });
+
+    if (!Number.isInteger(rate) || rate < 1 || rate > 5) return res.status(400).json({
+      message: 'O campo "rate" deve ser um número inteiro entre 1 e 5',
+    });
+
+    const data = await fs.readFile(dataJson, 'utf-8');
+    const talkers = JSON.parse(data);
+
+    const talkerIndex = talkers.findIndex((t) => t.id === Number(id));
+
+    if (!talkerIndex === -1) return res.status(404).json({ message: 'Pessoa palestrante não encontrada' });
+
+    talkers[talkerIndex].talk.rate = rate;
+
+    await fs.writeFile(dataJson, JSON.stringify(talkers));
+
+    return res.status(204).end();
+  } catch (error) {
+    console.error('Erro ao buscar palestrante:', error);
+    return res.status(500).json({ message: 'Erro interno no servidor' });
+  }
+});
+
 app.get('/talker/:id', async (req, res) => {
   try {
     const { id } = req.params;
