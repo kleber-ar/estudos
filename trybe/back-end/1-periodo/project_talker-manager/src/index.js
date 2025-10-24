@@ -39,18 +39,33 @@ app.get('/talker', async (_req, res,) => {
 })
 
 app.get('/talker/search', validateToken, async (req, res) => {
-  const { q } = req.query;
+  const { q, rate } = req.query;
 
   const data = await fs.readFile(dataJson, 'utf-8');
   const talkers = JSON.parse(data);
 
-  if (!q) {
-    return res.status(200).json(talkers);
+  if (rate !== undefined) {
+    const rateNumber = Number(rate);
+
+    if (!Number.isInteger(rateNumber) || rateNumber < 1 || rateNumber > 5) {
+      return res.status(400).json({
+        message: 'O campo "rate" deve ser um número inteiro entre 1 e 5',
+      });
+    }
+
   }
 
-  const filteredTalkers = talkers.filter((t) => t.name.includes(q));
+  let filtered = talkers;
 
-  return res.status(200).json(filteredTalkers);
+  if (q) {
+    filtered = filtered.filter((t) => t.name.includes(q));
+  }
+
+  if (rate) {
+    filtered = filtered.filter((t) => t.talk && t.talk.rate === Number(rate));
+  }
+
+  return res.status(200).json(filtered);
 });
 
 app.get('/talker/:id', async (req, res) => {
