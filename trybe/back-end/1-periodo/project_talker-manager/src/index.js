@@ -6,6 +6,7 @@ const validateEmail = require('./middlewares/validateEmail');
 const validatePassword = require('./middlewares/validatePassword');
 const validateToken = require('./middlewares/authMiddleware');
 const validateTalkerFields = require('./middlewares/validateTalkerFields');
+const connection = require('./db/connections');
 
 const app = express();
 app.use(express.json());
@@ -14,7 +15,7 @@ const HTTP_OK_STATUS = 200;
 const PORT = process.env.PORT || '3001';
 
 app.listen(PORT, () => {
-  console.log('Online');
+  console.log(`Online ${PORT}`);
 });
 
 const dataJson = path.resolve('src', 'talker.json');
@@ -37,6 +38,27 @@ app.get('/talker', async (_req, res,) => {
     return res.status(500).json({ message: 'deu ruim ' })
   }
 })
+
+app.get('/talker/db', async (_req, res) => {
+  try {
+    const [rows] = await connection.execute('SELECT * FROM talkers');
+
+    const formattedTalkers = rows.map((t) => ({
+      id: t.id,
+      name: t.name,
+      age: t.age,
+      talk: {
+        watchedAt: t.talk_watched_at,
+        rate: t.talk_rate,
+      },
+    }));
+
+    return res.status(200).json(formattedTalkers);
+  } catch (err) {
+    console.error('Erro ao buscar palestrantes do banco:', err.message);
+    return res.status(500).json({ message: 'Erro ao acessar o banco de dados' });
+  }
+});
 
 app.get('/talker/search', validateToken, async (req, res) => {
 
@@ -152,8 +174,6 @@ app.post('/talker', validateToken, validateTalkerFields, async (req, res) => {
   return res.status(201).json(newTalker);
 });
 
-
-
 app.put('/talker/:id', validateToken, validateTalkerFields, async (req, res) => {
   const { id } = req.params;
   const { name, age, talk } = req.body;
@@ -175,8 +195,6 @@ app.put('/talker/:id', validateToken, validateTalkerFields, async (req, res) => 
   return res.status(200).json(updatedTalker);
 });
 
-
-
 app.delete('/talker/:id', validateToken, async (req, res) => {
   const { id } = req.params;
 
@@ -189,3 +207,5 @@ app.delete('/talker/:id', validateToken, async (req, res) => {
 
   return res.status(204).end();
 });
+
+
