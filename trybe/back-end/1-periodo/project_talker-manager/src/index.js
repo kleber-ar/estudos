@@ -38,6 +38,21 @@ app.get('/talker', async (_req, res,) => {
   }
 })
 
+app.get('/talker/search', validateToken, async (req, res) => {
+  const { q } = req.query;
+
+  const data = await fs.readFile(dataJson, 'utf-8');
+  const talkers = JSON.parse(data);
+
+  if (!q) {
+    return res.status(200).json(talkers);
+  }
+
+  const filteredTalkers = talkers.filter((t) => t.name.includes(q));
+
+  return res.status(200).json(filteredTalkers);
+});
+
 app.get('/talker/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -80,6 +95,8 @@ app.post('/talker', validateToken, validateTalkerFields, async (req, res) => {
   return res.status(201).json(newTalker);
 });
 
+
+
 app.put('/talker/:id', validateToken, validateTalkerFields, async (req, res) => {
   const { id } = req.params;
   const { name, age, talk } = req.body;
@@ -100,6 +117,8 @@ app.put('/talker/:id', validateToken, validateTalkerFields, async (req, res) => 
 
   return res.status(200).json(updatedTalker);
 });
+
+
 
 app.delete('/talker/:id', validateToken, async (req, res) => {
   const { id } = req.params;
