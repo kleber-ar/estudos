@@ -4,7 +4,7 @@ const path = require('path');
 const crypto = require('crypto');
 const validateEmail = require('./middlewares/validateEmail');
 const validatePassword = require('./middlewares/validatePassword');
-const validateToken = require('./middlewares/validateToken');
+const validateToken = require('./middlewares/authMiddleware');
 const validateTalkerFields = require('./middlewares/validateTalkerFields');
 
 const app = express();
@@ -39,7 +39,10 @@ app.get('/talker', async (_req, res,) => {
 })
 
 app.get('/talker/search', validateToken, async (req, res) => {
-  const { q, rate } = req.query;
+
+  const isValidDate = (date) => /^\d{2}\/\d{2}\/\d{4}$/.test(date);
+
+  const { q, rate, date } = req.query;
 
   const data = await fs.readFile(dataJson, 'utf-8');
   const talkers = JSON.parse(data);
@@ -63,6 +66,16 @@ app.get('/talker/search', validateToken, async (req, res) => {
 
   if (rate) {
     filtered = filtered.filter((t) => t.talk && t.talk.rate === Number(rate));
+  }
+
+  if (date) {
+    if (!isValidDate(date)) {
+      return res.status(400).json({
+        message: 'O parâmetro "date" deve ter o formato "dd/mm/aaaa"',
+      });
+    }
+
+    filtered = filtered.filter((t) => t.talk && t.talk.watchedAt === date);
   }
 
   return res.status(200).json(filtered);
