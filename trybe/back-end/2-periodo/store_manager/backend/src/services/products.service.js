@@ -2,7 +2,7 @@ const productsModel = require('../models/products.model');
 
 async function getAll() {
   const products = await productsModel.findAll();
-  return { status: 'SUCCESSFUL', products };
+  return { status: 'SUCCESSFUL', data: products };
 }
 
 async function getById(id) {
