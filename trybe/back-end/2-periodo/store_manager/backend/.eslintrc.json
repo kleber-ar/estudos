@@ -22,7 +22,8 @@
         "ignoreComments": true,
         "ignoreUrls": true
       }
-    ],"eol-last": "error" // Força a existência de EXATAMENTE uma linha vazia no final.
+    ],
+    "eol-last": "error"
   },
   "overrides": [
     {
