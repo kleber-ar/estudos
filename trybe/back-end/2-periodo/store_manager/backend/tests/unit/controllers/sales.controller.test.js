@@ -1,0 +1,65 @@
+/* eslint-disable no-unused-expressions */
+const { expect } = require('chai');
+
+const sinon = require('sinon');
+const salesService = require('../../../src/services/sales.service');
+const salesController = require('../../../src/controllers/sales.controller');
+
+describe('Controller - Sales', function () {
+  afterEach(function () { sinon.restore(); });
+
+  it('retorna todas as vendas com status 200', async function () {
+    const req = {};
+    const res = { status: sinon.stub().returnsThis(), json: sinon.stub() };
+
+    const mock = [
+      {
+        saleId: 1,
+        date: '2021-09-09T04:54:29.000Z',
+        productId: 1,
+        quantity: 2,
+      },
+    ];
+
+    sinon.stub(salesService, 'getAll').resolves({ status: 'SUCCESSFUL', data: mock });
+
+    await salesController.listSales(req, res);
+
+    expect(res.status.calledWith(200)).to.be.true;
+    expect(res.json.calledWith(mock)).to.be.true;
+  });
+
+  it('retorna uma venda por id com status 200', async function () {
+    const req = { params: { id: 1 } };
+    const res = { status: sinon.stub().returnsThis(), json: sinon.stub() };
+
+    const mock = [
+      {
+        date: '2021-09-09T04:54:29.000Z',
+        productId: 1,
+        quantity: 2,
+      },
+    ];
+
+    sinon.stub(salesService, 'getById').resolves({ status: 'SUCCESSFUL', data: mock });
+
+    await salesController.getSaleById(req, res);
+
+    expect(res.status.calledWith(200)).to.be.true;
+    expect(res.json.calledWith(mock)).to.be.true;
+  });
+
+  it('retorna erro 404 ao não encontrar venda', async function () {
+    const req = { params: { id: 999 } };
+    const res = { status: sinon.stub().returnsThis(), json: sinon.stub() };
+
+    const mock = { message: 'Sale not found' };
+
+    sinon.stub(salesService, 'getById').resolves({ status: 'NOT_FOUND', data: mock });
+
+    await salesController.getSaleById(req, res);
+
+    expect(res.status.calledWith(404)).to.be.true;
+    expect(res.json.calledWith(mock)).to.be.true;
+  });
+});

@@ -15,7 +15,7 @@ async function findAll() {
 }
 
 async function findById(id) {
-  const [[sale]] = await connection.execute(
+  const [sale] = await connection.execute(
     `SELECT
       s.date,
       sp.product_id AS productId,
