@@ -21,8 +21,5 @@
     "seed": "node -e \"require('./__tests__/cypress/utils/db').runSeed()\"",
     "db:reset": "npm run migration && npm run seed",
     "postinstall": "npm install --prefix __tests__ && npm install --prefix backend"
-  },
-  "dependencies": {
-    "dotenv": "^17.2.3"
   }
 }
