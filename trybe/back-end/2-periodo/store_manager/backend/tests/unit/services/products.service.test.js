@@ -41,4 +41,13 @@ describe('Service - Products', function () {
     expect(result.status).to.equal('NOT_FOUND');
     expect(result.data).to.deep.equal({ message: 'Product not found' });
   });
+
+  it('cria um produto com sucesso', async function () {
+    sinon.stub(productsModel, 'insert').resolves({ id: 4, name: 'ProdutoX' });
+
+    const result = await productsService.createProduct('ProdutoX');
+
+    expect(result.status).to.equal('CREATED');
+    expect(result.data).to.deep.equal({ id: 4, name: 'ProdutoX' });
+  });
 });

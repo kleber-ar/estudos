@@ -63,4 +63,19 @@ describe('Controller - Products', function () {
     expect(res.status.calledWith(404)).to.be.true;
     expect(res.json.calledWith({ message: 'Product not found' })).to.be.true;
   });
+
+  it('retorna status 201 e o produto criado', async function () {
+    const req = { body: { name: 'ProdutoX' } };
+    const res = { status: sinon.stub().returnsThis(), json: sinon.stub() };
+
+    sinon.stub(productsService, 'createProduct').resolves({
+      status: 'CREATED',
+      data: { id: 4, name: 'ProdutoX' },
+    });
+
+    await productsController.createProduct(req, res);
+
+    expect(res.status.calledWith(201)).to.be.true;
+    expect(res.json.calledWith({ id: 4, name: 'ProdutoX' })).to.be.true;
+  });
 });
