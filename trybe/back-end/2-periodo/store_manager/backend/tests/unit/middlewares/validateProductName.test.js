@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 const { expect } = require('chai');
 const sinon = require('sinon');
 const validateProductName = require('../../../src/middlewares/validateProductName');
@@ -32,7 +33,7 @@ describe('Middleware validateProductName', function () {
     expect(
       res.json.calledWith({
         message: '"name" length must be at least 5 characters long',
-      })
+      }),
     ).to.be.true;
     expect(next.notCalled).to.be.true;
   });
