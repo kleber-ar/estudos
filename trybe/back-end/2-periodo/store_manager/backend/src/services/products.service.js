@@ -11,4 +11,24 @@ async function getById(id) {
   return { status: 'SUCCESSFUL', data: product };
 }
 
-module.exports = { getAll, getById };
+const createProduct = async (name) => {
+  if (!name) {
+    return { status: 'INVALID_VALUE', data: { message: '"name" is required' } };
+  }
+
+  if (name.length < 5) {
+    return {
+      status: 'INVALID_VALUE',
+      data: { message: '"name" length must be at least 5 characters long' },
+    };
+  }
+
+  const newProduct = await productsModel.insert(name);
+  return { status: 'CREATED', data: newProduct };
+};
+
+module.exports = {
+  getAll,
+  getById,
+  createProduct,
+};
