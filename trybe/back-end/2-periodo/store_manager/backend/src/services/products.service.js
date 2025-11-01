@@ -12,17 +12,6 @@ async function getById(id) {
 }
 
 const createProduct = async (name) => {
-  if (!name) {
-    return { status: 'INVALID_VALUE', data: { message: '"name" is required' } };
-  }
-
-  if (name.length < 5) {
-    return {
-      status: 'INVALID_VALUE',
-      data: { message: '"name" length must be at least 5 characters long' },
-    };
-  }
-
   const newProduct = await productsModel.insert(name);
   return { status: 'CREATED', data: newProduct };
 };
