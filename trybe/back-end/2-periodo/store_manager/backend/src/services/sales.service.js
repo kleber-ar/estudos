@@ -13,4 +13,13 @@ async function getById(id) {
   return { status: 'SUCCESSFUL', data: sale };
 }
 
-module.exports = { getAll, getById };
+const createSale = async (itemsSold) => {
+  const newSale = await salesModel.insert(itemsSold);
+  return { status: 'CREATED', data: newSale };
+};
+
+module.exports = {
+  getAll,
+  getById,
+  createSale,
+};
