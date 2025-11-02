@@ -46,4 +46,21 @@ describe('Service - Sales', function () {
     expect(result.status).to.equal('NOT_FOUND');
     expect(result.data).to.deep.equal({ message: 'Sale not found' });
   });
+
+  it('Cria uma venda com sucesso', async function () {
+    const mockSale = {
+      id: 3,
+      itemsSold: [
+        { productId: 1, quantity: 1 },
+        { productId: 2, quantity: 5 },
+      ],
+    };
+
+    sinon.stub(salesModel, 'insert').resolves(mockSale);
+
+    const result = await salesService.createSale(mockSale.itemsSold);
+
+    expect(result.status).to.equal('CREATED');
+    expect(result.data).to.deep.equal(mockSale);
+  });
 });

@@ -62,4 +62,33 @@ describe('Controller - Sales', function () {
     expect(res.status.calledWith(404)).to.be.true;
     expect(res.json.calledWith(mock)).to.be.true;
   });
+
+  it('Retorna status 201 e a venda criada', async function () {
+    const req = {
+      body: [
+        { productId: 1, quantity: 1 },
+        { productId: 2, quantity: 5 },
+      ],
+    };
+
+    const res = {
+      status: sinon.stub().returnsThis(),
+      json: sinon.stub(),
+    };
+
+    const mockSale = {
+      id: 3,
+      itemsSold: req.body,
+    };
+
+    sinon.stub(salesService, 'createSale').resolves({
+      status: 'CREATED',
+      data: mockSale,
+    });
+
+    await salesController.createSale(req, res);
+
+    expect(res.status.calledWith(201)).to.be.true;
+    expect(res.json.calledWith(mockSale)).to.be.true;
+  });
 });
