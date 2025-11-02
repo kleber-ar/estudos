@@ -20,8 +20,28 @@ const createProduct = async (req, res) => {
   return res.status(statusHTTP(status)).json(data);
 };
 
+const updateProduct = async (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+
+  // validações básicas do corpo
+  if (name === undefined) {
+    return res.status(400).json({ message: '"name" is required' });
+  }
+
+  if (name.length < 5) {
+    return res
+      .status(422)
+      .json({ message: '"name" length must be at least 5 characters long' });
+  }
+
+  const { status, data } = await productsService.updateProduct(id, name);
+  return res.status(status).json(data);
+};
+
 module.exports = {
   listProducts,
   getProductById,
   createProduct,
+  updateProduct,
 };
