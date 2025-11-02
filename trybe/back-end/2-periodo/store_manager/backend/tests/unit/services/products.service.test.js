@@ -78,4 +78,33 @@ describe('Service - Products', function () {
 
     expect(result.status).to.equal('NO_CONTENT');
   });
+
+  it('searchProducts retorna produtos filtrados com sucesso', async function () {
+    const mock = [{ id: 1, name: 'Martelo de Thor' }];
+    sinon.stub(productsModel, 'searchByName').resolves(mock);
+
+    const result = await productsService.searchProducts('Martelo');
+    expect(result.status).to.equal('SUCCESSFUL');
+    expect(result.data).to.deep.equal(mock);
+  });
+
+  it('searchProducts retorna todos os produtos quando query vazia', async function () {
+    const mock = [
+      { id: 1, name: 'Martelo de Thor' },
+      { id: 2, name: 'Traje de encolhimento' },
+    ];
+    sinon.stub(productsModel, 'searchByName').resolves(mock);
+
+    const result = await productsService.searchProducts('');
+    expect(result.status).to.equal('SUCCESSFUL');
+    expect(result.data).to.deep.equal(mock);
+  });
+
+  it('searchProducts retorna array vazio quando não há correspondência', async function () {
+    sinon.stub(productsModel, 'searchByName').resolves([]);
+
+    const result = await productsService.searchProducts('Inexistente');
+    expect(result.status).to.equal('SUCCESSFUL');
+    expect(result.data).to.deep.equal([]);
+  });
 });

@@ -55,4 +55,30 @@ describe('Model - Products', function () {
     expect(executeStub.calledOnce).to.equal(true);
     expect(result).to.equal(1);
   });
+
+  it('searchByName retorna todos os produtos quando o name está vazio', async function () {
+    const mockProducts = [
+      { id: 1, name: 'Martelo de Thor' },
+      { id: 2, name: 'Traje de encolhimento' },
+    ];
+    sinon.stub(connection, 'execute').resolves([mockProducts]);
+
+    const result = await productsModel.searchByName('');
+    expect(result).to.deep.equal(mockProducts);
+  });
+
+  it('searchByName retorna produtos filtrados pelo nome', async function () {
+    const mockProducts = [{ id: 1, name: 'Martelo de Thor' }];
+    sinon.stub(connection, 'execute').resolves([mockProducts]);
+
+    const result = await productsModel.searchByName('Martelo');
+    expect(result).to.deep.equal(mockProducts);
+  });
+
+  it('searchByName retorna array vazio quando nenhum produto corresponde', async function () {
+    sinon.stub(connection, 'execute').resolves([[]]);
+
+    const result = await productsModel.searchByName('Inexistente');
+    expect(result).to.deep.equal([]);
+  });
 });

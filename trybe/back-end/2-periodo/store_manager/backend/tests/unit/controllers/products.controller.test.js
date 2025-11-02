@@ -118,4 +118,45 @@ describe('Controller - Products', function () {
     expect(res.status.calledWith(204)).to.equal(true);
     expect(res.end.calledOnce).to.equal(true);
   });
+
+  it('searchProducts retorna produtos filtrados com status 200', async function () {
+    const req = { query: { q: 'Martelo' } };
+    const res = { status: sinon.stub().returnsThis(), json: sinon.stub() };
+    const mockData = [{ id: 1, name: 'Martelo de Thor' }];
+
+    sinon.stub(productsService, 'searchProducts').resolves({ status: 'SUCCESSFUL', data: mockData });
+
+    await productsController.searchProducts(req, res);
+
+    expect(res.status.calledWith(200)).to.be.true;
+    expect(res.json.calledWith(mockData)).to.be.true;
+  });
+
+  it('searchProducts retorna array vazio quando não há correspondência', async function () {
+    const req = { query: { q: 'Inexistente' } };
+    const res = { status: sinon.stub().returnsThis(), json: sinon.stub() };
+
+    sinon.stub(productsService, 'searchProducts').resolves({ status: 'SUCCESSFUL', data: [] });
+
+    await productsController.searchProducts(req, res);
+
+    expect(res.status.calledWith(200)).to.be.true;
+    expect(res.json.calledWith([])).to.be.true;
+  });
+
+  it('searchProducts retorna todos os produtos quando query vazia', async function () {
+    const req = { query: { q: '' } };
+    const res = { status: sinon.stub().returnsThis(), json: sinon.stub() };
+    const mockData = [
+      { id: 1, name: 'Martelo de Thor' },
+      { id: 2, name: 'Traje de encolhimento' },
+    ];
+
+    sinon.stub(productsService, 'searchProducts').resolves({ status: 'SUCCESSFUL', data: mockData });
+
+    await productsController.searchProducts(req, res);
+
+    expect(res.status.calledWith(200)).to.be.true;
+    expect(res.json.calledWith(mockData)).to.be.true;
+  });
 });
