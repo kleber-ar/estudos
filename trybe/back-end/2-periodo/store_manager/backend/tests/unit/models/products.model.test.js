@@ -47,4 +47,12 @@ describe('Model - Products', function () {
       ),
     ).to.equal(true);
   });
+
+  it('remove o produto com sucesso', async function () {
+    const executeStub = sinon.stub(connection, 'execute').resolves([{ affectedRows: 1 }]);
+    const result = await productsModel.remove(1);
+
+    expect(executeStub.calledOnce).to.equal(true);
+    expect(result).to.equal(1);
+  });
 });

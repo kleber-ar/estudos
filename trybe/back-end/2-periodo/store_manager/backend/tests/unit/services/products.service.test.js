@@ -60,4 +60,22 @@ describe('Service - Products', function () {
     expect(result.status).to.equal(200);
     expect(result.data).to.deep.equal({ id: 1, name: 'Martelo do Batman' });
   });
+
+  it('retorna NOT_FOUND se o produto não existir', async function () {
+    sinon.stub(productsModel, 'findById').resolves(undefined);
+
+    const result = await productsService.deleteProduct(99);
+
+    expect(result.status).to.equal('NOT_FOUND');
+    expect(result.data).to.deep.equal({ message: 'Product not found' });
+  });
+
+  it('deleta o produto com sucesso', async function () {
+    sinon.stub(productsModel, 'findById').resolves({ id: 1, name: 'Produto' });
+    sinon.stub(productsModel, 'remove').resolves(1);
+
+    const result = await productsService.deleteProduct(1);
+
+    expect(result.status).to.equal('NO_CONTENT');
+  });
 });

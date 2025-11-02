@@ -93,4 +93,29 @@ describe('Controller - Products', function () {
     expect(res.status.calledWith(200)).to.be.true;
     expect(res.json.calledWith({ id: 1, name: 'Martelo do Batman' })).to.be.true;
   });
+
+  it('DELETE retorna 404 quando o produto não existe', async function () {
+    const req = { params: { id: 99 } };
+    const res = { status: sinon.stub().returnsThis(), json: sinon.stub() };
+    sinon.stub(productsService, 'deleteProduct').resolves({
+      status: 'NOT_FOUND',
+      data: { message: 'Product not found' },
+    });
+
+    await productsController.deleteProduct(req, res);
+
+    expect(res.status.calledWith(404)).to.equal(true);
+    expect(res.json.calledWith({ message: 'Product not found' })).to.equal(true);
+  });
+
+  it('retorna 204 quando o produto é deletado', async function () {
+    const req = { params: { id: 1 } };
+    const res = { status: sinon.stub().returnsThis(), end: sinon.stub() };
+    sinon.stub(productsService, 'deleteProduct').resolves({ status: 'NO_CONTENT' });
+
+    await productsController.deleteProduct(req, res);
+
+    expect(res.status.calledWith(204)).to.equal(true);
+    expect(res.end.calledOnce).to.equal(true);
+  });
 });
