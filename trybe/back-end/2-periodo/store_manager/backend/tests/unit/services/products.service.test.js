@@ -50,4 +50,14 @@ describe('Service - Products', function () {
     expect(result.status).to.equal('CREATED');
     expect(result.data).to.deep.equal({ id: 4, name: 'ProdutoX' });
   });
+
+  it('atualiza um produto com sucesso', async function () {
+    sinon.stub(productsModel, 'findById').resolves({ id: 1, name: 'Antigo' });
+    sinon.stub(productsModel, 'update').resolves();
+
+    const result = await productsService.updateProduct(1, 'Martelo do Batman');
+
+    expect(result.status).to.equal(200);
+    expect(result.data).to.deep.equal({ id: 1, name: 'Martelo do Batman' });
+  });
 });

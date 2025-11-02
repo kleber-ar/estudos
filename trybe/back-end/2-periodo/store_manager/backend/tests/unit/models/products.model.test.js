@@ -34,4 +34,17 @@ describe('Model - Products', function () {
 
     expect(result).to.deep.equal({ id: 4, name: 'ProdutoX' });
   });
+
+  it('atualiza o produto com sucesso', async function () {
+    const executeStub = sinon.stub(connection, 'execute').resolves();
+
+    await productsModel.update(1, 'Martelo do Batman');
+
+    expect(
+      executeStub.calledWithExactly(
+        'UPDATE products SET name = ? WHERE id = ?',
+        ['Martelo do Batman', 1],
+      ),
+    ).to.equal(true);
+  });
 });
