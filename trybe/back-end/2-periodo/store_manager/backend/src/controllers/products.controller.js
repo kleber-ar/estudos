@@ -39,9 +39,21 @@ const updateProduct = async (req, res) => {
   return res.status(status).json(data);
 };
 
+const deleteProduct = async (req, res) => {
+  const { id } = req.params;
+  const { status, data } = await productsService.deleteProduct(Number(id));
+
+  if (status === 'NO_CONTENT') {
+    return res.status(statusHTTP(status)).end(); // 204 sem body
+  }
+
+  return res.status(statusHTTP(status)).json(data);
+};
+
 module.exports = {
   listProducts,
   getProductById,
   createProduct,
   updateProduct,
+  deleteProduct,
 };

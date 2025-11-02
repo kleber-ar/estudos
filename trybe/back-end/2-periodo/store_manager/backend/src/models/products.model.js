@@ -26,9 +26,18 @@ const update = async (id, name) => {
   );
 };
 
+const remove = async (id) => {
+  const [result] = await connection.execute(
+    'DELETE FROM products WHERE id = ?',
+    [id],
+  );
+  return result.affectedRows; // retorna quantas linhas foram afetadas
+};
+
 module.exports = {
   findAll,
   findById,
   insert,
   update,
+  remove,
 };
