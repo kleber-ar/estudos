@@ -91,4 +91,37 @@ describe('Controller - Sales', function () {
     expect(res.status.calledWith(201)).to.be.true;
     expect(res.json.calledWith(mockSale)).to.be.true;
   });
+
+  it('retorna 404 quando a venda não existe', async function () {
+    const req = { params: { id: 999 } };
+    const res = {
+      status: sinon.stub().returnsThis(),
+      json: sinon.stub(),
+    };
+
+    sinon.stub(salesService, 'deleteSale').resolves({
+      status: 'NOT_FOUND',
+      data: { message: 'Sale not found' },
+    });
+
+    await salesController.deleteSale(req, res);
+
+    expect(res.status.calledWith(404)).to.equal(true);
+    expect(res.json.calledWith({ message: 'Sale not found' })).to.equal(true);
+  });
+
+  it('retorna 204 quando a venda é deletada com sucesso', async function () {
+    const req = { params: { id: 1 } };
+    const res = {
+      status: sinon.stub().returnsThis(),
+      end: sinon.stub(),
+    };
+
+    sinon.stub(salesService, 'deleteSale').resolves({ status: 'NO_CONTENT' });
+
+    await salesController.deleteSale(req, res);
+
+    expect(res.status.calledWith(204)).to.equal(true);
+    expect(res.end.calledOnce).to.equal(true);
+  });
 });

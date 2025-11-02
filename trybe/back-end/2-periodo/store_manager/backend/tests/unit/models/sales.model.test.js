@@ -5,7 +5,7 @@ const connection = require('../../../src/models/connection');
 const salesModel = require('../../../src/models/sales.model');
 
 describe('Model - Sales', function () {
-  afterEach(function () { sinon.restore(); });
+  afterEach(sinon.restore);
 
   it('retorna todas as vendas', async function () {
     const mock = [
@@ -49,6 +49,7 @@ describe('Model - Sales', function () {
     executeStub
       .onSecondCall()
       .resolves([{ affectedRows: 1 }]); // Primeira linha em "sales_products"
+
     executeStub
       .onThirdCall()
       .resolves([{ affectedRows: 1 }]); // Segunda linha em "sales_products"
@@ -70,5 +71,22 @@ describe('Model - Sales', function () {
 
     // Verifica se a primeira query foi a correta
     expect(executeStub.firstCall.args[0]).to.include('INSERT INTO sales');
+  });
+
+  it('deleta uma venda existente com sucesso', async function () {
+    sinon.stub(connection, 'execute').resolves([{ affectedRows: 1 }]);
+
+    const result = await salesModel.deleteById(1);
+
+    expect(result).to.equal(1);
+    expect(connection.execute.calledOnce).to.equal(true);
+  });
+
+  it('retorna 0 quando a venda não existe', async function () {
+    sinon.stub(connection, 'execute').resolves([{ affectedRows: 0 }]);
+
+    const result = await salesModel.deleteById(999);
+
+    expect(result).to.equal(0);
   });
 });

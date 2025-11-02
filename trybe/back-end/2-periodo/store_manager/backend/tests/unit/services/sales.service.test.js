@@ -63,4 +63,21 @@ describe('Service - Sales', function () {
     expect(result.status).to.equal('CREATED');
     expect(result.data).to.deep.equal(mockSale);
   });
+
+  it('retorna status NOT_FOUND quando a venda não existe', async function () {
+    sinon.stub(salesModel, 'deleteById').resolves(0);
+
+    const result = await salesService.deleteSale(999);
+
+    expect(result.status).to.equal('NOT_FOUND');
+    expect(result.data).to.deep.equal({ message: 'Sale not found' });
+  });
+
+  it('retorna status NO_CONTENT quando a venda é deletada', async function () {
+    sinon.stub(salesModel, 'deleteById').resolves(1);
+
+    const result = await salesService.deleteSale(1);
+
+    expect(result.status).to.equal('NO_CONTENT');
+  });
 });
