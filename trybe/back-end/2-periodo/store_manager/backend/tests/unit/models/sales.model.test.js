@@ -89,4 +89,26 @@ describe('Model - Sales', function () {
 
     expect(result).to.equal(0);
   });
+
+  it('atualiza a quantidade com sucesso', async function () {
+    sinon.stub(connection, 'execute').resolves([{ affectedRows: 1 }]);
+
+    const result = await salesModel.updateQuantity(1, 2, 10);
+
+    expect(result).to.equal(1);
+    expect(connection.execute.calledOnce).to.equal(true);
+  });
+
+  it('retorna o produto da venda', async function () {
+    sinon.stub(connection, 'execute').resolves([
+      [
+        { saleId: 1, productId: 2, quantity: 10, date: '2023-05-06T03:14:28.000Z' },
+      ],
+    ]);
+
+    const result = await salesModel.findSaleProduct(1, 2);
+
+    expect(result).to.have.property('productId', 2);
+    expect(result).to.have.property('quantity', 10);
+  });
 });

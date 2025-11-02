@@ -124,4 +124,63 @@ describe('Controller - Sales', function () {
     expect(res.status.calledWith(204)).to.equal(true);
     expect(res.end.calledOnce).to.equal(true);
   });
+
+  it('retorna 400 se quantity for undefined', async function () {
+    const req = { params: { saleId: 1, productId: 2 }, body: {} };
+    const res = { status: sinon.stub().returnsThis(), json: sinon.stub() };
+
+    sinon.stub(salesService, 'updateQuantity').resolves({
+      status: 'BAD_REQUEST',
+      data: { message: '"quantity" is required' },
+    });
+
+    await salesController.updateQuantity(req, res);
+
+    expect(res.status.calledWith(400)).to.be.true;
+    expect(res.json.calledWith({ message: '"quantity" is required' })).to.be.true;
+  });
+
+  it('retorna 422 se quantity <= 0', async function () {
+    const req = { params: { saleId: 1, productId: 2 }, body: { quantity: 0 } };
+    const res = { status: sinon.stub().returnsThis(), json: sinon.stub() };
+
+    sinon.stub(salesService, 'updateQuantity').resolves({
+      status: 'INVALID_VALUE',
+      data: { message: '"quantity" must be greater than or equal to 1' },
+    });
+
+    await salesController.updateQuantity(req, res);
+    expect(res.status.calledWith(422)).to.be.true;
+  });
+
+  it('retorna 404 se produto não estiver na venda', async function () {
+    const req = { params: { saleId: 1, productId: 999 }, body: { quantity: 5 } };
+    const res = { status: sinon.stub().returnsThis(), json: sinon.stub() };
+
+    sinon.stub(salesService, 'updateQuantity').resolves({
+      status: 'NOT_FOUND',
+      data: { message: 'Product not found in sale' },
+    });
+
+    await salesController.updateQuantity(req, res);
+    expect(res.status.calledWith(404)).to.be.true;
+  });
+
+  it('retorna 200 se atualizar com sucesso', async function () {
+    const req = { params: { saleId: 1, productId: 2 }, body: { quantity: 20 } };
+    const res = { status: sinon.stub().returnsThis(), json: sinon.stub() };
+
+    sinon.stub(salesService, 'updateQuantity').resolves({
+      status: 'SUCCESSFUL',
+      data: {
+        date: '2023-05-06T03:14:28.000Z',
+        productId: 2,
+        quantity: 20,
+        saleId: 1,
+      },
+    });
+
+    await salesController.updateQuantity(req, res);
+    expect(res.status.calledWith(200)).to.be.true;
+  });
 });

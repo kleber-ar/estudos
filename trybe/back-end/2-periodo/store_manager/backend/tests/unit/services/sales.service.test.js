@@ -80,4 +80,47 @@ describe('Service - Sales', function () {
 
     expect(result.status).to.equal('NO_CONTENT');
   });
+
+  it('retorna erro se quantity for undefined', async function () {
+    const result = await salesService.updateQuantity(1, 2, undefined);
+    expect(result.status).to.equal('BAD_REQUEST');
+    expect(result.data.message).to.equal('"quantity" is required');
+  });
+
+  it('retorna erro se quantity <= 0', async function () {
+    const result = await salesService.updateQuantity(1, 2, 0);
+    expect(result.status).to.equal('INVALID_VALUE');
+  });
+
+  it('retorna erro se venda não existe', async function () {
+    sinon.stub(salesModel, 'findSaleProduct').resolves(undefined);
+    sinon.stub(salesModel, 'findById').resolves([]);
+
+    const result = await salesService.updateQuantity(999, 1, 5);
+    expect(result.status).to.equal('NOT_FOUND');
+    expect(result.data.message).to.equal('Sale not found');
+  });
+
+  it('retorna erro se produto não pertence à venda', async function () {
+    sinon.stub(salesModel, 'findSaleProduct').resolves(undefined);
+    sinon.stub(salesModel, 'findById').resolves([{ id: 1 }]);
+
+    const result = await salesService.updateQuantity(1, 999, 5);
+    expect(result.data.message).to.equal('Product not found in sale');
+  });
+
+  it('atualiza a quantidade com sucesso', async function () {
+    sinon.stub(salesModel, 'findSaleProduct')
+      .onFirstCall()
+      .resolves({ saleId: 1, productId: 2, quantity: 1, date: '2023' })
+      .onSecondCall()
+      .resolves({ saleId: 1, productId: 2, quantity: 20, date: '2023' });
+
+    sinon.stub(salesModel, 'updateQuantity').resolves(1);
+    sinon.stub(salesModel, 'findById').resolves([{ id: 1 }]);
+
+    const result = await salesService.updateQuantity(1, 2, 20);
+    expect(result.status).to.equal('SUCCESSFUL');
+    expect(result.data.quantity).to.equal(20);
+  });
 });
