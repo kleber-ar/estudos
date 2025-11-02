@@ -34,10 +34,22 @@ const remove = async (id) => {
   return result.affectedRows; // retorna quantas linhas foram afetadas
 };
 
+const searchByName = async (query) => {
+  if (!query) {
+    return findAll(); // retorna todos se query vazia
+  }
+  const [products] = await connection.execute(
+    'SELECT * FROM products WHERE name LIKE ?',
+    [`%${query}%`],
+  );
+  return products;
+};
+
 module.exports = {
   findAll,
   findById,
   insert,
   update,
   remove,
+  searchByName,
 };
