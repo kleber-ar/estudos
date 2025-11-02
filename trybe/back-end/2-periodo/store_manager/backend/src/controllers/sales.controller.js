@@ -24,13 +24,27 @@ const deleteSale = async (req, res) => {
   const { status, data } = await salesService.deleteSale(Number(id));
 
   if (status === 'NO_CONTENT') {
-    return res.status(204).end();
+    return res.status(statusHTTP(status)).end();
   }
 
   return res.status(statusHTTP(status)).json(data);
 };
 
+const updateQuantity = async (req, res) => {
+  const { saleId, productId } = req.params;
+  const { quantity } = req.body;
+
+  const { status, data } = await salesService.updateQuantity(
+    Number(saleId),
+    Number(productId),
+    quantity,
+  );
+
+  return res.status(statusHTTP(status)).json(data);
+};
+
 module.exports = {
+  updateQuantity,
   listSales,
   getSaleById,
   createSale,
