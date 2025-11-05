@@ -1,0 +1,52 @@
+{
+  "requirements": [
+    {
+      "bonus": false,
+      "description": "1 - Crie a função createToken no arquivo src/utils/auth.js",
+      "enabled": true,
+      "identifier": null,
+      "order": 1,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "4 - Crie um endpoint POST /login",
+      "enabled": true,
+      "identifier": null,
+      "order": 1,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "2 - Crie a função verify no arquivo src/auth.js",
+      "enabled": true,
+      "identifier": null,
+      "order": 2,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "6 - Crie o endpoint /GET /top-secret",
+      "enabled": true,
+      "identifier": null,
+      "order": 2,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "3 - Crie um middleware de autenticação no arquivo src/middlewares/auth.js",
+      "enabled": true,
+      "identifier": null,
+      "order": 3,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "5 - Crie o endpoint /GET /users/me",
+      "enabled": true,
+      "identifier": null,
+      "order": 4,
+      "skill_ids": []
+    }
+  ]
+}
