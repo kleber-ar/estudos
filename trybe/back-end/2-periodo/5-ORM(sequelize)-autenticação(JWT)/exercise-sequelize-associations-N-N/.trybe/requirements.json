@@ -1,0 +1,36 @@
+{
+  "requirements": [
+    {
+      "bonus": false,
+      "description": "Crie o model de `Plan`.",
+      "enabled": true,
+      "identifier": null,
+      "order": 1,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "Crie o model de `Patient`.",
+      "enabled": true,
+      "identifier": null,
+      "order": 2,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "Crie o model de `Surgery`.",
+      "enabled": true,
+      "identifier": null,
+      "order": 3,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "Crie o model de `PatientSurgery`.",
+      "enabled": true,
+      "identifier": null,
+      "order": 4,
+      "skill_ids": []
+    }
+  ]
+}
