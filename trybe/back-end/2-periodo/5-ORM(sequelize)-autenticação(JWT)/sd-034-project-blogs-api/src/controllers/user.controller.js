@@ -6,5 +6,13 @@ const create = async (req, res) => {
   return res.status(statusHTTP(status)).json(data);
 };
 
-module.exports = { create };
+const getAll = async (_req, res) => {
+  const { status, data } = await userService.getAll();
+  return res.status(statusHTTP(status)).json(data);
+};
+
+module.exports = {
+  create,
+  getAll,
+};
 

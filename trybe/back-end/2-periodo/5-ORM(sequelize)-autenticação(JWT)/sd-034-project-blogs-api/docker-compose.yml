@@ -1,5 +1,3 @@
-version: "3"
-
 services:
   # Serviço que irá rodar o node
   node:
