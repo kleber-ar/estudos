@@ -1,5 +1,6 @@
 const express = require('express');
 const loginController = require('./controllers/login.controller');
+const userRoutes = require('./routes/user.routes');
 
 // ...
 
@@ -12,6 +13,8 @@ app.get('/', (_request, response) => {
 });
 
 app.post('/login', loginController.login);
+
+app.use('/user', userRoutes);
 
 // ...
 
