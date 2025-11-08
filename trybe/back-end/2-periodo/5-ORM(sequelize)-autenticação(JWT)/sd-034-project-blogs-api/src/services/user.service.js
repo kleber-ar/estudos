@@ -24,7 +24,16 @@ const getAll = async () => {
   return { status: 'SUCCESS', data: users };
 };
 
+const getById = async (id) => {
+  const user = await User.findByPk(id, {
+    attributes: { exclude: ['password'] },
+  });
+
+  return { status: 'SUCCESS', data: user };
+};
+
 module.exports = {
   createUser,
   getAll,
+  getById,
 };
