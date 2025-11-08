@@ -23,9 +23,19 @@ const getById = async (req, res) => {
   return res.status(statusHTTP(status)).json(data);
 };
 
+const deleteMe = async (req, res) => {
+  const { email } = req.user;
+
+  // chama o service passando apenas o email
+  await userService.deleteUser(email);
+
+  // retorna status 204 sem conteúdo
+  return res.status(204).send();
+};
+
 module.exports = {
   create,
   getAll,
   getById,
+  deleteMe,
 };
-

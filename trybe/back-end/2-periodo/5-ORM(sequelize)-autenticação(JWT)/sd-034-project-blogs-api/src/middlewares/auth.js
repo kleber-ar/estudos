@@ -12,7 +12,8 @@ module.exports = (req, res, next) => {
 
   try {
     const decoded = verify(token);
-    req.user = decoded; // guarda os dados do token para uso futuro
+    const { email } = decoded;
+    req.user = { email }; // guarda os dados do token para uso futuro
     next();
   } catch (_err) {
     return res.status(401).json({ message: 'Expired or invalid token' });

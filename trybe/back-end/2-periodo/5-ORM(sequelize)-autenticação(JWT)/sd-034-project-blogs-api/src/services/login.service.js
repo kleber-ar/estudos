@@ -12,7 +12,7 @@ const login = async (email, password) => {
     return { status: 'BAD_REQUEST', data: { message: 'Invalid fields' } };
   }
 
-  const token = createToken({ email: user.email });
+  const token = createToken({ email });
 
   return { status: 'SUCCESS', data: { token } };
 };

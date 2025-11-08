@@ -9,9 +9,9 @@ const createUser = async ({ displayName, email, password, image }) => {
   }
 
   // cria o usuário no banco
-  const newUser = await User.create({ displayName, email, password, image });
+  await User.create({ displayName, email, password, image });
 
-  const token = createToken({ email: newUser.email });
+  const token = createToken(email);
 
   return { status: 'CREATED', data: { token } };
 };
@@ -32,8 +32,15 @@ const getById = async (id) => {
   return { status: 'SUCCESS', data: user };
 };
 
+const deleteUser = async (email) => {
+  await User.destroy({ where: { email } });
+
+  return { status: 'DELETED', data: { message: `User ${email} deleted` } };
+};
+
 module.exports = {
   createUser,
   getAll,
   getById,
+  deleteUser,
 };
