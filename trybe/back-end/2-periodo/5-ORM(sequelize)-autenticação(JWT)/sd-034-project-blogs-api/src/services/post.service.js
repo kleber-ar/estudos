@@ -81,9 +81,25 @@ const updatePost = async (id, email, title, content) => {
   return { status: 'SUCCESS', data: postToUpdate };
 };
 
+const deletePost = async (id, email) => {
+  const post = await BlogPost.findByPk(id);
+  if (!post) {
+    return { status: 'NOT_FOUND', data: { message: 'Post does not exist' } };
+  }
+
+  const user = await User.findOne({ where: { email } });
+  if (user.id !== post.userId) {
+    return { status: 'UNAUTHORIZED', data: { message: 'Unauthorized user' } };
+  }
+
+  await BlogPost.destroy({ where: { id } });
+  return { status: 'DELETED', data: null }; // DELETED mapeado para 204
+};
+
 module.exports = {
   create,
   getAll,
   getById,
   updatePost,
+  deletePost,
 };

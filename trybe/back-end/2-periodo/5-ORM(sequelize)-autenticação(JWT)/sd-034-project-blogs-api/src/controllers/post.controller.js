@@ -39,9 +39,22 @@ const update = async (req, res) => {
   return res.status(statusHTTP(status)).json(data);
 };
 
+const remove = async (req, res) => {
+  const { id } = req.params;
+  const { email } = req.user;
+
+  const { status, data } = await postService.deletePost(id, email);
+
+  // Se deletado com sucesso, retorna 204 sem body
+  if (status === 'DELETED') return res.status(statusHTTP(status)).send();
+
+  return res.status(statusHTTP(status)).json(data);
+};
+
 module.exports = {
   create,
   getAll,
   getById,
   update,
+  remove,
 };
