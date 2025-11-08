@@ -29,7 +29,7 @@ const getAll = async () => {
       },
     ],
   });
-  return { status: 'SUCCESSFUL', data: posts };
+  return { status: 'SUCCESS', data: posts };
 };
 
 const getById = async (id) => {
@@ -44,11 +44,46 @@ const getById = async (id) => {
     return { status: 'NOT_FOUND', data: { message: 'Post does not exist' } };
   }
 
-  return { status: 'SUCCESSFUL', data: post };
+  return { status: 'SUCCESS', data: post };
+};
+
+const updatePost = async (id, email, title, content) => {
+  // 1. Busca o usuário que está tentando atualizar
+  const user = await User.findOne({ where: { email } });
+
+  // 2. Busca o post E já inclui as associações necessárias para o retorno final
+  const postToUpdate = await BlogPost.findByPk(id, {
+    include: [
+      { model: User, as: 'user', attributes: { exclude: ['password'] } },
+      { model: Category, as: 'categories', attributes: ['id', 'name'], through: { attributes: [] } },
+    ],
+  });
+
+  if (!postToUpdate) {
+    return { status: 'NOT_FOUND', data: { message: 'Post not found' } };
+  }
+
+  // 3. Verificação de Autorização (usando o postToUpdate)
+  if (user.id !== postToUpdate.userId) {
+    return { status: 'UNAUTHORIZED', data: { message: 'Unauthorized user' } };
+  }
+
+  // 4. Atualização (Não precisa retornar o resultado aqui)
+  await BlogPost.update({ title, content }, { where: { id } });
+
+  // 5. Atualiza o objeto postToUpdate com os novos dados
+  postToUpdate.title = title;
+  postToUpdate.content = content;
+
+  // Como o objeto postToUpdate já tem as associações carregadas, 
+  // ele pode ser retornado diretamente, sem a necessidade de uma 
+  // nova consulta ao banco de dados (economia de 1 SELECT).
+  return { status: 'SUCCESS', data: postToUpdate };
 };
 
 module.exports = {
   create,
   getAll,
   getById,
+  updatePost,
 };
