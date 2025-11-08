@@ -15,4 +15,13 @@ const create = async (req, res) => {
   }
 };
 
-module.exports = { create };
+const getAll = async (_req, res) => {
+  const { status, data } = await postService.getAll();
+
+  return res.status(statusHTTP(status)).json(data);
+};
+
+module.exports = {
+  create,
+  getAll,
+};
