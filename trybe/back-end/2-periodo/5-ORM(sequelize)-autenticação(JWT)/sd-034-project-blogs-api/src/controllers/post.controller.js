@@ -32,11 +32,17 @@ const getById = async (req, res) => {
 const update = async (req, res) => {
   const { id } = req.params;
   const { title, content } = req.body;
-  const { email } = req.user;
+  const { id: userId } = req.user;
 
-  const { status, data } = await postService.updatePost(id, email, title, content);
-
-  return res.status(statusHTTP(status)).json(data);
+  try {
+    const { status, data } = await postService.updatePost(userId, id, title, content);
+    return res.status(statusHTTP[status]).json(data);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).json({
+      message: 'Something went wrong',
+    });
+  }
 };
 
 const remove = async (req, res) => {
