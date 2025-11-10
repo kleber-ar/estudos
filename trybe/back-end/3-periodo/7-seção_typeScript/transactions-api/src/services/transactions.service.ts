@@ -1,5 +1,5 @@
 import TransactionModel, {
-  TransactionInputtableFields,
+  TransactionInputtableFields, TransactionSequelizeModel,
 } from '../database/models/transaction.model';
 import { ServiceResponse } from '../types/ServiceResponse';
 import { Transaction } from '../types/Transaction';
@@ -26,6 +26,7 @@ async function create(transaction: TransactionInputtableFields): Promise<Service
     responseService = { status: 'INVALID_DATA', data: { message: error } };
     return responseService;
   }
+
   const newTransaction = await TransactionModel.create(transaction);
 
   responseService = { status: 'SUCCESSFUL', data: newTransaction.dataValues };
@@ -33,6 +34,13 @@ async function create(transaction: TransactionInputtableFields): Promise<Service
   return responseService;
 }
 
+async function list(): Promise<ServiceResponse<TransactionSequelizeModel[]>> {
+  const transactions = await TransactionModel.findAll();
+
+  return { status: 'SUCCESSFUL', data: transactions };
+}
+
 export default {
   create,
+  list,
 };
