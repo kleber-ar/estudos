@@ -24,7 +24,18 @@ async function list(_req: Request, res: Response) {
   res.status(200).json(serviceResponse.data);
 }
 
+async function findById(req: Request, res: Response) {
+  const serviceResponse = await transactionsService.findById(Number(req.params.id));
+
+  if (serviceResponse.status !== 'SUCCESSFUL') {
+    return res.status(statusHTTP(serviceResponse.status)).json(serviceResponse.data);
+  }
+
+  res.status(200).json(serviceResponse.data);
+}
+
 export default {
   create,
   list,
+  findById,
 };

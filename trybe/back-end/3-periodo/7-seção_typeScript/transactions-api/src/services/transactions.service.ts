@@ -40,7 +40,23 @@ async function list(): Promise<ServiceResponse<TransactionSequelizeModel[]>> {
   return { status: 'SUCCESSFUL', data: transactions };
 }
 
+async function findById(id: number): Promise<ServiceResponse<Transaction>> {
+  const transaction = await TransactionModel.findByPk(id);
+
+  let serviceResponse: ServiceResponse<Transaction>;
+
+  if (!transaction) {
+    serviceResponse = { status: 'NOT_FOUND', data: { message: 'Transaction not found' } };
+    return serviceResponse;
+  }
+
+  serviceResponse = { status: 'SUCCESSFUL', data: transaction.dataValues };
+
+  return serviceResponse;
+}
+
 export default {
   create,
   list,
+  findById,
 };
