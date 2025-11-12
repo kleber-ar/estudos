@@ -14,6 +14,18 @@ async function update(req: Request, res: Response) {
   return res.status(200).json(serviceResponse.data);
 }
 
+async function exclude(req: Request, res: Response) {
+  const id = Number(req.params.id);
+
+  const serviceResponse = await packagesService.exclude(id);
+
+  if (serviceResponse.status !== 'SUCCESSFUL') {
+    return res.status(statusHTTP(serviceResponse.status)).json(serviceResponse.data);
+  }
+  return res.sendStatus(204);
+}
+
 export default {
   update,
+  exclude,
 };
