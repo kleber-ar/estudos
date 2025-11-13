@@ -24,3 +24,10 @@ docker stop $(docker ps -qa) # Para containers que estão sendo executados!
 ```bash
 npm i -E -D chai@4.3.6 mocha@9.2.1 sinon@13.0.1 chai-http@4.3.0 sinon-chai@3.7.0 nyc@15.1.0 @types/chai@4.3.0 @types/chai-http@4.2.0 @types/mocha@9.1.0 @types/sinon@10.0.11 @types/sinon-chai@3.2.9
 ```
+
+### Instalação do bcrypt, para criptografar senhas no DB
+
+```bash
+npm i -E bcryptjs@2.4.3
+npm i -E -D @types/bcryptjs@2.4.2
+```
