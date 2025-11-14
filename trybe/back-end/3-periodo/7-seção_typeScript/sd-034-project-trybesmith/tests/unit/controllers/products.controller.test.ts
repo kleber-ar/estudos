@@ -46,8 +46,8 @@ describe('Controller - Products', function () {
   it('retorna o status e mensagem correta quando o status NÃO é CREATED', async function () {
     const req = {
       body: {
-        name: '',
-        price: '',
+        name: 'Produto X',   // TEM QUE SER VALORES VÁLIDOS
+        price: '100',
         userId: 99,
       },
     } as any;
@@ -66,7 +66,7 @@ describe('Controller - Products', function () {
 
     await productsController.create(req, res);
 
-    expect(res.status.calledWith(statusHTTP('INVALID_DATA'))).to.be.true;
+    expect(res.status.calledWith(statusHTTP('BAD_REQUEST'))).to.be.true;
     expect(res.json.calledWith({ message: 'Dados inválidos' })).to.be.true;
   });
 });

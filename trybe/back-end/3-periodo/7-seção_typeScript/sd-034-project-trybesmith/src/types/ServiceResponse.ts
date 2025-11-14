@@ -1,4 +1,4 @@
-type ResponseErrorType = 'BAD_REQUEST' | 'UNAUTHORIZED' | 'NOT_FOUND' | 'UNPROCESSABLE_ENTITY';
+type ResponseErrorType = 'BAD_REQUEST' | 'UNAUTHORIZED' | 'NOT_FOUND' | 'UNPROCESSABLE_ENTITY' | 'ERROR';
 type ResponseSuccessType = 'SUCCESSFUL' | 'CREATED';
 
 export type ResponseError = {

@@ -4,6 +4,11 @@ import statusHTTP from "../utils/statusHTTP";
 
 async function create(req: Request, res: Response) {
   const { name, price, userId } = req.body;
+
+  if (!name) return res.status(400).json({ message: '"name" is required' });
+  if (!price) return res.status(400).json({ message: '"price" is required' });
+  if (!userId) return res.status(400).json({ message: '"userId" is required' });
+
   const response = await service.create({ name, price, userId });
 
   if (response.status !== 'CREATED') {
@@ -14,5 +19,5 @@ async function create(req: Request, res: Response) {
 }
 
 export default {
-  create,
-};
+  create
+}
