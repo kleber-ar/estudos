@@ -18,6 +18,13 @@ async function create(req: Request, res: Response) {
   res.status(statusHTTP(response.status)).json(response.data);
 }
 
-export default {
-  create
+async function getAll(req: Request, res: Response) {
+  const response = await service.getAll();
+  return res.status(statusHTTP(response.status)).json(response.data);
 }
+
+export default {
+  create,
+  getAll,
+};
+

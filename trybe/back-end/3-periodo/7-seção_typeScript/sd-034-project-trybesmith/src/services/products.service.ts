@@ -13,5 +13,13 @@ async function create(product: ProductInputtableTypes): Promise<ServiceResponse<
   }
 }
 
+async function getAll(): Promise<ServiceResponse<Product[]>> {
+  const products = await productsModel.findAll();
+  return { status: 'SUCCESSFUL', data: products.map((product) => product.get()) };
+}
 
-export default { create };
+
+export default {
+  create,
+  getAll,
+};
