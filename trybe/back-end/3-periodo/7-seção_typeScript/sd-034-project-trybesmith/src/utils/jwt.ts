@@ -4,7 +4,7 @@ const secret = process.env.JWT_SECRET || 'secret';
 
 type TokenPayload = {
   id: number,
-  email: string,
+  userName: string,
 };
 
 const sign = (payload: TokenPayload): string => jwt.sign(payload, secret);
