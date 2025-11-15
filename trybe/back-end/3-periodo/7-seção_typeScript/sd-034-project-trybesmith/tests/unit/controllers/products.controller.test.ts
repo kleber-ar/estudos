@@ -5,8 +5,15 @@ import productsService from '../../../src/services/products.service';
 import statusHTTP from '../../../src/utils/statusHTTP';
 import { ServiceResponse } from '../../../src/types/ServiceResponse';
 import { Product } from '../../../src/types/Product';
+import * as auth from '../../../src/middleware/auth';
 
 describe('Controller - Products', function () {
+  beforeEach(() => {
+    // Mocka o middleware auth para só chamar next()
+    sinon.stub(auth, 'default')
+      .callsFake((_req, _res, next: any) => next());
+  });
+
   afterEach(function () {
     sinon.restore();
   });

@@ -1,10 +1,16 @@
-// tests/unit/services/products.service.test.ts
 import { expect } from 'chai';
 import sinon from 'sinon';
 import productsService from '../../../src/services/products.service';
 import productsModel from '../../../src/database/models/product.model';
+import * as auth from '../../../src/middleware/auth';
 
 describe('Service - Products', function () {
+  beforeEach(() => {
+    // Mocka o middleware auth para só chamar next()
+    sinon.stub(auth, 'default')
+      .callsFake((_req, _res, next: any) => next());
+  });
+
   afterEach(function () {
     sinon.restore();
   });

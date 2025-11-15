@@ -3,8 +3,15 @@ import sinon from 'sinon';
 import usersService from '../../../src/services/users.service';
 import UserModel from '../../../src/database/models/user.model';
 import ProductModel from '../../../src/database/models/product.model';
+import * as auth from '../../../src/middleware/auth';
 
 describe('Service - Users', function () {
+  beforeEach(() => {
+    // Mocka o middleware auth para só chamar next()
+    sinon.stub(auth, 'default')
+      .callsFake((_req, _res, next: any) => next());
+  });
+
   afterEach(() => sinon.restore());
 
   it('retorna usuários com seus productIds', async function () {

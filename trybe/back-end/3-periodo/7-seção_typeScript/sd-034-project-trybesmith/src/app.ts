@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 
 app.post('/login', loginController.login)
-app.use(auth);
+app.use(auth)
 app.use('/products', productsRouter)
 app.use('/users', usersRouter)
 
