@@ -11,7 +11,7 @@ import bcrypt from 'bcryptjs';
 import jwt from '../../../src/utils/jwt';
 chai.use(chaiHttp);
 
-describe.only('POST /login - Integração', function () {
+describe('POST /login - Integração', function () {
   beforeEach(() => {
     // Usuário simulado que EXISTE
     sinon.stub(usersModel, 'findOne').resolves({
