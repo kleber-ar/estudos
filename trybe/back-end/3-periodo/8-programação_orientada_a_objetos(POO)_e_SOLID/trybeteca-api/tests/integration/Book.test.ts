@@ -80,5 +80,70 @@ describe('Books Test', function () {
     expect(body.message).to.equal('Book 1 not found');
 
   });
+
+  it('should update a book', async function () {
+
+    sinon.stub(SequelizeBook, 'update').resolves([1] as any);
+
+    sinon.stub(SequelizeBook, 'findByPk').resolves(book as any);
+
+    sinon.stub(Validations, 'validateBook').returns();
+
+
+    const { id, ...sendData } = book;
+
+
+    const { status, body } = await chai.request(app).put('/books/1')
+
+      .send(sendData);
+
+
+    expect(status).to.equal(200);
+
+    expect(body.message).to.equal('Book updated');
+
+  });
+
+
+  it('should return not found when the book to update does not exists', async function () {
+
+    sinon.stub(SequelizeBook, 'findByPk').resolves(null);
+
+
+    const { id, ...sendData } = book;
+
+
+    const { status, body } = await chai.request(app).put('/books/1')
+
+      .send(sendData);
+
+
+    expect(status).to.equal(404);
+
+    expect(body.message).to.equal('Book 1 not found');
+
+  });
+
+
+  it('should return conflict when there is nothing to be updated', async function () {
+
+    sinon.stub(SequelizeBook, 'findByPk').resolves(book as any);
+
+    sinon.stub(SequelizeBook, 'update').resolves([0] as any);
+
+
+    const { id, ...sendData } = book;
+
+
+    const { status, body } = await chai.request(app).put('/books/1')
+
+      .send(sendData);
+
+
+    expect(status).to.equal(409);
+
+    expect(body.message).to.equal('There are no updates to perform in Book 1');
+
+  });
   afterEach(sinon.restore);
 });
