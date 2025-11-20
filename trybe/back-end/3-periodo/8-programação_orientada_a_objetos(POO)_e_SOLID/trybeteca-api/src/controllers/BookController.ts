@@ -64,4 +64,16 @@ export default class BookController {
 
     res.status(200).json(serviceResponse.data);
   };
+
+  public discountBook = async (req: Request, res: Response) => {
+    const id = Number(req.params.id);
+    const { discount } = req.body;
+    const serviceResponse = await this.bookService.discountBook(id, discount);
+
+    if (serviceResponse.status !== 'SUCCESSFUL') {
+      return res.status(statusHTTP(serviceResponse.status)).json(serviceResponse.data);
+    }
+
+    return res.status(200).json(serviceResponse.data);
+  };
 }

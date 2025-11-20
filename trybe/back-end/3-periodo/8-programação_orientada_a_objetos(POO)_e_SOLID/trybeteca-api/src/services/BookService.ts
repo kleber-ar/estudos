@@ -56,4 +56,13 @@ export default class BookService {
 
     return { status: 'SUCCESSFUL', data: book };
   }
+
+  public async discountBook(id: number, discount: number):
+    Promise<ServiceResponse<ServiceMessage>> {
+    const book = await this.bookModel.findById(id);
+    if (!book) return { status: 'NOT_FOUND', data: { message: `Book ${id} not found` } };
+    const newPrice = book.price - (book.price * (discount / 100));
+    await this.bookModel.update(id, { price: newPrice });
+    return { status: 'SUCCESSFUL', data: { message: 'Book updated' } };
+  }
 }

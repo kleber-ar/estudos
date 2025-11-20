@@ -19,6 +19,11 @@ router.get(
   (req: Request, res: Response) => bookController.getBookByQuery(req, res),
 );
 
+router.patch(
+  '/:id/discount',
+  (req: Request, res: Response) => bookController.discountBook(req, res),
+);
+
 router.get('/:id', (req: Request, res: Response) => bookController.getBookById(req, res));
 
 router.put(
