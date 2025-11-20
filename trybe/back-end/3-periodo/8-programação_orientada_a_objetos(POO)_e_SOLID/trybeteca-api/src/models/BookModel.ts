@@ -27,4 +27,10 @@ export default class BookModel implements IBookModel {
     const { title, price, author, isbn }: IBook = dbData;
     return { id, title, price, author, isbn };
   }
+
+  async update(id: IBook['id'], data: Partial<NewEntity<IBook>>): Promise<IBook | null> {
+    const [affectedRows] = await this.model.update(data, { where: { id } });
+    if (affectedRows === 0) return null;
+    return this.findById(id);
+  }
 }

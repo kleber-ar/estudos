@@ -31,4 +31,16 @@ export default class BookController {
 
     res.status(200).json(serviceResponse.data);
   };
+
+  public updateBook = async (req: Request, res: Response): Promise<Response> => {
+    const id = Number(req.params.id);
+    const book = req.body;
+    const serviceResponse = await this.bookService.updateBook(id, book);
+
+    if (serviceResponse.status !== 'SUCCESSFUL') {
+      return res.status(statusHTTP(serviceResponse.status)).json(serviceResponse.data);
+    }
+
+    return res.status(200).json(serviceResponse.data);
+  };
 }

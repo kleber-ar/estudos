@@ -16,4 +16,11 @@ router.get('/', (req: Request, res: Response) => bookController.getAllBooks(req,
 
 router.get('/:id', (req: Request, res: Response) => bookController.getBookById(req, res));
 
+router.put(
+  '/:id',
+  Validations.validateBook, // aproveitamos a validação já criada para o cadastro
+  (req: Request, res: Response) =>
+    bookController.updateBook(req, res),
+);
+
 export default router;
