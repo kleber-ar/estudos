@@ -43,4 +43,14 @@ export default class BookController {
 
     return res.status(200).json(serviceResponse.data);
   };
+
+  public deleteBook = async (req: Request, res: Response): Promise<Response> => {
+    const id = Number(req.params.id);
+    const serviceResponse = await this.bookService.deleteBook(id);
+    if (serviceResponse.status !== 'SUCCESSFUL') {
+      return res.status(statusHTTP(serviceResponse.status)).json(serviceResponse.data);
+    }
+
+    return res.status(200).json(serviceResponse.data);
+  };
 }

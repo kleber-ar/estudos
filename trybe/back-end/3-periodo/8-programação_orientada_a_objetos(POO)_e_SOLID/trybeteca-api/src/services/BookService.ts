@@ -38,4 +38,13 @@ export default class BookService {
     }
     return { status: 'SUCCESSFUL', data: { message: 'Book updated' } };
   }
+
+  public async deleteBook(id: number): Promise<ServiceResponse<ServiceMessage>> {
+    const bookFound = await this.bookModel.findById(id);
+    if (!bookFound) return { status: 'NOT_FOUND', data: { message: `Book ${id} not found` } };
+
+    await this.bookModel.delete(id);
+
+    return { status: 'SUCCESSFUL', data: { message: 'Book deleted' } };
+  }
 }

@@ -33,4 +33,8 @@ export default class BookModel implements IBookModel {
     if (affectedRows === 0) return null;
     return this.findById(id);
   }
+
+  async delete(id: IBook['id']): Promise<number> {
+    return this.model.destroy({ where: { id } });
+  }
 }
