@@ -53,4 +53,15 @@ export default class BookController {
 
     return res.status(200).json(serviceResponse.data);
   };
+
+  public getBookByQuery = async (req: Request, res: Response) => {
+    const { q } = req.query;
+
+    const serviceResponse = await this.bookService.getBookByQuery(q as string);
+    if (serviceResponse.status !== 'SUCCESSFUL') {
+      return res.status(statusHTTP(serviceResponse.status)).json(serviceResponse.data);
+    }
+
+    res.status(200).json(serviceResponse.data);
+  };
 }

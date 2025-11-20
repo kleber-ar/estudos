@@ -14,6 +14,11 @@ router.post(
 
 router.get('/', (req: Request, res: Response) => bookController.getAllBooks(req, res));
 
+router.get(
+  '/author/search',
+  (req: Request, res: Response) => bookController.getBookByQuery(req, res),
+);
+
 router.get('/:id', (req: Request, res: Response) => bookController.getBookById(req, res));
 
 router.put(
