@@ -12,4 +12,19 @@ export default class BookModel implements IBookModel {
     const { id, title, price, author, isbn }: IBook = dbData;
     return { id, title, price, author, isbn };
   }
+
+  async findAll(): Promise<IBook[]> {
+    const dbData = await this.model.findAll();
+    return dbData.map(({ id, title, price, author, isbn }) => (
+      { id, title, price, author, isbn }
+    ));
+  }
+
+  async findById(id: IBook['id']): Promise<IBook | null> {
+    const dbData = await this.model.findByPk(id);
+    if (dbData == null) return null;
+
+    const { title, price, author, isbn }: IBook = dbData;
+    return { id, title, price, author, isbn };
+  }
 }
