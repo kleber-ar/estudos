@@ -2,7 +2,7 @@ import * as sinon from 'sinon';
 import * as chai from 'chai';
 
 // @ts-ignore
-import chaiHttp = require('chai-http');
+import * as chaiHttp from 'chai-http';
 
 import App from '../../src/App';
 import SequelizeBook from '../../src/database/models/SequelizeBook';
