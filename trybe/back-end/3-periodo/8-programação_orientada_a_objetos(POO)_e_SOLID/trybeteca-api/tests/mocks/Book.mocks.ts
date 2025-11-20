@@ -6,6 +6,9 @@ const book = {
   isbn: '234234'
 };
 
+const books = [book];
+
 export {
   book,
+  books,
 };
