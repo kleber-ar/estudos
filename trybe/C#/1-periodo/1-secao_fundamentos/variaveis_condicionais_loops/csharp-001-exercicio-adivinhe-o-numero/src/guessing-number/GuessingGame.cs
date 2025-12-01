@@ -64,11 +64,24 @@ public class GuessNumber
   }
 
     //6 - Adicione níveis de dificuldade
-    public string RandomNumberWithDifficult()
+  public string RandomNumberWithDifficult()
+  {
+
+    int maxNumber = 100;
+
+    if (difficultyLevel == 2)
     {
-        throw new NotImplementedException();
+      maxNumber = 500;
     }
 
+    else if (difficultyLevel == 3)
+    {
+      maxNumber = 1000;
+    }
+    randomValue = random.GetInt(-maxNumber, maxNumber);
+
+    return $"A máquina escolheu um número de -{maxNumber} à {maxNumber}!";
+  }
     //4 - Verifique a resposta da jogada
     public string AnalyzePlay()
     {
