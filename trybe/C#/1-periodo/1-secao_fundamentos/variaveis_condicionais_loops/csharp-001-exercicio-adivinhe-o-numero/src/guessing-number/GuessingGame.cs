@@ -19,8 +19,8 @@ public class GuessNumber
     public int userValue;
     public int randomValue;
 
-    public int maxAttempts;
-    public int currentAttempts;
+    public int maxAttempts = 5;
+    public int currentAttempts = 0;
 
     public int difficultyLevel;
 
@@ -30,8 +30,8 @@ public class GuessNumber
     public string Greet()
     {
         string  GreetMsg = "";
-        GreetMsg ++ "---Bem-vindo ao Guessing Game--- /n";
-        GreetMsg ++ "Para começar, tente adivinhar o número que eu pensei, entre -100 e 100!";
+        GreetMsg += "---Bem-vindo ao Guessing Game--- /n";
+        GreetMsg += "Para começar, tente adivinhar o número que eu pensei, entre -100 e 100!";
         return GreetMsg;
     }
 
@@ -40,6 +40,13 @@ public class GuessNumber
     
  public string ChooseNumber(string userEntry)
   {
+    currentAttempts++;
+    if (currentAttempts > maxAttempts)
+    {
+      gameOver = true;
+      return "Você excedeu o número máximo de tentativas! Tente novamente.";
+    }
+
     bool canConvert = Int32.TryParse(userEntry, out userValue);
     if (!canConvert)
     {
@@ -53,7 +60,6 @@ public class GuessNumber
     }
     return "Número escolhido!";
   }
-
 
     //3 - Gere um número aleatório
   public string RandomNumber()
@@ -100,8 +106,13 @@ public class GuessNumber
     }
   }
     //7 - Adicione uma opção para reiniciar o jogo
-    public void RestartGame()
-    {
-        throw new NotImplementedException();
-    }
+   public void RestartGame()
+  {
+    userValue = 0;
+    randomValue = 0;
+    currentAttempts = 0;
+    gameOver = false;
+    difficultyLevel = 1;
+    maxAttempts = 5;
+  }
 }
