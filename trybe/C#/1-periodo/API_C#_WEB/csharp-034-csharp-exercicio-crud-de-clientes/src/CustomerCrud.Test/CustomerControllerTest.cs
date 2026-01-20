@@ -33,7 +33,7 @@ public class CustomersControllerTest : IClassFixture<WebApplicationFactory<Progr
       
       response.StatusCode.Should().Be(HttpStatusCode.OK);
       content.Should().BeEquivalentTo(customers);
-      
+
       _repositoryMock.Verify(r => r.GetAll(), Times.Once);
     }
 

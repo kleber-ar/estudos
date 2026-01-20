@@ -34,4 +34,16 @@ public class CustomerController : ControllerBase
     if (customer == null) return NotFound("Customer not found");
     return Ok(customer);
   }
+
+//REQ 3: Método create
+
+  [HttpPost]
+  public ActionResult Create(CustomerRequest request)
+  {
+    var id = _repository.GetNextIdValue();
+    var customer = new Customer(id, request);
+    _repository.Create(customer);
+
+    return CreatedAtAction("GetById", new { id = customer.Id }, customer);
+    }
 }
