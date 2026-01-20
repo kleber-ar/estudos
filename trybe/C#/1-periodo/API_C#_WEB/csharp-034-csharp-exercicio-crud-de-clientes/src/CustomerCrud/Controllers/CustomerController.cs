@@ -24,4 +24,14 @@ public class CustomerController : ControllerBase
     var customers = _repository.GetAll();
     return Ok(customers);
   }
+
+//REQ 2: Método GetById
+
+  [HttpGet("{id}", Name = "GetById")]
+  public ActionResult GetById(int id)
+  {
+    var customer = _repository.GetById(id);
+    if (customer == null) return NotFound("Customer not found");
+    return Ok(customer);
+  }
 }
