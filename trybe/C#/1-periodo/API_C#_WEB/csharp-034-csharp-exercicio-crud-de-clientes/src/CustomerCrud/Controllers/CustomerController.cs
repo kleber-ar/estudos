@@ -45,5 +45,24 @@ public class CustomerController : ControllerBase
     _repository.Create(customer);
 
     return CreatedAtAction("GetById", new { id = customer.Id }, customer);
-    }
+  }
+  
+//REQ 4: Método update
+
+  [HttpPut("{id}")]
+  public ActionResult Update(int id, CustomerRequest request)
+  {
+    var didUpdate = _repository.Update(id, new
+    {
+      Name = request.Name,
+      CPF = request.CPF,
+      Transactions = request.Transactions,
+      UpdatedAt = DateTime.Now
+    });
+
+    if (!didUpdate)
+        return NotFound("Customer not found");
+    return Ok($"Customer {id} updated");
+  }
+
 }
