@@ -40,7 +40,8 @@ public class TestTodoItemsController : IClassFixture<WebApplicationFactory<Progr
     [InlineData("/api/TodoItems/5",HttpStatusCode.NotFound)]
     public async Task TestGetRoutesStatusCode(string path, HttpStatusCode expectedStatusCode)
     {
-        throw new NotImplementedException();
+        var response = await _client.GetAsync(path);
+        response.StatusCode.Should().Be(expectedStatusCode);xception();
     }
 
     [Theory]
@@ -48,16 +49,40 @@ public class TestTodoItemsController : IClassFixture<WebApplicationFactory<Progr
     [InlineData("/api/TodoItems/5",HttpStatusCode.NotFound)]
     public async Task TestDeleteRouteStatusCode(string path, HttpStatusCode expectedStatusCode)
     {
-        throw new NotImplementedException();
-    }
+        var response = await _client.DeleteAsync(path);
+        response.StatusCode.Should().Be(expectedStatusCode);
 
+        if (expectedStatusCode == HttpStatusCode.OK)
+        {
+
+          var response2 = await _client.GetAsync(path);
+
+          response2.StatusCode.Should().Be(HttpStatusCode.NotFound);
+
+        }
+    }
 
     [Theory]
     [InlineData("/api/TodoItems", "{\"name\": \"Minha Tarefa\"}", HttpStatusCode.Created)]
     [InlineData("/api/TodoItems", "{\"teste\": \"testando\"}", HttpStatusCode.BadRequest)]
     public async Task TestPostRouteStatusCode(string path, string jsonToAdd, HttpStatusCode expectedStatusCode)
     {
-        throw new NotImplementedException();
+        var response = await _client.PostAsync(
+            path,
+            new StringContent(
+                jsonToAdd,
+                System.Text.Encoding.UTF8,
+                "application/json"
+            ));
+        response.StatusCode.Should().Be(expectedStatusCode);
+
+        if (expectedStatusCode == HttpStatusCode.Created)
+        {
+            var createdItem = await response.Content.ReadAsAsync<TodoItem>();
+
+            var response2 = await _client.GetAsync($"/api/TodoItems/{createdItem.Id}");
+            response2.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
     }
 
     [Theory]
@@ -66,7 +91,21 @@ public class TestTodoItemsController : IClassFixture<WebApplicationFactory<Progr
     [InlineData("/api/TodoItems/5", "{\"test\": \"testando\"}", HttpStatusCode.BadRequest)]
     public async Task TestPutRouteStatusCode(string path, string jsonToAdd, HttpStatusCode expectedStatusCode)
     {
-        throw new NotImplementedException();
+      var response = await _client.PutAsync(
+        path,
+        new StringContent(
+            jsonToAdd,
+            System.Text.Encoding.UTF8,
+            "application/json"
+            ));
+      response.StatusCode.Should().Be(expectedStatusCode);
+
+
+      if (expectedStatusCode == HttpStatusCode.OK)
+      {
+        var response2 = await _client.GetAsync(path);
+        response2.StatusCode.Should().Be(HttpStatusCode.OK);
+      }
     }
 
     public static List<TodoItem> GetTodoTestList()
