@@ -9,7 +9,7 @@ using TodoApi.Models;
 
 namespace TodoApi.Controllers
 {
-    [Route("api/my-controller")]
+    [Route("api/[controller]")]
     [ApiController]
     public class TodoItemsController : ControllerBase
     {
@@ -20,7 +20,7 @@ namespace TodoApi.Controllers
             _context = context;
         }
 
-        [HttpGet("/get-tems/todo")]
+        [HttpGet]
         public async Task<ActionResult<IEnumerable<TodoItem>>> GetTodoItems()
         {
             if (_context.TodoItems == null)
@@ -30,7 +30,7 @@ namespace TodoApi.Controllers
             return await _context.TodoItems.ToListAsync();
         }
 
-        [HttpGet("/{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<TodoItem>> GetTodoItem(long id)
         {
             if (_context.TodoItems == null)
@@ -41,10 +41,10 @@ namespace TodoApi.Controllers
 
             if (todoItem == null)
             {
-                return Ok();
+                return NotFound();
             }
 
-            return NotFound(todoItem);
+            return Ok(todoItem);
         }
 
         [HttpPut("{id}")]
