@@ -57,7 +57,7 @@ public class RecipesController : ControllerBase
         var existingRecipe = _service.GetRecipe(name);
 
         if(existingRecipe == null) return BadRequest();
-        
+
         _service.UpdateRecipe(recipe);
 
         return NoContent();
@@ -67,6 +67,12 @@ public class RecipesController : ControllerBase
     [HttpDelete("{name}")]
     public IActionResult Delete(string name)
     {
-        throw new NotImplementedException();
-    }    
+        var recipe = _service.GetRecipe(name);
+
+        if (recipe == null) return NotFound();
+
+        _service.DeleteRecipe(name);
+
+        return NoContent();
+    }
 }
