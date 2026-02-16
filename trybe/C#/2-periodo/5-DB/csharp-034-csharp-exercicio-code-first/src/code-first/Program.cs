@@ -6,7 +6,16 @@ namespace code_first
     {
         public static void Main(string[] args)
         {
-            throw new NotImplementedException();
+            using(var ctx = new MarketContext())
+            {
+                ctx.Database.EnsureCreated();
+                var category = new Category() { Id = 1, Name = "Alimentos" };
+                var prod = new Product() { Name = "Cookie", CategoryId = 1 };
+
+                ctx.Categories.Add(category);
+                ctx.Products.Add(prod);
+                ctx.SaveChanges();
+            }
         }
     }
 }
