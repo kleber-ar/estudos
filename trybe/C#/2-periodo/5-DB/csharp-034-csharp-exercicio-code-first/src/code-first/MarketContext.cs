@@ -4,6 +4,9 @@ namespace code_first.Models
 {
     public class MarketContext : DbContext
     {
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
+
         public MarketContext(DbContextOptions<MarketContext> options)
             : base(options)
         {
