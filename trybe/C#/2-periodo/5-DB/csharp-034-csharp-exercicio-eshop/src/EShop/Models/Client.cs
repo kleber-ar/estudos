@@ -2,6 +2,7 @@
 {
     public class Client
     {
-        public string Name { get; set; }
+      public int ClientIdentity { get; set; }
+      public string Name { get; set; }
     }
 }

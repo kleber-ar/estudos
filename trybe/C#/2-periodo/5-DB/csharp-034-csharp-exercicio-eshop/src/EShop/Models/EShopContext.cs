@@ -20,6 +20,12 @@ namespace EShop.Models
         protected override void OnModelCreating(ModelBuilder mb)
         {
             // Sua lógica aqui
+            mb.Entity<Client>().HasKey(a => a.ClientIdentity);
+
+            mb.Entity<Order>()
+                .HasOne<Client>()
+                .WithMany()
+                .HasForeignKey("ClientIdentity");
         }
     }
 }
