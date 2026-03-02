@@ -1,0 +1,6 @@
+[
+  {
+    "name": "TrybeHotel_DB",
+    "url": "sqlserver://sa:TrybeHotel12!@localhost:1433?database=TrybeHotel"
+  }
+]
