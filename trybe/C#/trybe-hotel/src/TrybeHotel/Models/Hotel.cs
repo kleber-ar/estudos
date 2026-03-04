@@ -4,5 +4,20 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 // 1. Implemente as models da aplicação
 public class Hotel {
+  [Key]
+  public int HotelId { get; set; }
+
+  [Required]
+  public string Name { get; set; } = string.Empty;
+
+  [Required]
+  public string Address { get; set; } = string.Empty;
+
+  //FK
+  public int CityId { get; set; }
+
+  public City? City { get; set; }
+
+  public ICollection<Room>? Rooms { get; set; }
 
 }
