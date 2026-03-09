@@ -14,15 +14,15 @@ public class TestReq09
     [Trait("Category", "9. Desenvolva testes que cubram no mínimo 40% de linhas")]
     public static void Testes()
     {
-        string pathXml = System.Environment.CurrentDirectory.ToString().Replace("TrybeHotel.Test.Test/bin/Debug/net6.0","") + "/TrybeHotel.Test/TestResults/";
+        string pathXml = System.Environment.CurrentDirectory.ToString().Replace("TrybeHotel.Test.Test/bin/Debug/net8.0","") + "/TrybeHotel.Test/TestResults/";
         try {
             Directory.Delete(pathXml, true);
         } catch(Exception ex) {}
 
         ProcessStartInfo startInfo = new ProcessStartInfo()
         {
-            FileName = System.Environment.CurrentDirectory.ToString().Replace("bin/Debug/net6.0","") + "coverlet.sh",
-            WorkingDirectory = System.Environment.CurrentDirectory.ToString().Replace("bin/Debug/net6.0",""),
+            FileName = System.Environment.CurrentDirectory.ToString().Replace("bin/Debug/net8.0","") + "coverlet.sh",
+            WorkingDirectory = System.Environment.CurrentDirectory.ToString().Replace("bin/Debug/net8.0",""),
             UseShellExecute = false,
             RedirectStandardOutput = true,
             CreateNoWindow = true
@@ -53,7 +53,7 @@ public class TestReq09
         System.Console.WriteLine("cobertura de testes: " + lines_covered_rate.ToString() );
         Assert.True(lines_covered_rate >= 0.4, "Desenvolva testes que cubram no mínimo 40% de linhas");
 
-        pathXml = System.Environment.CurrentDirectory.ToString().Replace("TrybeHotel.Test.Test/bin/Debug/net6.0","") + "/TrybeHotel.Test/TestResults/";
+        pathXml = System.Environment.CurrentDirectory.ToString().Replace("TrybeHotel.Test.Test/bin/Debug/net8.0","") + "/TrybeHotel.Test/TestResults/";
         //Directory.Delete(pathXml, true);
     }
 }
