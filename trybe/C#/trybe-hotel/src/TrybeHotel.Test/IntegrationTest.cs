@@ -69,10 +69,84 @@ public class IntegrationTest: IClassFixture<WebApplicationFactory<Program>>
     [Trait("Category", "Meus testes")]
     [Theory(DisplayName = "Executando meus testes")]
     [InlineData("/city")]
+    [InlineData("/hotel")]
     public async Task TestGet(string url)
     {
         var response = await _clientTest.GetAsync(url);
         Assert.Equal(System.Net.HttpStatusCode.OK, response?.StatusCode);
     }
 
+    [Trait("Category", "Meus testes")]
+    [Fact]
+    public async Task TestPostCity()
+    {
+      var city = new
+      {
+        Name = "Recife"
+      };
+
+      var content = new StringContent(
+        JsonConvert.SerializeObject(city),
+        System.Text.Encoding.UTF8,
+        "application/json"
+      );
+
+      var response = await _clientTest.PostAsync("/city", content);
+
+      Assert.Equal(System.Net.HttpStatusCode.Created, response.StatusCode);
+    }
+
+    [Trait("Category", "Meus testes")]
+    [Fact]
+    public async Task TestPostHotel()
+    {
+      var hotel = new
+      {
+        Name = "Hotel Recife",
+        Address = "Rua 1",
+        CityId = 1
+      };
+
+      var content = new StringContent(
+        JsonConvert.SerializeObject(hotel),
+        System.Text.Encoding.UTF8,
+        "application/json"
+      );
+
+      var response = await _clientTest.PostAsync("/hotel", content);
+
+      Assert.Equal(System.Net.HttpStatusCode.Created, response.StatusCode);
+    }
+
+    [Trait("Category", "Meus testes")]
+    [Fact]
+    public async Task TestPostRoom()
+    {
+      var room = new
+      {
+        Name = "Room Test",
+        Capacity = 2,
+        Image = "Image Test",
+        HotelId = 1
+      };
+
+      var content = new StringContent(
+        JsonConvert.SerializeObject(room),
+        System.Text.Encoding.UTF8,
+        "application/json"
+      );
+
+      var response = await _clientTest.PostAsync("/room", content);
+
+      Assert.Equal(System.Net.HttpStatusCode.Created, response.StatusCode);
+    }
+
+    [Trait("Category", "Meus testes")]
+    [Fact]
+    public async Task TestDeleteRoom()
+    {
+      var response = await _clientTest.DeleteAsync("/room/1");
+
+      Assert.Equal(System.Net.HttpStatusCode.NoContent, response.StatusCode);
+    }
 }
