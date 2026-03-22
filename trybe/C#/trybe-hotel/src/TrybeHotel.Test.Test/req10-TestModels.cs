@@ -3,7 +3,7 @@ namespace trybe_hotel.Test.Test;
 using Microsoft.EntityFrameworkCore;
 using TrybeHotel.Models;
 
-public class TestReq01
+public class TestReq10
 {
 
     [Trait("TrybeHotel", "1. Implemente as models da aplicação")]
@@ -92,5 +92,32 @@ public class TestReq01
     }
 
 
+    [Trait("TrybeHotel", "1. Implemente as models da aplicação")]
+    [Theory(DisplayName = "User deve conter chave primária")]
+    [InlineData("UserId")]
+    public void UserShouldContainProperPrimaryKey(string keyName)
+    {
+        var contextOptions = new DbContextOptionsBuilder<ContextTest>()
+            .UseInMemoryDatabase("TrybeHotelContext")
+            .Options;
+        ContextTest testContext = new(contextOptions);
+        DbSet<User> set = testContext.Set<User>();
+        var property = set.EntityType.FindProperty(keyName);
+        property.IsKey().Should().BeTrue();
+    }
 
+    [Trait("TrybeHotel", "1. Implemente as models da aplicação")]
+    [Theory(DisplayName = "User deve conter as propriedades e tipos corretos")]
+    [InlineData("UserId", typeof(int))]
+    [InlineData("Name", typeof(string))]
+    [InlineData("Email", typeof(string))]
+    [InlineData("Password", typeof(string))]
+    [InlineData("UserType", typeof(string))]
+    public void UserShouldContainProperties(string propertyName, Type propertyType)
+    {
+        var propertyToCheck = typeof(User).GetProperty(propertyName);
+        propertyToCheck.Should().NotBeNull();
+        var propertyTypeName = propertyToCheck.PropertyType;
+        propertyTypeName.Should().BeAssignableTo(propertyType);
+    }
 }

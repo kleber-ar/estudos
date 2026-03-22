@@ -6,13 +6,25 @@ using TrybeHotel.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-public class TestReq08 : IClassFixture<WebApplicationFactory<Program>>
-{
-    public HttpClient _clientBookingPost;
+public class UserPostJson {
+        public int UserId { get; set; }
+        public string? Name { get; set; }
+        public string? Email { get; set; }
+        public string? UserType { get; set; }
+}
 
-    public TestReq08(WebApplicationFactory<Program> factory)
+public class ErrorJson {
+    public string? message { get; set; }
+}
+
+public class TestReq11 : IClassFixture<WebApplicationFactory<Program>>
+{
+    public HttpClient _clientUserPost;
+
+    public TestReq11(WebApplicationFactory<Program> factory)
     {
-         _clientBookingPost = factory.WithWebHostBuilder(builder => {
+
+        _clientUserPost = factory.WithWebHostBuilder(builder => {
             builder.ConfigureServices(services =>
             {
                 var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<TrybeHotelContext>));
@@ -23,12 +35,15 @@ public class TestReq08 : IClassFixture<WebApplicationFactory<Program>>
 
                 services.AddDbContext<ContextTest>(options =>
                 {
-                    options.UseInMemoryDatabase("InMemoryTestGetBooking");
+                    options.UseInMemoryDatabase("InMemoryTestPostUser");
                 });
                 services.AddScoped<ITrybeHotelContext, ContextTest>();
                 services.AddScoped<ICityRepository, CityRepository>();
                 services.AddScoped<IHotelRepository, HotelRepository>();
                 services.AddScoped<IRoomRepository, RoomRepository>();
+                services.AddScoped<IUserRepository, UserRepository>();
+                services.AddScoped<IBookingRepository, BookingRepository>();
+
                 var sp = services.BuildServiceProvider();
                 using (var scope = sp.CreateScope())
                 using (var appContext = scope.ServiceProvider.GetRequiredService<ContextTest>())
@@ -36,12 +51,12 @@ public class TestReq08 : IClassFixture<WebApplicationFactory<Program>>
                     appContext.Database.EnsureCreated();
                     appContext.Database.EnsureDeleted();
                     appContext.Database.EnsureCreated();
-                    appContext.Cities.Add(new City {CityId = 1, Name = "Manaus"});
-                    appContext.Cities.Add(new City {CityId = 2, Name = "Palmas"});
+                    appContext.Cities.Add(new City {Name = "Manaus"});
+                    appContext.Cities.Add(new City {Name = "Palmas"});
                     appContext.SaveChanges();
                     appContext.Hotels.Add(new Hotel {HotelId = 1, Name = "Trybe Hotel Manaus", Address = "Address 1", CityId = 1});
                     appContext.Hotels.Add(new Hotel {HotelId = 2, Name = "Trybe Hotel Palmas", Address = "Address 2", CityId = 2});
-                    appContext.Hotels.Add(new Hotel {HotelId = 3, Name = "Trybe Hotel Ponta Negra", Address = "Address 3", CityId = 1});
+                    appContext.Hotels.Add(new Hotel {HotelId = 3, Name = "Trybe Hotel Ponta Negra", Address = "Addres 3", CityId = 1});
                     appContext.SaveChanges();
                     appContext.Rooms.Add(new Room { RoomId = 1, Name = "Room 1", Capacity = 2, Image = "Image 1", HotelId = 1 });
                     appContext.Rooms.Add(new Room { RoomId = 2, Name = "Room 2", Capacity = 3, Image = "Image 2", HotelId = 1 });
@@ -64,52 +79,58 @@ public class TestReq08 : IClassFixture<WebApplicationFactory<Program>>
             });
         }).CreateClient();
     }
-
-
-    [Trait("Category", "8. Desenvolva o endpoint GET /booking")]
-    [Theory(DisplayName = "Será validado que é possível filtrar uma reserva com sucesso")]
-    [InlineData("/booking/1")]
-    public async Task TestBookingControllerGetResponse(string url)
+   
+    [Trait("Category", "2. Desenvolva o endpoint POST /user")]
+    [Theory(DisplayName = "Será validado que a resposta será um status http 201")]
+    [InlineData("/user")]
+    public async Task TestUserControllerPost(string url)
     {
-         var inputLogin = new {
-            Email = "beatriz@trybehotel.com",
-            Password = "Senha2"
+        var inputObj = new {
+            Name = "Maria",
+            Email = "maria@trybehotel.com",
+            Password = "123456"
         };
-        var responseLogin = await _clientBookingPost.PostAsync("/login",new StringContent(JsonConvert.SerializeObject(inputLogin), System.Text.Encoding.UTF8, "application/json"));
-        var responseLoginString = await responseLogin.Content.ReadAsStringAsync();
-        LoginJson jsonLogin = JsonConvert.DeserializeObject<LoginJson>(responseLoginString);
-
-        _clientBookingPost.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", jsonLogin.token);
-        var response = await _clientBookingPost.GetAsync(url);
-        var responseString = await response.Content.ReadAsStringAsync();
-        BookingPostJson jsonResponse = JsonConvert.DeserializeObject<BookingPostJson>(responseString);
-        Assert.Equal(System.Net.HttpStatusCode.OK, response?.StatusCode);
-        Assert.Equal(1, jsonResponse.BookingId);
-        Assert.Equal(1, jsonResponse.GuestQuant);
-        Assert.Equal(1, jsonResponse.Room.RoomId);
-        Assert.Equal("Room 1", jsonResponse.Room.Name);
-        Assert.Equal(1, jsonResponse.Room.Hotel.HotelId);
-        Assert.Equal("Trybe Hotel Manaus", jsonResponse.Room.Hotel.Name);
+        var response = await _clientUserPost.PostAsync(url,new StringContent(JsonConvert.SerializeObject(inputObj), System.Text.Encoding.UTF8, "application/json"));
+        Assert.Equal(System.Net.HttpStatusCode.Created, response?.StatusCode);
     }
 
-    [Trait("Category", "8. Desenvolva o endpoint GET /booking")]
-    [Theory(DisplayName = "Será validado que não é possível buscar uma reserva sem um login correto")]
-    [InlineData("/booking/1")]
-    public async Task TestBookingControllerGetResponseUnauthorized(string url)
+    [Trait("Category", "2. Desenvolva o endpoint POST /user")]
+    [Theory(DisplayName = "Será validado que é possível retornar a pessoa cliente criada")]
+    [InlineData("/user")]
+    public async Task TestCityControllerPostResponse(string url)
     {
-         var inputLogin = new {
-            Email = "laura@trybehotel.com",
-            Password = "Senha3"
+       var inputObj = new {
+            Name = "Maria",
+            Email = "mariab@trybehotel.com",
+            Password = "123456"
         };
-        var responseLogin = await _clientBookingPost.PostAsync("/login",new StringContent(JsonConvert.SerializeObject(inputLogin), System.Text.Encoding.UTF8, "application/json"));
-        var responseLoginString = await responseLogin.Content.ReadAsStringAsync();
-        LoginJson jsonLogin = JsonConvert.DeserializeObject<LoginJson>(responseLoginString);
-
-        _clientBookingPost.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", jsonLogin.token);
-        var response = await _clientBookingPost.GetAsync(url);
+        var response = await _clientUserPost.PostAsync(url,new StringContent(JsonConvert.SerializeObject(inputObj), System.Text.Encoding.UTF8, "application/json"));
         var responseString = await response.Content.ReadAsStringAsync();
-        BookingPostJson jsonResponse = JsonConvert.DeserializeObject<BookingPostJson>(responseString);
-        Assert.Equal(System.Net.HttpStatusCode.Unauthorized, response?.StatusCode);
+        UserPostJson jsonResponse = JsonConvert.DeserializeObject<UserPostJson>(responseString);
+        Assert.Equal(4, jsonResponse.UserId);
+        Assert.Equal("Maria", jsonResponse.Name);
+        Assert.Equal("mariab@trybehotel.com", jsonResponse.Email);
+        Assert.Equal("client", jsonResponse.UserType);
     }
 
+
+    [Trait("Category", "2. Desenvolva o endpoint POST /user")]
+    [Theory(DisplayName = "Será validado que não é possível cadastrar um e-mail já cadastrado")]
+    [InlineData("/user")]
+    public async Task TestCityControllerPostResponseConflict(string url)
+    {
+       var inputObj = new {
+            Name = "Ana",
+            Email = "ana@trybehotel.com",
+            Password = "123456"
+        };
+        var response = await _clientUserPost.PostAsync(url,new StringContent(JsonConvert.SerializeObject(inputObj), System.Text.Encoding.UTF8, "application/json"));
+        var responseString = await response.Content.ReadAsStringAsync();
+        Assert.Equal(System.Net.HttpStatusCode.Conflict, response?.StatusCode);
+
+        ErrorJson jsonResponse = JsonConvert.DeserializeObject<ErrorJson>(responseString);
+        Assert.Equal("User email already exists", jsonResponse.message);
+        
+    }
+    
 }
