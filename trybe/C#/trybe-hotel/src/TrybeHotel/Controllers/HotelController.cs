@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using TrybeHotel.Models;
 using TrybeHotel.Repository;
 using TrybeHotel.Dto;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TrybeHotel.Controllers
 {
@@ -27,12 +28,18 @@ namespace TrybeHotel.Controllers
 
         // 5. Desenvolva o endpoint POST /hotel
         [HttpPost]
-        public IActionResult PostHotel([FromBody] Hotel hotel){
+        [Authorize(Policy = "Admin")]
+        public IActionResult Add([FromBody] HotelDto hotelDto)
+        {
+          var hotel = new Hotel
+          {
+            Name = hotelDto.Name,
+            Address = hotelDto.Address,
+            CityId = hotelDto.CityId
+          };
 
-          var newHotel = _repository.AddHotel(hotel);
-
-          return Created("", newHotel);
+          var result = _repository.AddHotel(hotel);
+          return Created("", result);
         }
-
     }
 }

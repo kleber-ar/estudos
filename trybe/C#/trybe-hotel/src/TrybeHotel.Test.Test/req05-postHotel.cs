@@ -12,13 +12,13 @@ using System.Xml;
 using System.IO;
 
 
-public class HotelPostJson {
-        public int HotelId { get; set; }
-        public string? Name { get; set; }
-        public string? Address { get; set; }
-        public int CityId { get; set; }
-        public string? CityName { get; set; }
-}
+//public class HotelPostJson {
+//        public int HotelId { get; set; }
+//        public string? Name { get; set; }
+//        public string? Address { get; set; }
+//        public int CityId { get; set; }
+//        public string? CityName { get; set; }
+//}
 
 public class TestReq05 : IClassFixture<WebApplicationFactory<Program>>
 {
