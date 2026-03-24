@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using TrybeHotel.Models;
 using TrybeHotel.Repository;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TrybeHotel.Controllers
 {
@@ -25,6 +26,7 @@ namespace TrybeHotel.Controllers
 
         // 7. Desenvolva o endpoint POST /room
         [HttpPost]
+        [Authorize(Policy = "Admin")]
         public IActionResult PostRoom([FromBody] Room room){
 
           var newRoom = _repository.AddRoom(room);
