@@ -1,29 +1,29 @@
 namespace TrybeHotel.Test;
-using Microsoft.AspNetCore.Hosting;
+
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
 using TrybeHotel.Models;
 using TrybeHotel.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System.Text.Json;
-using System.Diagnostics;
-using System.Xml;
-using System.IO;
+using System.Text;
+using System.Net;
+using System.Net.Http.Headers;
 
-
-
-public class IntegrationTest: IClassFixture<WebApplicationFactory<Program>>
+public class IntegrationTest : IClassFixture<WebApplicationFactory<Program>>
 {
-     public HttpClient _clientTest;
+    public HttpClient _clientTest;
 
-     public IntegrationTest(WebApplicationFactory<Program> factory)
+    public IntegrationTest(WebApplicationFactory<Program> factory)
     {
-        //_factory = factory;
-        _clientTest = factory.WithWebHostBuilder(builder => {
+        _clientTest = factory.WithWebHostBuilder(builder =>
+        {
             builder.ConfigureServices(services =>
             {
-                var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<TrybeHotelContext>));
+                var descriptor = services.SingleOrDefault(
+                    d => d.ServiceType == typeof(DbContextOptions<TrybeHotelContext>)
+                );
+
                 if (descriptor != null)
                 {
                     services.Remove(descriptor);
@@ -33,120 +33,214 @@ public class IntegrationTest: IClassFixture<WebApplicationFactory<Program>>
                 {
                     options.UseInMemoryDatabase("InMemoryTestDatabase");
                 });
+
                 services.AddScoped<ITrybeHotelContext, ContextTest>();
                 services.AddScoped<ICityRepository, CityRepository>();
                 services.AddScoped<IHotelRepository, HotelRepository>();
                 services.AddScoped<IRoomRepository, RoomRepository>();
+                services.AddScoped<IUserRepository, UserRepository>();
+                services.AddScoped<IBookingRepository, BookingRepository>();
+
                 var sp = services.BuildServiceProvider();
+
                 using (var scope = sp.CreateScope())
                 using (var appContext = scope.ServiceProvider.GetRequiredService<ContextTest>())
                 {
-                    appContext.Database.EnsureCreated();
                     appContext.Database.EnsureDeleted();
                     appContext.Database.EnsureCreated();
-                    appContext.Cities.Add(new City {CityId = 1, Name = "Manaus"});
-                    appContext.Cities.Add(new City {CityId = 2, Name = "Palmas"});
-                    appContext.SaveChanges();
-                    appContext.Hotels.Add(new Hotel {HotelId = 1, Name = "Trybe Hotel Manaus", Address = "Address 1", CityId = 1});
-                    appContext.Hotels.Add(new Hotel {HotelId = 2, Name = "Trybe Hotel Palmas", Address = "Address 2", CityId = 2});
-                    appContext.Hotels.Add(new Hotel {HotelId = 3, Name = "Trybe Hotel Ponta Negra", Address = "Addres 3", CityId = 1});
-                    appContext.SaveChanges();
+
+                    // Cities
+                    appContext.Cities.Add(new City { CityId = 1, Name = "Manaus" });
+                    appContext.Cities.Add(new City { CityId = 2, Name = "Palmas" });
+
+                    // Hotels
+                    appContext.Hotels.Add(new Hotel { HotelId = 1, Name = "Trybe Hotel Manaus", Address = "Address 1", CityId = 1 });
+                    appContext.Hotels.Add(new Hotel { HotelId = 2, Name = "Trybe Hotel Palmas", Address = "Address 2", CityId = 2 });
+
+                    // Rooms
                     appContext.Rooms.Add(new Room { RoomId = 1, Name = "Room 1", Capacity = 2, Image = "Image 1", HotelId = 1 });
                     appContext.Rooms.Add(new Room { RoomId = 2, Name = "Room 2", Capacity = 3, Image = "Image 2", HotelId = 1 });
-                    appContext.Rooms.Add(new Room { RoomId = 3, Name = "Room 3", Capacity = 4, Image = "Image 3", HotelId = 1 });
-                    appContext.Rooms.Add(new Room { RoomId = 4, Name = "Room 4", Capacity = 2, Image = "Image 4", HotelId = 2 });
-                    appContext.Rooms.Add(new Room { RoomId = 5, Name = "Room 5", Capacity = 3, Image = "Image 5", HotelId = 2 });
-                    appContext.Rooms.Add(new Room { RoomId = 6, Name = "Room 6", Capacity = 4, Image = "Image 6", HotelId = 2 });
-                    appContext.Rooms.Add(new Room { RoomId = 7, Name = "Room 7", Capacity = 2, Image = "Image 7", HotelId = 3 });
-                    appContext.Rooms.Add(new Room { RoomId = 8, Name = "Room 8", Capacity = 3, Image = "Image 8", HotelId = 3 });
-                    appContext.Rooms.Add(new Room { RoomId = 9, Name = "Room 9", Capacity = 4, Image = "Image 9", HotelId = 3 });
+
+                    // Users
+                    appContext.Users.Add(new User { UserId = 1, Name = "Ana", Email = "ana@trybehotel.com", Password = "Senha1", UserType = "admin" });
+                    appContext.Users.Add(new User { UserId = 2, Name = "Beatriz", Email = "beatriz@trybehotel.com", Password = "Senha2", UserType = "client" });
+                    appContext.Users.Add(new User { UserId = 3, Name = "Laura", Email = "laura@trybehotel.com", Password = "Senha3", UserType = "client" });
+
+                    // Bookings
+                    appContext.Bookings.Add(new Booking
+                    {
+                        BookingId = 1,
+                        CheckIn = new DateTime(2023, 07, 02),
+                        CheckOut = new DateTime(2023, 07, 03),
+                        GuestQuant = 1,
+                        UserId = 2,
+                        RoomId = 1
+                    });
+
                     appContext.SaveChanges();
                 }
             });
         }).CreateClient();
     }
 
-    [Trait("Category", "Meus testes")]
-    [Theory(DisplayName = "Executando meus testes")]
+    // =========================
+    // TESTES BÁSICOS
+    // =========================
+
+    [Theory]
     [InlineData("/city")]
     [InlineData("/hotel")]
     public async Task TestGet(string url)
     {
         var response = await _clientTest.GetAsync(url);
-        Assert.Equal(System.Net.HttpStatusCode.OK, response?.StatusCode);
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
     }
 
-    [Trait("Category", "Meus testes")]
     [Fact]
     public async Task TestPostCity()
     {
-      var city = new
-      {
-        Name = "Recife"
-      };
+        var city = new { Name = "Recife" };
 
-      var content = new StringContent(
-        JsonConvert.SerializeObject(city),
-        System.Text.Encoding.UTF8,
-        "application/json"
-      );
+        var response = await _clientTest.PostAsync("/city",
+            new StringContent(JsonConvert.SerializeObject(city), Encoding.UTF8, "application/json"));
 
-      var response = await _clientTest.PostAsync("/city", content);
-
-      Assert.Equal(System.Net.HttpStatusCode.Created, response.StatusCode);
+        Assert.Equal(HttpStatusCode.Created, response.StatusCode);
     }
 
-    [Trait("Category", "Meus testes")]
     [Fact]
     public async Task TestPostHotel()
     {
-      var hotel = new
-      {
-        Name = "Hotel Recife",
-        Address = "Rua 1",
-        CityId = 1
-      };
+        var hotel = new { Name = "Hotel Recife", Address = "Rua 1", CityId = 1 };
 
-      var content = new StringContent(
-        JsonConvert.SerializeObject(hotel),
-        System.Text.Encoding.UTF8,
-        "application/json"
-      );
+        var response = await _clientTest.PostAsync("/hotel",
+            new StringContent(JsonConvert.SerializeObject(hotel), Encoding.UTF8, "application/json"));
 
-      var response = await _clientTest.PostAsync("/hotel", content);
-
-      Assert.Equal(System.Net.HttpStatusCode.Created, response.StatusCode);
+        Assert.Equal(HttpStatusCode.Created, response.StatusCode);
     }
 
-    [Trait("Category", "Meus testes")]
     [Fact]
     public async Task TestPostRoom()
     {
-      var room = new
-      {
-        Name = "Room Test",
-        Capacity = 2,
-        Image = "Image Test",
-        HotelId = 1
-      };
+        var room = new { Name = "Room Test", Capacity = 2, Image = "Image Test", HotelId = 1 };
 
-      var content = new StringContent(
-        JsonConvert.SerializeObject(room),
-        System.Text.Encoding.UTF8,
-        "application/json"
-      );
+        var response = await _clientTest.PostAsync("/room",
+            new StringContent(JsonConvert.SerializeObject(room), Encoding.UTF8, "application/json"));
 
-      var response = await _clientTest.PostAsync("/room", content);
-
-      Assert.Equal(System.Net.HttpStatusCode.Created, response.StatusCode);
+        Assert.Equal(HttpStatusCode.Created, response.StatusCode);
     }
 
-    [Trait("Category", "Meus testes")]
     [Fact]
     public async Task TestDeleteRoom()
     {
-      var response = await _clientTest.DeleteAsync("/room/1");
-
-      Assert.Equal(System.Net.HttpStatusCode.NoContent, response.StatusCode);
+        var response = await _clientTest.DeleteAsync("/room/1");
+        Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
     }
+
+    // =========================
+    // LOGIN
+    // =========================
+
+    [Fact]
+    public async Task TestLogin()
+    {
+        var input = new { Email = "beatriz@trybehotel.com", Password = "Senha2" };
+
+        var response = await _clientTest.PostAsync("/login",
+            new StringContent(JsonConvert.SerializeObject(input), Encoding.UTF8, "application/json"));
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+
+    // =========================
+    // USER
+    // =========================
+
+    [Fact]
+    public async Task TestGetUsers()
+    {
+        var login = new { Email = "ana@trybehotel.com", Password = "Senha1" };
+
+        var resLogin = await _clientTest.PostAsync("/login",
+            new StringContent(JsonConvert.SerializeObject(login), Encoding.UTF8, "application/json"));
+
+        var jsonLogin = JsonConvert.DeserializeObject<LoginJson>(
+            await resLogin.Content.ReadAsStringAsync());
+
+        _clientTest.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Bearer", jsonLogin.token);
+
+        var response = await _clientTest.GetAsync("/user");
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task TestGetUsersUnauthorized()
+    {
+        var login = new { Email = "beatriz@trybehotel.com", Password = "Senha2" };
+
+        var resLogin = await _clientTest.PostAsync("/login",
+            new StringContent(JsonConvert.SerializeObject(login), Encoding.UTF8, "application/json"));
+
+        var jsonLogin = JsonConvert.DeserializeObject<LoginJson>(
+            await resLogin.Content.ReadAsStringAsync());
+
+        _clientTest.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Bearer", jsonLogin.token);
+
+        var response = await _clientTest.GetAsync("/user");
+
+        Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+    }
+
+    // =========================
+    // BOOKING
+    // =========================
+
+    [Fact]
+    public async Task TestGetBooking()
+    {
+        var login = new { Email = "beatriz@trybehotel.com", Password = "Senha2" };
+
+        var resLogin = await _clientTest.PostAsync("/login",
+            new StringContent(JsonConvert.SerializeObject(login), Encoding.UTF8, "application/json"));
+
+        var jsonLogin = JsonConvert.DeserializeObject<LoginJson>(
+            await resLogin.Content.ReadAsStringAsync());
+
+        _clientTest.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Bearer", jsonLogin.token);
+
+        var response = await _clientTest.GetAsync("/booking/1");
+
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task TestGetBookingUnauthorized()
+    {
+        var login = new { Email = "laura@trybehotel.com", Password = "Senha3" };
+
+        var resLogin = await _clientTest.PostAsync("/login",
+            new StringContent(JsonConvert.SerializeObject(login), Encoding.UTF8, "application/json"));
+
+        var jsonLogin = JsonConvert.DeserializeObject<LoginJson>(
+            await resLogin.Content.ReadAsStringAsync());
+
+        _clientTest.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Bearer", jsonLogin.token);
+
+        var response = await _clientTest.GetAsync("/booking/1");
+
+        Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
+    }
+}
+
+// =========================
+// DTO AUXILIAR
+// =========================
+
+public class LoginJson
+{
+    public string token { get; set; } = string.Empty;
 }

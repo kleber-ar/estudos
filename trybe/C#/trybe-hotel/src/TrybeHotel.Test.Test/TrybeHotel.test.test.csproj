@@ -39,4 +39,10 @@
     <ProjectReference Include="..\TrybeHotel\TrybeHotel.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="coverlet.sh">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
