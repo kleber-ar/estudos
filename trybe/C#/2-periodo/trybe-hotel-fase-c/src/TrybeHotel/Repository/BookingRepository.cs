@@ -11,11 +11,13 @@ namespace TrybeHotel.Repository
             _context = context;
         }
 
+        // 9. Refatore o endpoint POST /booking
         public BookingResponse Add(BookingDtoInsert booking, string email)
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
 
+        // 10. Refatore o endpoint GET /booking
         public BookingResponse GetBooking(int bookingId, string email)
         {
             throw new NotImplementedException();
@@ -23,7 +25,7 @@ namespace TrybeHotel.Repository
 
         public Room GetRoomById(int RoomId)
         {
-            throw new NotImplementedException();
+             throw new NotImplementedException();
         }
 
     }

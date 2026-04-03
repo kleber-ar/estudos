@@ -1,0 +1,84 @@
+{
+  "requirements": [
+    {
+      "bonus": false,
+      "description": "1. Crie uma `Struct` para as **Cores**",
+      "enabled": true,
+      "identifier": null,
+      "order": 1,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "2. Crie um enum `FuelType`",
+      "enabled": true,
+      "identifier": null,
+      "order": 2,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "3. Crie a classe `Vehicle`",
+      "enabled": true,
+      "identifier": null,
+      "order": 3,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "4. Crie um enum `BrakeType`",
+      "enabled": true,
+      "identifier": null,
+      "order": 4,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "5. Crie um enum `TractionType`",
+      "enabled": true,
+      "identifier": null,
+      "order": 5,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "6. Faça a classe `Car` herdar de `Vehicle`",
+      "enabled": true,
+      "identifier": null,
+      "order": 6,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "7. Faça a classe `Motorcycle` herdar de `Vehicle`",
+      "enabled": true,
+      "identifier": null,
+      "order": 7,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "8. Faça a classe `PickupTruck` herdar de `Car`",
+      "enabled": true,
+      "identifier": null,
+      "order": 8,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "9. Crie um enum `RentStatus`",
+      "enabled": true,
+      "identifier": null,
+      "order": 9,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "10. Crie o construtor de `Rent` seguindo as regras de negócio",
+      "enabled": true,
+      "identifier": null,
+      "order": 10,
+      "skill_ids": []
+    }
+  ]
+}

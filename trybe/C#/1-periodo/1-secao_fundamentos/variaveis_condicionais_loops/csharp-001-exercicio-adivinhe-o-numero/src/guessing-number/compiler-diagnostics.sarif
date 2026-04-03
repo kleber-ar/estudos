@@ -11,7 +11,65 @@
         "language": "pt-BR"
       },
       "results": [
-      ]
+        {
+          "ruleId": "CS5001",
+          "level": "error",
+          "message": "Programa não contém um método \"Main\" estático adequado para um ponto de entrada"
+        },
+        {
+          "ruleId": "CA1822",
+          "level": "note",
+          "message": "Member 'Greet' does not access instance data and can be marked as static",
+          "locations": [
+            {
+              "resultFile": {
+                "uri": "file:///home/kleber/estudos/trybe/C%23/1-periodo/1-secao_fundamentos/variaveis_condicionais_loops/csharp-001-exercicio-adivinhe-o-numero/src/guessing-number/GuessingGame.cs",
+                "region": {
+                  "startLine": 30,
+                  "startColumn": 19,
+                  "endLine": 30,
+                  "endColumn": 24
+                }
+              }
+            }
+          ],
+          "properties": {
+            "warningLevel": 1
+          }
+        }
+      ],
+      "rules": {
+        "CA1822": {
+          "id": "CA1822",
+          "shortDescription": "Mark members as static",
+          "fullDescription": "Members that do not access instance data or call instance methods can be marked as static. After you mark the methods as static, the compiler will emit nonvirtual call sites to these members. This can give you a measurable performance gain for performance-sensitive code.",
+          "defaultLevel": "note",
+          "helpUri": "https://docs.microsoft.com/dotnet/fundamentals/code-analysis/quality-rules/ca1822",
+          "properties": {
+            "category": "Performance",
+            "isEnabledByDefault": true,
+            "tags": [
+              "PortedFromFxCop",
+              "Telemetry",
+              "EnabledRuleInAggressiveMode"
+            ]
+          }
+        },
+        "CS5001": {
+          "id": "CS5001",
+          "defaultLevel": "error",
+          "helpUri": "https://msdn.microsoft.com/query/roslyn.query?appId=roslyn&k=k(CS5001)",
+          "properties": {
+            "category": "Compiler",
+            "isEnabledByDefault": true,
+            "tags": [
+              "Compiler",
+              "Telemetry",
+              "NotConfigurable"
+            ]
+          }
+        }
+      }
     }
   ]
 }
