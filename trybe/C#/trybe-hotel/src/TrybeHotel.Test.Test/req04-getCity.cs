@@ -15,13 +15,14 @@ using System.IO;
 public class CityJson {
         public int CityId { get; set; }
         public string? Name { get; set; }
+        public string? State { get; set; }
 }
 
-public class TestReq02 : IClassFixture<WebApplicationFactory<Program>>
+public class TestReq04 : IClassFixture<WebApplicationFactory<Program>>
 {
     public HttpClient _clientCityGet;
 
-    public TestReq02(WebApplicationFactory<Program> factory)
+    public TestReq04(WebApplicationFactory<Program> factory)
     {
         //_factory = factory;
         _clientCityGet = factory.WithWebHostBuilder(builder => {
@@ -48,8 +49,8 @@ public class TestReq02 : IClassFixture<WebApplicationFactory<Program>>
                     appContext.Database.EnsureCreated();
                     appContext.Database.EnsureDeleted();
                     appContext.Database.EnsureCreated();
-                    appContext.Cities.Add(new City {CityId = 1, Name = "Manaus"});
-                    appContext.Cities.Add(new City {CityId = 2, Name = "Palmas"});
+                    appContext.Cities.Add(new City {CityId = 1, Name = "Manaus", State = "AM"});
+                    appContext.Cities.Add(new City {CityId = 2, Name = "Palmas", State = "TO"});
                     appContext.SaveChanges();
                     appContext.Hotels.Add(new Hotel {HotelId = 1, Name = "Trybe Hotel Manaus", Address = "Address 1", CityId = 1});
                     appContext.Hotels.Add(new Hotel {HotelId = 2, Name = "Trybe Hotel Palmas", Address = "Address 2", CityId = 2});
@@ -70,7 +71,7 @@ public class TestReq02 : IClassFixture<WebApplicationFactory<Program>>
         }).CreateClient();
     }
    
-    [Trait("Category", "2. Desenvolva o endpoint GET /city")]
+    [Trait("Category", "4. Refatore o endpoint GET /city")]
     [Theory(DisplayName = "Será validado que a resposta será um status http 200")]
     [InlineData("/city")]
     public async Task TestCityController(string url)
@@ -79,7 +80,7 @@ public class TestReq02 : IClassFixture<WebApplicationFactory<Program>>
         response.EnsureSuccessStatusCode();
     }
 
-    [Trait("Category", "2. Desenvolva o endpoint GET /city")]
+    [Trait("Category", "4. Refatore o endpoint GET /city")]
     [Theory(DisplayName = "Será validado que é possível listar todos as cidades")]
     [InlineData("/city")]
     public async Task TestCityControllerResponse(string url)
@@ -89,5 +90,7 @@ public class TestReq02 : IClassFixture<WebApplicationFactory<Program>>
         List<CityJson> jsonResponse = JsonConvert.DeserializeObject<List<CityJson>>(responseString);
         Assert.Contains("Manaus", jsonResponse[0].Name);
         Assert.Contains("Palmas", jsonResponse[1].Name);
+        Assert.Contains("AM", jsonResponse[0].State);
+        Assert.Contains("TO", jsonResponse[1].State);
     }
 }
