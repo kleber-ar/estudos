@@ -24,6 +24,7 @@
   </ItemGroup>
 
  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <InternalsVisibleTo Include="trybehotel.Test.Test" />
     <InternalsVisibleTo Include="trybehotel.Test" />
   </ItemGroup>
