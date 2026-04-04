@@ -15,6 +15,7 @@ using System.IO;
 public class CityPostJson {
         public int CityId { get; set; }
         public string? Name { get; set; }
+        public string? State { get; set; }
 }
 
 public class TestReq03 : IClassFixture<WebApplicationFactory<Program>>
@@ -48,8 +49,8 @@ public class TestReq03 : IClassFixture<WebApplicationFactory<Program>>
                     appContext.Database.EnsureCreated();
                     appContext.Database.EnsureDeleted();
                     appContext.Database.EnsureCreated();
-                    appContext.Cities.Add(new City {Name = "Manaus"});
-                    appContext.Cities.Add(new City {Name = "Palmas"});
+                    appContext.Cities.Add(new City {Name = "Manaus", State = "AM" });
+                    appContext.Cities.Add(new City {Name = "Palmas", State = "TO" });
                     appContext.SaveChanges();
                     appContext.Hotels.Add(new Hotel {HotelId = 1, Name = "Trybe Hotel Manaus", Address = "Address 1", CityId = 1});
                     appContext.Hotels.Add(new Hotel {HotelId = 2, Name = "Trybe Hotel Palmas", Address = "Address 2", CityId = 2});
@@ -70,30 +71,33 @@ public class TestReq03 : IClassFixture<WebApplicationFactory<Program>>
         }).CreateClient();
     }
    
-    [Trait("Category", "3. Desenvolva o endpoint POST /city")]
+    [Trait("Category", "2. Refatore o endpoint POST /city")]
     [Theory(DisplayName = "Será validado que a resposta será um status http 201")]
     [InlineData("/city")]
     public async Task TestCityControllerPost(string url)
     {
         var inputObj = new {
-            Name = "Rio de Janeiro"
+            Name = "Salvador",
+            State = "BA"
         };
         var response = await _clientCityPost.PostAsync(url,new StringContent(JsonConvert.SerializeObject(inputObj), System.Text.Encoding.UTF8, "application/json"));
         Assert.Equal(System.Net.HttpStatusCode.Created, response?.StatusCode);
     }
 
-    [Trait("Category", "3. Desenvolva o endpoint POST /city")]
+    [Trait("Category", "2. Refatore o endpoint POST /city")]
     [Theory(DisplayName = "Será validado que é possível retornar a cidade criada")]
     [InlineData("/city")]
     public async Task TestCityControllerPostResponse(string url)
     {
         var inputObj = new {
-            Name = "Rio de Janeiro"
+            Name = "Rio de Janeiro",
+            State = "RJ"
         };
         var response = await _clientCityPost.PostAsync(url,new StringContent(JsonConvert.SerializeObject(inputObj), System.Text.Encoding.UTF8, "application/json"));
         var responseString = await response.Content.ReadAsStringAsync();
         CityPostJson jsonResponse = JsonConvert.DeserializeObject<CityPostJson>(responseString);
         Assert.Equal(3, jsonResponse.CityId);
         Assert.Equal("Rio de Janeiro", jsonResponse.Name);
+        Assert.Equal("RJ", jsonResponse.State);
     }
 }
