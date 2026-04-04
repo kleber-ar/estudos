@@ -24,6 +24,7 @@ public class TestReq01
     [Theory(DisplayName = "City deve conter as propriedades e tipos corretos")]
     [InlineData("CityId", typeof(int))]
     [InlineData("Name", typeof(string))]
+    [InlineData("State", typeof(string))]
     [InlineData("Hotels", typeof(IEnumerable<Hotel>))]
     public void CityShouldContainProperties(string propertyName, Type propertyType)
     {
