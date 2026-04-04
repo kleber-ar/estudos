@@ -18,11 +18,11 @@ public class CityPostJson {
         public string? State { get; set; }
 }
 
-public class TestReq03 : IClassFixture<WebApplicationFactory<Program>>
+public class TestReq02 : IClassFixture<WebApplicationFactory<Program>>
 {
     public HttpClient _clientCityPost;
 
-    public TestReq03(WebApplicationFactory<Program> factory)
+    public TestReq02(WebApplicationFactory<Program> factory)
     {
         //_factory = factory;
         _clientCityPost = factory.WithWebHostBuilder(builder => {

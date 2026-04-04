@@ -35,5 +35,26 @@ namespace TrybeHotel.Repository
             };
         }
 
+        public CityDto UpdateCity(City city)
+        {
+           var existingCity = _context.Cities.FirstOrDefault(c => c.CityId == city.CityId);
+           if (existingCity == null)
+           {
+             throw new Exception("City not found");
+           }
+
+           existingCity.Name = city.Name;
+           existingCity.State = city.State;
+
+           _context.SaveChanges();
+
+          return new CityDto
+          {
+            CityId = existingCity.CityId,
+            Name = existingCity.Name,
+            State = existingCity.State
+          };
+        }
+
     }
 }
