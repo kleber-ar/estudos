@@ -20,11 +20,11 @@ public class RoomJsonDelete {
         public HotelJson? Hotel { get; set; }
 }
 
-public class TestReq08 : IClassFixture<WebApplicationFactory<Program>>
+public class TestReq008 : IClassFixture<WebApplicationFactory<Program>>
 {
     public HttpClient _clientRoomDelete;
 
-    public TestReq08(WebApplicationFactory<Program> factory)
+    public TestReq008(WebApplicationFactory<Program> factory)
     {
         //_factory = factory;
         _clientRoomDelete = factory.WithWebHostBuilder(builder => {

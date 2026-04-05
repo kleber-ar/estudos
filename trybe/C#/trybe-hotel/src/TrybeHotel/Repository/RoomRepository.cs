@@ -41,15 +41,15 @@ namespace TrybeHotel.Repository
           _context.SaveChanges();
 
           var hotel = _context.Hotels
-            .Where(h => h.HotelId == room.HotelId)
-            .Select(h => new HotelDto
-            {
-              HotelId = h.HotelId,
-              Name = h.Name,
-              Address = h.Address,
-              CityId = h.CityId,
-              CityName = h.City!.Name
-            }).First();
+            .FirstOrDefault(h => h.HotelId == room.HotelId);
+
+          if (hotel == null)
+          {
+            throw new Exception("Hotel not found");
+          }
+
+          var city = _context.Cities
+            .FirstOrDefault(c => c.CityId == hotel.CityId);
 
           return new RoomDto
           {
@@ -57,7 +57,16 @@ namespace TrybeHotel.Repository
             Name = room.Name,
             Capacity = room.Capacity,
             Image = room.Image,
-            Hotel = hotel
+
+            Hotel = new HotelDto
+            {
+              HotelId = hotel.HotelId,
+              Name = hotel.Name,
+              Address = hotel.Address,
+              CityId = hotel.CityId,
+              CityName = city.Name,
+              State = city.State
+            }
           };
         }
 

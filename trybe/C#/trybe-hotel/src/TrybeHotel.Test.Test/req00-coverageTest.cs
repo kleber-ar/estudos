@@ -8,7 +8,7 @@ using System.Xml;
 using System.IO;
 
 
-public class TestReq09
+public class TestReq00
 {
     [Fact]
     [Trait("Category", "9. Desenvolva testes que cubram no mínimo 40% de linhas")]
