@@ -6,11 +6,11 @@ using TrybeHotel.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-public class TestReq17 : IClassFixture<WebApplicationFactory<Program>>
+public class TestReq11 : IClassFixture<WebApplicationFactory<Program>>
 {
     public HttpClient _clientBookingPost;
 
-    public TestReq17(WebApplicationFactory<Program> factory)
+    public TestReq11(WebApplicationFactory<Program> factory)
     {
          _clientBookingPost = factory.WithWebHostBuilder(builder => {
             builder.ConfigureServices(services =>

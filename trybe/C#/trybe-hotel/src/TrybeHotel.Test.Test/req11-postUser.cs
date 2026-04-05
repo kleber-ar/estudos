@@ -17,11 +17,11 @@ public class ErrorJson {
     public string? message { get; set; }
 }
 
-public class TestReq11 : IClassFixture<WebApplicationFactory<Program>>
+public class TestReq0011 : IClassFixture<WebApplicationFactory<Program>>
 {
     public HttpClient _clientUserPost;
 
-    public TestReq11(WebApplicationFactory<Program> factory)
+    public TestReq0011(WebApplicationFactory<Program> factory)
     {
 
         _clientUserPost = factory.WithWebHostBuilder(builder => {
