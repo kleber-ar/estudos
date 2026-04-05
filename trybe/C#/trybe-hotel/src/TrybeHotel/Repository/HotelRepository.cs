@@ -32,9 +32,7 @@ namespace TrybeHotel.Repository
           _context.Hotels.Add(hotel);
           _context.SaveChanges();
 
-          var city = _context.Cities
-            .Where(c => c.CityId == hotel.CityId)
-            .First();
+          var city = _context.Cities.FirstOrDefault(c => c.CityId == hotel.CityId);
 
           return new HotelDto
           {
@@ -42,7 +40,8 @@ namespace TrybeHotel.Repository
             Name = hotel.Name,
             Address = hotel.Address,
             CityId = hotel.CityId,
-            CityName = city.Name
+            CityName = city.Name,
+            State = city.State
           };
         }
     }

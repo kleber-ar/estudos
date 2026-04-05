@@ -6,10 +6,6 @@ using TrybeHotel.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-public class LoginJson {
-    public string? token { get; set; }
-}
-
 public class TestReq12 : IClassFixture<WebApplicationFactory<Program>>
 {
     public HttpClient _clientUserPost;
