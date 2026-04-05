@@ -20,11 +20,11 @@ public class RoomPostJson {
         public HotelJson? Hotel { get; set; }
 }
 
-public class TestReq07 : IClassFixture<WebApplicationFactory<Program>>
+public class TestReq007 : IClassFixture<WebApplicationFactory<Program>>
 {
     public HttpClient _clientCityPost;
 
-    public TestReq07(WebApplicationFactory<Program> factory)
+    public TestReq007(WebApplicationFactory<Program> factory)
     {
         //_factory = factory;
         _clientCityPost = factory.WithWebHostBuilder(builder => {

@@ -20,11 +20,11 @@ public class RoomJson {
         public HotelJson? Hotel { get; set; }
 }
 
-public class TestReq006 : IClassFixture<WebApplicationFactory<Program>>
+public class TestReq07 : IClassFixture<WebApplicationFactory<Program>>
 {
     public HttpClient _clientCityGet;
 
-    public TestReq006(WebApplicationFactory<Program> factory)
+    public TestReq07(WebApplicationFactory<Program> factory)
     {
         //_factory = factory;
         _clientCityGet = factory.WithWebHostBuilder(builder => {
@@ -51,8 +51,8 @@ public class TestReq006 : IClassFixture<WebApplicationFactory<Program>>
                     appContext.Database.EnsureCreated();
                     appContext.Database.EnsureDeleted();
                     appContext.Database.EnsureCreated();
-                    appContext.Cities.Add(new City {CityId = 1, Name = "Manaus"});
-                    appContext.Cities.Add(new City {CityId = 2, Name = "Palmas"});
+                    appContext.Cities.Add(new City {CityId = 1, Name = "Manaus", State = "AM" });
+                    appContext.Cities.Add(new City {CityId = 2, Name = "Palmas", State = "TO" });
                     appContext.SaveChanges();
                     appContext.Hotels.Add(new Hotel {HotelId = 1, Name = "Trybe Hotel Manaus", Address = "Address 1", CityId = 1});
                     appContext.Hotels.Add(new Hotel {HotelId = 2, Name = "Trybe Hotel Palmas", Address = "Address 2", CityId = 2});
@@ -73,7 +73,7 @@ public class TestReq006 : IClassFixture<WebApplicationFactory<Program>>
         }).CreateClient();
     }
    
-    [Trait("Category", "6. Desenvolva o endpoint GET /room")]
+    [Trait("Category", "7. Refatore o endpoint GET /room")]
     [Theory(DisplayName = "Será validado que a resposta será um status http 200")]
     [InlineData("/room/1")]
     public async Task TestRoomController(string url)
@@ -82,7 +82,7 @@ public class TestReq006 : IClassFixture<WebApplicationFactory<Program>>
         response.EnsureSuccessStatusCode();
     }
 
-    [Trait("Category", "6. Desenvolva o endpoint GET /room")]
+    [Trait("Category", "7. Refatore o endpoint GET /room")]
     [Theory(DisplayName = "Será validado que é possível listar todos os quartos de um hotel")]
     [InlineData("/room/1")]
     public async Task TestRoomControllerResponse(string url)
@@ -98,6 +98,7 @@ public class TestReq006 : IClassFixture<WebApplicationFactory<Program>>
         Assert.Contains("Image 1", jsonResponse[0].Image);
         Assert.Contains("Trybe Hotel Manaus", jsonResponse[0].Hotel.Name);
         Assert.Contains("Manaus", jsonResponse[0].Hotel.CityName);
+        Assert.Contains("AM", jsonResponse[0].Hotel.State);
 
         Assert.Equal(2, jsonResponse[1].RoomId);
         Assert.Contains("Room 2", jsonResponse[1].Name);
@@ -105,6 +106,7 @@ public class TestReq006 : IClassFixture<WebApplicationFactory<Program>>
         Assert.Contains("Image 2", jsonResponse[1].Image);
         Assert.Contains("Trybe Hotel Manaus", jsonResponse[1].Hotel.Name);
         Assert.Contains("Manaus", jsonResponse[1].Hotel.CityName);
+        Assert.Contains("AM", jsonResponse[1].Hotel.State);
 
     }
 }

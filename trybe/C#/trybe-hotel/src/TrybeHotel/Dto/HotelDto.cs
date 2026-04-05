@@ -7,6 +7,6 @@ namespace TrybeHotel.Dto {
       public int CityId { get; set; }
       public string CityName { get; set; } = string.Empty;
       public string State {get; set;} = string.Empty;
-      
+
     }
 }
