@@ -18,13 +18,14 @@ public class HotelJson {
         public string? Address { get; set; }
         public int CityId { get; set; }
         public string? CityName { get; set; }
+        public string? State { get; set; }
 }
 
-public class TestReq004 : IClassFixture<WebApplicationFactory<Program>>
+public class TestReq05 : IClassFixture<WebApplicationFactory<Program>>
 {
     public HttpClient _clientHotelGet;
 
-    public TestReq004(WebApplicationFactory<Program> factory)
+    public TestReq05(WebApplicationFactory<Program> factory)
     {
         //_factory = factory;
         _clientHotelGet = factory.WithWebHostBuilder(builder => {
@@ -51,8 +52,8 @@ public class TestReq004 : IClassFixture<WebApplicationFactory<Program>>
                     appContext.Database.EnsureCreated();
                     appContext.Database.EnsureDeleted();
                     appContext.Database.EnsureCreated();
-                    appContext.Cities.Add(new City {CityId = 1, Name = "Manaus"});
-                    appContext.Cities.Add(new City {CityId = 2, Name = "Palmas"});
+                    appContext.Cities.Add(new City {CityId = 1, Name = "Manaus", State = "AM" });
+                    appContext.Cities.Add(new City {CityId = 2, Name = "Palmas", State = "TO" });
                     appContext.SaveChanges();
                     appContext.Hotels.Add(new Hotel {HotelId = 1, Name = "Trybe Hotel Manaus", Address = "Address 1", CityId = 1});
                     appContext.Hotels.Add(new Hotel {HotelId = 2, Name = "Trybe Hotel Palmas", Address = "Address 2", CityId = 2});
@@ -73,7 +74,7 @@ public class TestReq004 : IClassFixture<WebApplicationFactory<Program>>
         }).CreateClient();
     }
    
-    [Trait("Category", "4. Desenvolva o endpoint GET /hotel")]
+    [Trait("Category", "5. Refatore o endpoint GET /hotel")]
     [Theory(DisplayName = "Será validado que a resposta será um status http 200")]
     [InlineData("/hotel")]
     public async Task TestHotelController(string url)
@@ -82,7 +83,7 @@ public class TestReq004 : IClassFixture<WebApplicationFactory<Program>>
         response.EnsureSuccessStatusCode();
     }
 
-    [Trait("Category", "4. Desenvolva o endpoint GET /hotel")]
+    [Trait("Category", "5. Refatore o endpoint GET /hotel")]
     [Theory(DisplayName = "Será validado que é possível listar todos os hotéis")]
     [InlineData("/hotel")]
     public async Task TestHotelControllerResponse(string url)
@@ -102,5 +103,10 @@ public class TestReq004 : IClassFixture<WebApplicationFactory<Program>>
         Assert.Equal(1, jsonResponse[0].CityId);
         Assert.Equal(2, jsonResponse[1].CityId);
         Assert.Equal(1, jsonResponse[2].CityId);
+
+        Assert.Contains("AM", jsonResponse[0].State);
+        Assert.Contains("TO", jsonResponse[1].State);
+        Assert.Contains("AM", jsonResponse[2].State);
+        
     }
 }

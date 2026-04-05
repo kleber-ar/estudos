@@ -20,11 +20,11 @@ using System.IO;
 //        public string? CityName { get; set; }
 //}
 
-public class TestReq05 : IClassFixture<WebApplicationFactory<Program>>
+public class TestReq005 : IClassFixture<WebApplicationFactory<Program>>
 {
     public HttpClient _clientHotelPost;
 
-    public TestReq05(WebApplicationFactory<Program> factory)
+    public TestReq005(WebApplicationFactory<Program> factory)
     {
         //_factory = factory;
         _clientHotelPost = factory.WithWebHostBuilder(builder => {
