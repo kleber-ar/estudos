@@ -15,11 +15,11 @@ public class BookingPostJson
     public RoomPostJson? Room { get; set; }
 }
 
-public class TestReq16 : IClassFixture<WebApplicationFactory<Program>>
+public class TestReq10 : IClassFixture<WebApplicationFactory<Program>>
 {
     public HttpClient _clientBookingPost;
 
-    public TestReq16(WebApplicationFactory<Program> factory)
+    public TestReq10(WebApplicationFactory<Program> factory)
     {
          _clientBookingPost = factory.WithWebHostBuilder(builder => {
             builder.ConfigureServices(services =>

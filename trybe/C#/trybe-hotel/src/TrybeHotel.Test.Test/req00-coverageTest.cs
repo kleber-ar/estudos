@@ -8,10 +8,10 @@ using System.Xml;
 using System.IO;
 
 
-public class TestReq00
+public class TestReq19
 {
     [Fact]
-    [Trait("Category", "9. Desenvolva testes que cubram no mínimo 40% de linhas")]
+    [Trait("Category", "10. Desenvolva testes que cubram no mínimo 40% de linhas")]
     public static void Testes()
     {
         string pathXml = System.Environment.CurrentDirectory.ToString().Replace("TrybeHotel.Test.Test/bin/Debug/net8.0","") + "/TrybeHotel.Test/TestResults/";

@@ -1,4 +1,5 @@
 namespace trybe_hotel.Test.Test;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
 using TrybeHotel.Models;
@@ -7,17 +8,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 
-
-
-
-public class TestReq13 : IClassFixture<WebApplicationFactory<Program>>
+public class TestReq09 : IClassFixture<WebApplicationFactory<Program>>
 {
-    public HttpClient _clientHotelPost;
+    public HttpClient _clientRoomDelete;
 
-    public TestReq13(WebApplicationFactory<Program> factory)
+    public TestReq09(WebApplicationFactory<Program> factory)
     {
         //_factory = factory;
-        _clientHotelPost = factory.WithWebHostBuilder(builder => {
+        _clientRoomDelete = factory.WithWebHostBuilder(builder => {
             builder.ConfigureServices(services =>
             {
                 var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<TrybeHotelContext>));
@@ -28,7 +26,7 @@ public class TestReq13 : IClassFixture<WebApplicationFactory<Program>>
 
                 services.AddDbContext<ContextTest>(options =>
                 {
-                    options.UseInMemoryDatabase("InMemoryTestPostHotel");
+                    options.UseInMemoryDatabase("InMemoryTestDeleteRoom");
                 });
                 services.AddScoped<ITrybeHotelContext, ContextTest>();
                 services.AddScoped<ICityRepository, CityRepository>();
@@ -71,77 +69,52 @@ public class TestReq13 : IClassFixture<WebApplicationFactory<Program>>
     }
    
 
-    [Trait("Category", "4. Adicione a autorização de admin no endpoint /POST hotel")]
+    [Trait("Category", "6. Adicione a autorização de admin no endpoint /DELETE room")]
     [Theory(DisplayName = "Será validado que é possível realizar as operações do endpoint com a autorização de admin")]
-    [InlineData("/hotel")]
-    public async Task TestHotelControllerPostResponse(string url)
+    [InlineData("/room/9")]
+    public async Task TestRoomControllerDeleteResponse(string url)
     {
         var inputLogin = new {
             Email = "ana@trybehotel.com",
             Password = "Senha1"
         };
-        var responseLogin = await _clientHotelPost.PostAsync("/login",new StringContent(JsonConvert.SerializeObject(inputLogin), System.Text.Encoding.UTF8, "application/json"));
+        var responseLogin = await _clientRoomDelete.PostAsync("/login",new StringContent(JsonConvert.SerializeObject(inputLogin), System.Text.Encoding.UTF8, "application/json"));
         var responseLoginString = await responseLogin.Content.ReadAsStringAsync();
         LoginJson jsonLogin = JsonConvert.DeserializeObject<LoginJson>(responseLoginString);
-
-        var inputObj = new {
-            Name = "New Trybe Hotel Palmas",
-            Address = "Address 4",
-            Cityid = 2
-        };
         
-        _clientHotelPost.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", jsonLogin.token);
+        _clientRoomDelete.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", jsonLogin.token);
 
-        var response = await _clientHotelPost.PostAsync(url,new StringContent(JsonConvert.SerializeObject(inputObj), System.Text.Encoding.UTF8, "application/json"));
-        var responseString = await response.Content.ReadAsStringAsync();
-        HotelPostJson jsonResponse = JsonConvert.DeserializeObject<HotelPostJson>(responseString);
-        Assert.Equal(System.Net.HttpStatusCode.Created, response?.StatusCode);
-        Assert.Equal(4, jsonResponse.HotelId);
-        Assert.Equal("New Trybe Hotel Palmas", jsonResponse.Name);
-        Assert.Equal("Address 4", jsonResponse.Address);
-        Assert.Equal(2, jsonResponse.CityId);
-        Assert.Equal("Palmas", jsonResponse.CityName);
+        var response = await _clientRoomDelete.DeleteAsync(url);
+        Assert.Equal(System.Net.HttpStatusCode.NoContent, response?.StatusCode);
     }
 
-    [Trait("Category", "4. Adicione a autorização de admin no endpoint /POST hotel")]
+    [Trait("Category", "6. Adicione a autorização de admin no endpoint /DELETE room")]
     [Theory(DisplayName = "Será validado que o status será proibido caso o acesso não seja admin")]
-    [InlineData("/hotel")]
-    public async Task TestHotelControllerPostResponseForbidden(string url)
+    [InlineData("/room/8")]
+    public async Task TestRoomControllerDeleteResponseForbidden(string url)
     {
-         var inputLogin = new {
+        var inputLogin = new {
             Email = "beatriz@trybehotel.com",
             Password = "Senha2"
         };
-        var responseLogin = await _clientHotelPost.PostAsync("/login",new StringContent(JsonConvert.SerializeObject(inputLogin), System.Text.Encoding.UTF8, "application/json"));
+
+        var responseLogin = await _clientRoomDelete.PostAsync("/login",new StringContent(JsonConvert.SerializeObject(inputLogin), System.Text.Encoding.UTF8, "application/json"));
         var responseLoginString = await responseLogin.Content.ReadAsStringAsync();
         LoginJson jsonLogin = JsonConvert.DeserializeObject<LoginJson>(responseLoginString);
-
-        var inputObj = new {
-            Name = "New Trybe Hotel Palmas",
-            Address = "Address 4",
-            Cityid = 2
-        };
         
-        _clientHotelPost.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", jsonLogin.token);
+        _clientRoomDelete.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", jsonLogin.token);
 
-        var response = await _clientHotelPost.PostAsync(url,new StringContent(JsonConvert.SerializeObject(inputObj), System.Text.Encoding.UTF8, "application/json"));
+        var response = await _clientRoomDelete.DeleteAsync(url);
         Assert.Equal(System.Net.HttpStatusCode.Forbidden, response?.StatusCode);
     }
 
     
-    [Trait("Category", "4. Adicione a autorização de admin no endpoint /POST hotel")]
+    [Trait("Category", "6. Adicione a autorização de admin no endpoint /DELETE room")]
     [Theory(DisplayName = "Será validado que o status será não autorizado caso o acesso não exista")]
-    [InlineData("/hotel")]
-    public async Task TestHotelControllerPostResponseUnathorized(string url)
+    [InlineData("/room/7")]
+    public async Task TestRoomControllerDeleteResponseUnathorized(string url)
     {
- 
-        var inputObj = new {
-            Name = "New Trybe Hotel Palmas",
-            Address = "Address 4",
-            Cityid = 2
-        };
-        
-        var response = await _clientHotelPost.PostAsync(url,new StringContent(JsonConvert.SerializeObject(inputObj), System.Text.Encoding.UTF8, "application/json"));
+        var response = await _clientRoomDelete.DeleteAsync(url);
         Assert.Equal(System.Net.HttpStatusCode.Unauthorized, response?.StatusCode);
     }
 }

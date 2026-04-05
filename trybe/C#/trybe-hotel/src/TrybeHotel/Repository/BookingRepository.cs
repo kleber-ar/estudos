@@ -61,19 +61,22 @@ namespace TrybeHotel.Repository
                 CheckIn = newBooking.CheckIn,
                 CheckOut = newBooking.CheckOut,
                 GuestQuant = newBooking.GuestQuant,
+
                 Room = new RoomDto
                 {
                     RoomId = room.RoomId,
                     Name = room.Name,
                     Capacity = room.Capacity,
                     Image = room.Image,
+
                     Hotel = new HotelDto
                     {
                         HotelId = room.Hotel!.HotelId,
                         Name = room.Hotel.Name,
                         Address = room.Hotel.Address,
                         CityId = room.Hotel.CityId,
-                        CityName = room.Hotel.City!.Name
+                        CityName = room.Hotel.City!.Name,
+                        State = room.Hotel.City.State
                     }
                 }
             };

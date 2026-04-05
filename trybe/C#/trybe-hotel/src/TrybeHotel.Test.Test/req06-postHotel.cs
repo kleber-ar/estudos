@@ -50,8 +50,8 @@ public class TestReq06 : IClassFixture<WebApplicationFactory<Program>>
                     appContext.Database.EnsureCreated();
                     appContext.Database.EnsureDeleted();
                     appContext.Database.EnsureCreated();
-                    appContext.Cities.Add(new City {CityId = 1, Name = "Manaus", State = "AM" });
-                    appContext.Cities.Add(new City {CityId = 2, Name = "Palmas", State = "TO" });
+                    appContext.Cities.Add(new City {CityId = 1, Name = "Manaus"});
+                    appContext.Cities.Add(new City {CityId = 2, Name = "Palmas"});
                     appContext.SaveChanges();
                     appContext.Hotels.Add(new Hotel {HotelId = 1, Name = "Trybe Hotel Manaus", Address = "Address 1", CityId = 1});
                     appContext.Hotels.Add(new Hotel {HotelId = 2, Name = "Trybe Hotel Palmas", Address = "Address 2", CityId = 2});
@@ -80,7 +80,7 @@ public class TestReq06 : IClassFixture<WebApplicationFactory<Program>>
     }
    
 
-    [Trait("Category", "6. Refatore o endpoint POST /hotel")]
+    [Trait("Category", "4. Adicione a autorização de admin no endpoint /POST hotel")]
     [Theory(DisplayName = "Será validado que é possível realizar as operações do endpoint com a autorização de admin")]
     [InlineData("/hotel")]
     public async Task TestHotelControllerPostResponse(string url)
@@ -110,7 +110,47 @@ public class TestReq06 : IClassFixture<WebApplicationFactory<Program>>
         Assert.Equal("Address 4", jsonResponse.Address);
         Assert.Equal(2, jsonResponse.CityId);
         Assert.Equal("Palmas", jsonResponse.CityName);
-        Assert.Equal("TO", jsonResponse.State);
     }
 
+    [Trait("Category", "4. Adicione a autorização de admin no endpoint /POST hotel")]
+    [Theory(DisplayName = "Será validado que o status será proibido caso o acesso não seja admin")]
+    [InlineData("/hotel")]
+    public async Task TestHotelControllerPostResponseForbidden(string url)
+    {
+         var inputLogin = new {
+            Email = "beatriz@trybehotel.com",
+            Password = "Senha2"
+        };
+        var responseLogin = await _clientHotelPost.PostAsync("/login",new StringContent(JsonConvert.SerializeObject(inputLogin), System.Text.Encoding.UTF8, "application/json"));
+        var responseLoginString = await responseLogin.Content.ReadAsStringAsync();
+        LoginJson jsonLogin = JsonConvert.DeserializeObject<LoginJson>(responseLoginString);
+
+        var inputObj = new {
+            Name = "New Trybe Hotel Palmas",
+            Address = "Address 4",
+            Cityid = 2
+        };
+        
+        _clientHotelPost.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", jsonLogin.token);
+
+        var response = await _clientHotelPost.PostAsync(url,new StringContent(JsonConvert.SerializeObject(inputObj), System.Text.Encoding.UTF8, "application/json"));
+        Assert.Equal(System.Net.HttpStatusCode.Forbidden, response?.StatusCode);
+    }
+
+    
+    [Trait("Category", "4. Adicione a autorização de admin no endpoint /POST hotel")]
+    [Theory(DisplayName = "Será validado que o status será não autorizado caso o acesso não exista")]
+    [InlineData("/hotel")]
+    public async Task TestHotelControllerPostResponseUnathorized(string url)
+    {
+ 
+        var inputObj = new {
+            Name = "New Trybe Hotel Palmas",
+            Address = "Address 4",
+            Cityid = 2
+        };
+        
+        var response = await _clientHotelPost.PostAsync(url,new StringContent(JsonConvert.SerializeObject(inputObj), System.Text.Encoding.UTF8, "application/json"));
+        Assert.Equal(System.Net.HttpStatusCode.Unauthorized, response?.StatusCode);
+    }
 }

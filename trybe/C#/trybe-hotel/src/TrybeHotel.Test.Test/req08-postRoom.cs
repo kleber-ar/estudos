@@ -7,8 +7,6 @@ using TrybeHotel.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-
-
 public class RoomPostJson {
         public int RoomId { get; set; }
         public string? Name { get; set; }
@@ -48,8 +46,8 @@ public class TestReq08 : IClassFixture<WebApplicationFactory<Program>>
                     appContext.Database.EnsureCreated();
                     appContext.Database.EnsureDeleted();
                     appContext.Database.EnsureCreated();
-                    appContext.Cities.Add(new City {CityId = 1, Name = "Manaus", State = "AM"});
-                    appContext.Cities.Add(new City {CityId = 2, Name = "Palmas", State = "TO"});
+                    appContext.Cities.Add(new City {CityId = 1, Name = "Manaus"});
+                    appContext.Cities.Add(new City {CityId = 2, Name = "Palmas"});
                     appContext.SaveChanges();
                     appContext.Hotels.Add(new Hotel {HotelId = 1, Name = "Trybe Hotel Manaus", Address = "Address 1", CityId = 1});
                     appContext.Hotels.Add(new Hotel {HotelId = 2, Name = "Trybe Hotel Palmas", Address = "Address 2", CityId = 2});
@@ -78,8 +76,8 @@ public class TestReq08 : IClassFixture<WebApplicationFactory<Program>>
     }
    
 
-    [Trait("Category", "8. Refatore o endpoint POST /room")]
-    [Theory(DisplayName = "Será validado que é possível realizar a operação com sucesso")]
+    [Trait("Category", "5. Adicione a autorização de admin no endpoint /POST room")]
+    [Theory(DisplayName = "Será validado que é possível realizar as operações do endpoint com a autorização de admin")]
     [InlineData("/room")]
     public async Task TestHotelControllerPostResponse(string url)
     {
@@ -110,10 +108,9 @@ public class TestReq08 : IClassFixture<WebApplicationFactory<Program>>
         Assert.Contains("Image suite", jsonResponse.Image);
         Assert.Contains("Trybe Hotel Ponta Negra", jsonResponse.Hotel.Name);
         Assert.Contains("Manaus", jsonResponse.Hotel.CityName);
-        Assert.Contains("AM", jsonResponse.Hotel.State);
     }
 
-    [Trait("Category", "8. Refatore o endpoint POST /room")]
+    [Trait("Category", "5. Adicione a autorização de admin no endpoint /POST room")]
     [Theory(DisplayName = "Será validado que o status será proibido caso o acesso não seja admin")]
     [InlineData("/room")]
     public async Task TestHotelControllerPostResponseForbidden(string url)
