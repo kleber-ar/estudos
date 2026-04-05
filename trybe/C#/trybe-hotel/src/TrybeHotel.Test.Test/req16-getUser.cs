@@ -6,14 +6,13 @@ using TrybeHotel.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-public class TestReq012 : IClassFixture<WebApplicationFactory<Program>>
+public class TestReq16 : IClassFixture<WebApplicationFactory<Program>>
 {
-    public HttpClient _clientUserPost;
+    public HttpClient _clientUserGet;
 
-    public TestReq012(WebApplicationFactory<Program> factory)
+    public TestReq16(WebApplicationFactory<Program> factory)
     {
-
-        _clientUserPost = factory.WithWebHostBuilder(builder => {
+         _clientUserGet = factory.WithWebHostBuilder(builder => {
             builder.ConfigureServices(services =>
             {
                 var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<TrybeHotelContext>));
@@ -24,15 +23,12 @@ public class TestReq012 : IClassFixture<WebApplicationFactory<Program>>
 
                 services.AddDbContext<ContextTest>(options =>
                 {
-                    options.UseInMemoryDatabase("InMemoryTestLoginUser");
+                    options.UseInMemoryDatabase("InMemoryTestGetUser");
                 });
                 services.AddScoped<ITrybeHotelContext, ContextTest>();
                 services.AddScoped<ICityRepository, CityRepository>();
                 services.AddScoped<IHotelRepository, HotelRepository>();
                 services.AddScoped<IRoomRepository, RoomRepository>();
-                services.AddScoped<IUserRepository, UserRepository>();
-                services.AddScoped<IBookingRepository, BookingRepository>();
-
                 var sp = services.BuildServiceProvider();
                 using (var scope = sp.CreateScope())
                 using (var appContext = scope.ServiceProvider.GetRequiredService<ContextTest>())
@@ -40,12 +36,12 @@ public class TestReq012 : IClassFixture<WebApplicationFactory<Program>>
                     appContext.Database.EnsureCreated();
                     appContext.Database.EnsureDeleted();
                     appContext.Database.EnsureCreated();
-                    appContext.Cities.Add(new City {Name = "Manaus"});
-                    appContext.Cities.Add(new City {Name = "Palmas"});
+                    appContext.Cities.Add(new City {CityId = 1, Name = "Manaus"});
+                    appContext.Cities.Add(new City {CityId = 2, Name = "Palmas"});
                     appContext.SaveChanges();
                     appContext.Hotels.Add(new Hotel {HotelId = 1, Name = "Trybe Hotel Manaus", Address = "Address 1", CityId = 1});
                     appContext.Hotels.Add(new Hotel {HotelId = 2, Name = "Trybe Hotel Palmas", Address = "Address 2", CityId = 2});
-                    appContext.Hotels.Add(new Hotel {HotelId = 3, Name = "Trybe Hotel Ponta Negra", Address = "Addres 3", CityId = 1});
+                    appContext.Hotels.Add(new Hotel {HotelId = 3, Name = "Trybe Hotel Ponta Negra", Address = "Address 3", CityId = 1});
                     appContext.SaveChanges();
                     appContext.Rooms.Add(new Room { RoomId = 1, Name = "Room 1", Capacity = 2, Image = "Image 1", HotelId = 1 });
                     appContext.Rooms.Add(new Room { RoomId = 2, Name = "Room 2", Capacity = 3, Image = "Image 2", HotelId = 1 });
@@ -69,37 +65,54 @@ public class TestReq012 : IClassFixture<WebApplicationFactory<Program>>
         }).CreateClient();
     }
 
-    [Trait("Category", "3. Desenvolva o endpoint POST /login")]
-    [Theory(DisplayName = "Será validado que a resposta será um status http 200 e um token")]
-    [InlineData("/login")]
-    public async Task TestLoginControllerPost(string url)
+
+    [Trait("Category", "9. Desenvolva o endpoint GET /user")]
+    [Theory(DisplayName = "Será validado que é possível filtrar as pessoas usuárias")]
+    [InlineData("/user")]
+    public async Task TestUserControllerGetResponse(string url)
     {
-        var inputObj = new {
+         var inputLogin = new {
             Email = "ana@trybehotel.com",
             Password = "Senha1"
         };
-        var response = await _clientUserPost.PostAsync(url,new StringContent(JsonConvert.SerializeObject(inputObj), System.Text.Encoding.UTF8, "application/json"));
+        var responseLogin = await _clientUserGet.PostAsync("/login",new StringContent(JsonConvert.SerializeObject(inputLogin), System.Text.Encoding.UTF8, "application/json"));
+        var responseLoginString = await responseLogin.Content.ReadAsStringAsync();
+        LoginJson jsonLogin = JsonConvert.DeserializeObject<LoginJson>(responseLoginString);
+
+         _clientUserGet.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", jsonLogin.token);
+
+        var response = await _clientUserGet.GetAsync(url);
         var responseString = await response.Content.ReadAsStringAsync();
-        LoginJson jsonResponse = JsonConvert.DeserializeObject<LoginJson>(responseString);
+        List<UserPostJson> jsonResponse = JsonConvert.DeserializeObject<List<UserPostJson>>(responseString);
+        jsonResponse = jsonResponse.OrderBy(u => u.UserId).ToList();
 
         Assert.Equal(System.Net.HttpStatusCode.OK, response?.StatusCode);
-        Assert.NotEmpty(jsonResponse.token);
+        Assert.Contains("ana@trybehotel.com", jsonResponse[0].Email);
+        Assert.Contains("beatriz@trybehotel.com", jsonResponse[1].Email);
+        Assert.Contains("laura@trybehotel.com", jsonResponse[2].Email);
+
+        Assert.Contains("admin", jsonResponse[0].UserType);
+        Assert.Contains("client", jsonResponse[1].UserType);
+        Assert.Contains("client", jsonResponse[2].UserType);
     }
 
-    [Trait("Category", "3. Desenvolva o endpoint POST /login")]
-    [Theory(DisplayName = "Será validado que a resposta será um status http 401 e uma mensagem de erro caso a credencial esteja errada")]
-    [InlineData("/login")]
-    public async Task TestLoginControllerPosErrort(string url)
+     [Trait("Category", "9. Desenvolva o endpoint GET /user")]
+    [Theory(DisplayName = "Será validado que não é possível acessar a rota sem a autorização de admin")]
+    [InlineData("/user")]
+    public async Task TestUserControllerGetResponseUnathorized(string url)
     {
-        var inputObj = new {
-            Email = "ana@trybehotel.com",
-            Password = "Senha16"
+         var inputLogin = new {
+            Email = "beatriz@trybehotel.com",
+            Password = "Senha2"
         };
-        var response = await _clientUserPost.PostAsync(url,new StringContent(JsonConvert.SerializeObject(inputObj), System.Text.Encoding.UTF8, "application/json"));
-        var responseString = await response.Content.ReadAsStringAsync();
-        ErrorJson jsonResponse = JsonConvert.DeserializeObject<ErrorJson>(responseString);
+        var responseLogin = await _clientUserGet.PostAsync("/login",new StringContent(JsonConvert.SerializeObject(inputLogin), System.Text.Encoding.UTF8, "application/json"));
+        var responseLoginString = await responseLogin.Content.ReadAsStringAsync();
+        LoginJson jsonLogin = JsonConvert.DeserializeObject<LoginJson>(responseLoginString);
 
-        Assert.Equal(System.Net.HttpStatusCode.Unauthorized, response?.StatusCode);
-        Assert.Equal("Incorrect e-mail or password", jsonResponse.message);
+         _clientUserGet.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", jsonLogin.token);
+
+        var response = await _clientUserGet.GetAsync(url);
+        Assert.Equal(System.Net.HttpStatusCode.Forbidden, response?.StatusCode);
+        
     }
 }
