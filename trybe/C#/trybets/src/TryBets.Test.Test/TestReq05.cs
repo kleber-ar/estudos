@@ -14,8 +14,8 @@ public class TestReq05
     {
         ProcessStartInfo startInfo = new ProcessStartInfo()
         {
-            FileName = System.Environment.CurrentDirectory.ToString().Replace("bin/Debug/net6.0","") + ShellScript,
-            WorkingDirectory = System.Environment.CurrentDirectory.ToString().Replace("bin/Debug/net6.0",""),
+            FileName = System.Environment.CurrentDirectory.ToString().Replace("bin/Debug/net8.0","") + ShellScript,
+            WorkingDirectory = System.Environment.CurrentDirectory.ToString().Replace("bin/Debug/net8.0",""),
             UseShellExecute = false,
             RedirectStandardOutput = true,
             CreateNoWindow = true
