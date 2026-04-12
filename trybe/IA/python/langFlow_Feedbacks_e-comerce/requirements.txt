@@ -1,7 +1,0 @@
-# Dependências principais do projeto
-
-python-dotenv
-Flask
-requests
-
-# langflow(To usando docker, caso não, é só descomentar)
