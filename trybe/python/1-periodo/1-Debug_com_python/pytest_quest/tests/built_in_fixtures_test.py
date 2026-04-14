@@ -15,3 +15,9 @@ def test_monkeypatch(monkeypatch):
 
    monkeypatch.setattr("builtins.input", mock_input)
    assert main() == 10
+
+def test_capsys(capsys):
+   print_hexadecimal_to_decimal("a")
+   captured = capsys.readouterr()
+   assert captured.out == "10\n"
+   assert captured.err == ""
