@@ -1,15 +1,15 @@
-# Repositório de aulas ao vivo para estudantes da Eletiva Python na Turma 26 🐍
+# Task Manager
 
-Este repositório armazena os códigos e scripts fornecidos durante as aulas ao vivo pelas pessoas especialistas da Trybe.
+Este é um gerenciador de tarefas simples, onde você pode adicionar, listar, marcar como feito e remover tarefas.
 
-## Iniciando
+## Como instalar
 
-Basta clonar o repositório 😎
+1. Clone esse repositório
+2. Acesse a pasta do repositório clonado: `cd nome-do-diretório-clonado`
+3. Crie um ambiente virtual com Python 3.8 ou superior: `python3 -m venv .venv`
+4. Ative o ambiente virtual: `source .venv/bin/activate`
+5. Instale o projeto e suas dependências: `pip install -r dev-requirements.txt`
 
-```
-git clone git@github.com:tryber/python-026-live-lectures.git
-```
+## Como usar
 
-## Estrutura
-
-Todos os conteúdos dados em aulas estarão no seu respectivo Pull Request! Aproveite esses conteúdos para estudar 😉
+Rode o comando `tsk` para iniciar a aplicação e a partir daí você verá o menu de opções.
