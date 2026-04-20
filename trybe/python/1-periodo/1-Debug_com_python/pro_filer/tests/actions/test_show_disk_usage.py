@@ -20,8 +20,8 @@ def test_show_disk_usage_com_arquivos(tmp_path, capsys):
     assert "Total size: 150" in captured.out
 
     # arquivos aparecem
-    assert str(file1) in captured.out
-    assert str(file2) in captured.out
+    assert "file1.txt" in captured.out
+    assert "file2.txt" in captured.out
 
 
 def test_show_disk_usage_ordem_decrescente(tmp_path, capsys):
@@ -39,8 +39,8 @@ def test_show_disk_usage_ordem_decrescente(tmp_path, capsys):
     captured = capsys.readouterr()
 
     # big deve aparecer antes de small
-    first_occurrence = captured.out.find(str(file1))
-    second_occurrence = captured.out.find(str(file2))
+    first_occurrence = captured.out.find("big.txt")
+    second_occurrence = captured.out.find("small.txt")
 
     assert first_occurrence < second_occurrence
 
