@@ -24,6 +24,6 @@ class Produto:
     def remover_estoque_do_produto(self, quantidade: int) -> None:
         if self.__quantidade < quantidade:
             raise ValueError(
-                "Quant. informada é maior que a quantidade disponivel em estoque."
+                "Quant. informada é maior que a quantidade disponivel em estoque."  # noqa: E501
             )
         self.__quantidade -= quantidade
