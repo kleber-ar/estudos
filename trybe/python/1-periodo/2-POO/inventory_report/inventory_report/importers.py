@@ -1,3 +1,4 @@
+import csv
 import json
 from abc import ABC, abstractmethod
 from typing import Dict, List, Type
@@ -27,8 +28,16 @@ class JsonImporter(Importer):
         return products
 
 
-class CsvImporter:
-    pass
+class CsvImporter(Importer):  # 👈 precisa herdar
+    def import_data(self) -> List[Product]:
+        if not self.path.endswith(".csv"):
+            raise ValueError("Arquivo inválido")
+
+        with open(self.path) as file:
+            reader = csv.DictReader(file)
+            products = [Product(**row) for row in reader]
+
+        return products
 
 
 # Não altere a variável abaixo
