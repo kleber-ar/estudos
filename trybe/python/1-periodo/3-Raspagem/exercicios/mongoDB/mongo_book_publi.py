@@ -4,6 +4,8 @@
 # ]
 # ///
 
+# tem q baixar o mongoDB e popular com json do book. Fiz com docker
+
 from pymongo import MongoClient
 
 
