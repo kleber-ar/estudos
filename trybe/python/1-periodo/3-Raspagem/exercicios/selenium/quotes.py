@@ -9,15 +9,15 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 import time
 
+# Configuração para rodar o Firefox de forma otimizada
+options = Options()
+# options.add_argument("--headless")  # Descomente para rodar sem abrir a janela do navegador
+
+# Inicializa o driver (o Selenium 4+ tenta baixar o driver sozinho)
+firefox = webdriver.Firefox(options=options)
+
 
 def scrape(url):
-    # Configuração para rodar o Firefox de forma otimizada
-    options = Options()
-    # options.add_argument("--headless")  # Descomente para rodar sem abrir a janela do navegador
-
-    # Inicializa o driver (o Selenium 4+ tenta baixar o driver sozinho)
-    firefox = webdriver.Firefox(options=options)
-
     try:
         firefox.get(url)
 
