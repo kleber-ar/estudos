@@ -1,3 +1,4 @@
+from parsel import Selector
 import time
 import requests
 
@@ -28,7 +29,14 @@ def fetch(url):
 # Requisito 2
 def scrape_updates(html_content):
     """Seu código deve vir aqui"""
-    raise NotImplementedError
+    selector = Selector(html_content)
+
+    urls = selector.css(".cs-overlay-link::attr(href)").getall()
+
+    if not urls:
+        return []
+
+    return urls
 
 
 # Requisito 3
