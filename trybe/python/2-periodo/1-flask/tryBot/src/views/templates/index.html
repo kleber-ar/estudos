@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock %}
+
+{% block content %}
+    <main class="container">
+        <!-- usando o comando {{url_for}} para importar uma imagem estática -->
+        <img src="{{ url_for('static', filename='images/logo.png') }}" width="40%">
+    
+        <form action="/chat" method="post">
+            {% if username and greeting %}
+                <p>Olá, {{ username|capitalize|trim }}! {{ greeting }}!</p>
+            {% else %}
+                <p>Olá! Como você se chama?</p>
+            {% endif %}
+            <div class="send-box">
+                <input type="text" name="username">
+                <button type="submit" id="chat">Entrar</button>
+            </div>
+        </form>
+    </main>
+{% endblock %}
