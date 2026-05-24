@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Project</title>
+  </head>
+  <body>
+    <h1>{{ nome }}</h1>
+    {% for ingrediente in ingredientes %}
+    <p>{{ ingrediente|capitalize }}</p>
+    {% endfor %}
+    <span>{{ preparo }}</span>
+  </body>
+</html>
