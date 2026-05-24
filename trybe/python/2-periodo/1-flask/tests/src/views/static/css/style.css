@@ -1,0 +1,10 @@
+/* ... */
+.not-found {
+  font-size: 30pt;
+  animation-name: example;
+}
+
+.not-found a {
+  color: rgb(31, 31, 31);
+  text-decoration: underline;
+}
