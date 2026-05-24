@@ -1,9 +1,10 @@
-
 from jinja2 import Environment, FileSystemLoader
+from filtros.converte_para_lista import converte_para_lista
 
 loader = FileSystemLoader('receitas/templates')
 
 environment = Environment(loader=loader)
+environment.filters['converte_para_lista'] = converte_para_lista
 
 template = environment.get_template('receita.html')
 
