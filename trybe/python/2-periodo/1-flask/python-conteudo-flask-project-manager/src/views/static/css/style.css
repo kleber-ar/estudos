@@ -1,0 +1,163 @@
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    align-items: center;
+    background: linear-gradient(to bottom, rgb(25, 105, 127), rgb(166, 93, 15));
+    color: antiquewhite;
+    display: flex;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    height: 100%;
+    justify-content: space-around;
+}
+
+a {
+    color: antiquewhite;
+    display: flex;
+    text-decoration: none;
+    justify-content: center;
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    font-weight: 400;
+}
+
+.projects-container {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: space-around;
+    margin: 20px;
+    padding: 10px;
+}
+
+.project-home, .project, .task, .new-task {
+    align-items: center;
+    background: linear-gradient(to bottom, rgb(34,141,172), rgb(214, 120, 20));
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 83%;
+    width: 30%;
+}
+
+.project {
+    height: fit-content;
+    justify-content: space-evenly;
+    padding: 20px;
+    width: 55%;
+}
+
+.task-container {
+    align-items:center;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.task-container a {
+    width: 40%;
+}
+
+.task-project, .task, .task-home {
+    align-self: center;
+    background-color: rgba(50, 50, 50, 0.738);
+    border-radius: 8px;
+    font-size: 11pt;
+    margin: 15px;
+    padding: 10px;
+    width: 80%;
+}
+
+.task-project:hover, .task-home:hover {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+h1:hover {
+    transform: scale(0.95);
+}
+
+.task {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    justify-content: space-around;
+    width: 60%;
+}
+
+.not-found{
+    font-size: 30pt;
+    animation-name: example;
+}
+
+.not-found a {
+    color: rgb(31, 31, 31);
+    text-decoration: underline;
+}
+
+.add-task, .submit {
+    background-color: rgba(53, 91, 55, 0.914);
+    border-radius: 10px;
+    color: antiquewhite;
+    margin: 10px;
+    padding: 8px;
+    width: 25%;
+}
+
+.add-task:hover {
+    scale: 1.1;
+}
+
+.delete {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
+
+.delete button {
+    background-color: rgb(197, 12, 12);
+    border-radius: 10px;
+    color: antiquewhite;
+    font-size: 14pt;
+    padding: 15px;
+    width: 30%;
+}
+
+button:hover {
+    cursor: pointer;
+    scale: 1.1;
+}
+
+.new-task {
+    width: 60%;
+}
+
+.new-task label {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    width: 50%;
+}
+
+input, textarea, select {
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 5px;
+}
