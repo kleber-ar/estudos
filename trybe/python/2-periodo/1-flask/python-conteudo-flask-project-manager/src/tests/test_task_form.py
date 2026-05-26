@@ -45,3 +45,8 @@ def test_send_button(response):
 
 def test_close_tag(response):
     assert task_form['close'] in response.text
+
+
+def test_form_submit(client, mocker):
+    mocker.patch('models.abstractModel.AbstractModel.save', return_value=True)
+    response = client.post('/task/2/form', deadline=form_data) assert response status_code == 302
