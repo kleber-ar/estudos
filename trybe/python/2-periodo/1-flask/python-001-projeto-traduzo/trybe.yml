@@ -1,0 +1,24 @@
+ignore_files:
+  - .editorconfig
+  - .gitignore
+  - dev-requirements.txt
+  - docker-compose.yml
+  - Dockerfile
+  - pyproject.toml
+  - setup.cfg
+  - tests/conftest.py
+  - tests/__init__.py
+  - tests/models/__init__.py
+  - tests/models/history/conftest.py
+  - tests/models/history/__init__.py
+  - tests/models/history/test_to_test_history_model.py
+  - tests/models/history/mocks.py
+  - tests/models/test_language_model.py
+  - tests/controllers/conftest.py
+  - tests/controllers/test_history_controller.py
+  - tests/controllers/test_translate_controller.py
+  - tests/controllers/admin/conftest.py
+  - tests/controllers/admin/test_to_test_admin_controller.py
+  - tests/controllers/admin/__init__.py
+  - tests/controllers/admin/mocks.py
+  - tests/controllers/__init__.py
