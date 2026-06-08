@@ -22,7 +22,9 @@
       <article>
         <img src="{% static item.image.name %}" alt="{{ item.title }}" />
 
-        <h2 class="news-title">{{ item.title }}</h2>
+        <h2 class="news-title">
+          <a href="{% url 'news-details-page' item.id %}"> {{ item.title }} </a>
+        </h2>
 
         <span class="news-date"> {{ item.created_at|date:"d/m/Y" }} </span>
       </article>
