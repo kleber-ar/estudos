@@ -1,3 +1,13 @@
 from django.shortcuts import render
 
-# Create your views here.
+from .models import News
+
+
+def home(request):
+    news = News.objects.all()
+
+    return render(
+        request,
+        "home.html",
+        {"news": news},
+    )
