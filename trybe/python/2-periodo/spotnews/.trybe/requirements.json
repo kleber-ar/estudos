@@ -1,0 +1,84 @@
+{
+  "requirements": [
+    {
+      "bonus": false,
+      "description": "1 - Crie o model `Category`",
+      "enabled": true,
+      "identifier": "test_validate_final_category_model",
+      "order": 1,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "2 - Crie o model `User`",
+      "enabled": true,
+      "identifier": "test_validate_final_user_model",
+      "order": 2,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "3 - Crie o model `News`",
+      "enabled": true,
+      "identifier": "test_validate_final_news_model",
+      "order": 3,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "4 - Crie a página Inicial",
+      "enabled": true,
+      "identifier": "test_validate_final_home_template",
+      "order": 4,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "5 - Crie a página de detalhes de uma Notícia",
+      "enabled": true,
+      "identifier": "test_validate_final_news_details_template",
+      "order": 5,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "6 - Crie a página de Formulário de uma nova Categoria",
+      "enabled": true,
+      "identifier": "test_validate_final_categories_form_template",
+      "order": 6,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "7 - Crie a página de Formulário de uma nova Notícia",
+      "enabled": true,
+      "identifier": "test_validate_final_news_form_template",
+      "order": 7,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "8 - Crie a rota `/api/categories/` com o DRF",
+      "enabled": true,
+      "identifier": "test_validate_final_category_drf",
+      "order": 8,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "9 - Crie a rota `/api/users/` com o DRF",
+      "enabled": true,
+      "identifier": "test_validate_final_user_drf",
+      "order": 9,
+      "skill_ids": []
+    },
+    {
+      "bonus": true,
+      "description": "10 - Crie a rota `/api/news/` com o DRF",
+      "enabled": true,
+      "identifier": "test_validate_final_news_drf",
+      "order": 10,
+      "skill_ids": []
+    }
+  ]
+}
