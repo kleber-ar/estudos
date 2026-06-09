@@ -8,6 +8,10 @@ from news_rest.views.user_view import (
     UserViewSet,
 )
 
+from news_rest.views.news_view import (
+    NewsViewSet,
+)
+
 router = DefaultRouter()
 
 router.register(
@@ -19,6 +23,12 @@ router.register(
     "users",
     UserViewSet,
     basename="users",
+)
+
+router.register(
+    "news",
+    NewsViewSet,
+    basename="news",
 )
 
 urlpatterns = [
