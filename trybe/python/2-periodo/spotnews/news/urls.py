@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import categories_form, home, news_details
+from .views import categories_form, home, news_details, news_form
 
 urlpatterns = [
     path("", home, name="home-page"),
@@ -13,5 +13,10 @@ urlpatterns = [
         "categories/",
         categories_form,
         name="categories-form",
+    ),
+    path(
+        "news/",
+        news_form,
+        name="news-form",
     ),
 ]
