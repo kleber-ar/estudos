@@ -4,8 +4,11 @@ from rest_framework.permissions import (
 )
 from rest_framework.viewsets import ModelViewSet
 
-from .models import Profile
-from .serializers import ProfileSerializer
+from .models import Profile, Project
+from .serializers import (
+    ProfileSerializer,
+    ProjectSerializer,
+)
 
 
 class ProfileViewSet(ModelViewSet):
@@ -17,3 +20,9 @@ class ProfileViewSet(ModelViewSet):
             return [AllowAny()]
 
         return [IsAuthenticated()]
+
+
+class ProjectViewSet(ModelViewSet):
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
+    permission_classes = [IsAuthenticated]
