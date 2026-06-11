@@ -1,3 +1,5 @@
+from django.shortcuts import render
+
 from rest_framework.permissions import (
     AllowAny,
     IsAuthenticated,
@@ -16,10 +18,24 @@ class ProfileViewSet(ModelViewSet):
     serializer_class = ProfileSerializer
 
     def get_permissions(self):
-        if self.action == "retrieve":
+        if self.request.method == "GET":
             return [AllowAny()]
 
         return [IsAuthenticated()]
+
+    def retrieve(self, request, *args, **kwargs):
+        if request.method == "GET":
+            profile = self.get_object()
+
+            return render(
+                request,
+                "profile_detail.html",
+                {
+                    "profile": profile,
+                },
+            )
+
+        return super().retrieve(request, *args, **kwargs)
 
 
 class ProjectViewSet(ModelViewSet):
