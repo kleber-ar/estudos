@@ -30,15 +30,31 @@ class ProfileViewSet(ModelViewSet):
         if request.method == "GET":
             profile = self.get_object()
 
+            projects = profile.projects.all()
+
+            certificates = (
+                profile.certificates
+                .select_related(
+                    "certifying_institution"
+                )
+                .all()
+            )
+
             return render(
                 request,
                 "profile_detail.html",
                 {
                     "profile": profile,
+                    "projects": projects,
+                    "certificates": certificates,
                 },
             )
 
-        return super().retrieve(request, *args, **kwargs)
+        return super().retrieve(
+            request,
+            *args,
+            **kwargs,
+        )
 
 
 class CertificateViewSet(ModelViewSet):
