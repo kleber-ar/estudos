@@ -56,10 +56,11 @@ class MarriageSerializer(serializers.ModelSerializer):
         # Recupera o user que fez a requisição
         current_user = self.context['request'].user
 
-       '''
-       Recupera os dados de budget da requisição, acrescenta a eles
-       e aos dados de Marriage os dados do usuário
-       '''
+       # '''
+       # Recupera os dados de budget da requisição, acrescenta a eles
+       # e aos dados de Marriage os dados do usuário
+       # '''
+
         budget_data = validated_data.pop('budget')
         budget_data['user'] = current_user
         validated_data['user'] = current_user
