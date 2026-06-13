@@ -8,6 +8,19 @@ class VendorSerializer(serializers.HyperlinkedModelSerializer):
         fields = ["id", "name", "price"]
 
 
+class AdminVendorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Vendor
+        fields = '__all__'
+
+    def create(self, validated_data):
+        request = self.context.get('request')
+        if request and request.user.is_superuser:
+            return super().create(validated_data)
+        raise serializers.ValidationError(
+            "Você não tem permissão para criar fornecedores.")
+
+
 class BudgetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Budget
