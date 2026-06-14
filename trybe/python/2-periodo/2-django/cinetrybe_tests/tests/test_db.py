@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from movies.models import Person, Genre, Movie, MovieTheater
+from movies.models import Person, Genre, Movie, MovieTheater, MovieRoom
 
 
 def test_user_table_is_healthy():
@@ -72,3 +72,21 @@ def test_movie_theaters_table_is_healthy():
     movie_theater.delete()
     number_of_movie_theaters = len(MovieTheater.objects.all())
     assert number_of_movie_theaters == 1
+
+
+def test_movie_rooms_table_is_healthy():
+    number_of_rooms = len(MovieRoom.objects.all())
+    assert number_of_rooms == 1
+
+    MovieRoom.objects.create(
+        name="Sala 2",
+        theater=MovieTheater.objects.get(id=1),
+        movie=Movie.objects.get(id=1),
+    )
+    number_of_rooms = len(MovieRoom.objects.all())
+    assert number_of_rooms == 2
+
+    movie_room = MovieRoom.objects.get(id=1)
+    movie_room.delete()
+    number_of_rooms = len(MovieRoom.objects.all())
+    assert number_of_rooms == 1
