@@ -20,6 +20,7 @@ public class App {
 
     String[] atividades = new String[quantidade];
     int[] pesos = new int[quantidade];
+    double[] notas = new double[quantidade];
 
     for (int i = 0; i < quantidade; i++) {
       System.out.println("Digite o nome da atividade " + (i + 1) + ":");
@@ -27,6 +28,14 @@ public class App {
 
       System.out.println("Digite o peso da atividade " + (i + 1) + ":");
       pesos[i] = Integer.parseInt(scanner.nextLine());
+      
+      System.out.println(
+          "Digite a nota obtida para "
+              + atividades[i]
+              + ":"
+      );
+
+      notas[i] = Double.parseDouble(scanner.nextLine());
     }
 
     scanner.close();
