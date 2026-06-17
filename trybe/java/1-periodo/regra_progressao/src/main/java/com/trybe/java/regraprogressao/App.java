@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class App {
 
   /**
-   * Método principal responsável por executar o programa.
+   * Método principal.
    *
    * @param args argumentos recebidos na execução
    */
@@ -22,13 +22,18 @@ public class App {
     int[] pesos = new int[quantidade];
     double[] notas = new double[quantidade];
 
+    int somaPesos = 0;
+
     for (int i = 0; i < quantidade; i++) {
+
       System.out.println("Digite o nome da atividade " + (i + 1) + ":");
       atividades[i] = scanner.nextLine();
 
       System.out.println("Digite o peso da atividade " + (i + 1) + ":");
       pesos[i] = Integer.parseInt(scanner.nextLine());
-      
+
+      somaPesos += pesos[i];
+
       System.out.println(
           "Digite a nota obtida para "
               + atividades[i]
@@ -36,6 +41,10 @@ public class App {
       );
 
       notas[i] = Double.parseDouble(scanner.nextLine());
+    }
+
+    if (somaPesos != 100) {
+      System.out.println("A soma dos pesos é diferente de 100!");
     }
 
     scanner.close();
