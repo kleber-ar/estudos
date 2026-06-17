@@ -45,6 +45,33 @@ public class App {
 
     if (somaPesos != 100) {
       System.out.println("A soma dos pesos é diferente de 100!");
+    } else {
+
+      double notaFinal = 0;
+
+      for (int i = 0; i < quantidade; i++) {
+        notaFinal += pesos[i] * notas[i];
+      }
+
+      notaFinal /= 100;
+
+      if (notaFinal >= 85.0) {
+        System.out.println(
+            "Parabéns! Você alcançou "
+                + notaFinal
+                + "%! E temos o prazer de informar "
+                + "que você obteve aprovação!"
+        );
+      } else {
+        System.out.println(
+            "Lamentamos informar que, "
+                + "com base na sua pontuação alcançada "
+                + "neste período, "
+                + notaFinal
+                + "%, você não atingiu a pontuação mínima "
+                + "necessária para sua aprovação."
+        );
+      }
     }
 
     scanner.close();
