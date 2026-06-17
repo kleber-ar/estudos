@@ -1,0 +1,44 @@
+{
+  "requirements": [
+    {
+      "bonus": false,
+      "description": "1 - Cadastra as atividades avaliativas com sucesso.",
+      "enabled": true,
+      "identifier": null,
+      "order": 1,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "2 - Insere as notas com sucesso.",
+      "enabled": true,
+      "identifier": null,
+      "order": 2,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "3 - Verifica a soma dos pesos.",
+      "enabled": true,
+      "identifier": null,
+      "order": 3,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "4.1 - Emite o resultado correto quando há aprovação.",
+      "enabled": true,
+      "identifier": null,
+      "order": 4,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "4.2 - Emite o resultado correto quando há reprovação.",
+      "enabled": true,
+      "identifier": null,
+      "order": 5,
+      "skill_ids": []
+    }
+  ]
+}
