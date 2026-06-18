@@ -13,7 +13,8 @@ public class Carro {
   public void exibirInformacoes() {
     System.out.println("Marca: " + marca + ", Modelo: " + modelo + ", Ano: " + ano);
   }
-
+  
+   // Getters e Setters
   public String getMarca() {
     return marca;
   }
@@ -36,5 +37,16 @@ public class Carro {
   
   public int setAno(String ano) {
     this.ano = ano;
+  }
+
+  private static int contador = 0;
+
+  public Carro(String marca, String modelo, int ano) {
+      // ... construtor ...
+      Carro.contador++; // Incrementa o contador a cada carro criado
+  }
+
+  public static int quantidadeDeCarros() {
+      return contador;
   }
 }
