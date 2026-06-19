@@ -1,13 +1,14 @@
-package com.betrybe.rpg;
-
 public class Main {
 
   public static void main(String[] args) {
-    Warrior warrior = new Warrior();
-    warrior.setName("Aragorn");
-    warrior.setRace("Humano"); 
-    warrior.setWeapon("Espada"); 
-
-    System.out.println(warrior.getName() + " é da raça " + warrior.getRace() + " e utiliza " + warrior.getWeapon());
+    Warrior player1 = new Warrior();
+    player1.setName("Aragorn");
+    // A linha abaixo funcionará normalmente
+    player1.setWeapon("Espada");
+    
+    PlayableCharacter player2 = new Warrior();
+    player2.setName("Aragorn");
+    // A linha abaixo dará erro se for descomentada
+    // player2.setWeapon("Espada");
   }
 }
