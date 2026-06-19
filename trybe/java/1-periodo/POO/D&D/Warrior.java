@@ -10,6 +10,11 @@ public class Warrior extends PlayableCharacter {
   public void setWeapon(String weapon) {
     this.weapon = weapon;
   }
+//Override serA sobrescrita de método (override) é a capacidade de uma subclasse oferecer sua própria implementação para um método já definido em sua superclasse. Isso permite à subclasse modificar ou expandir um comportamento específico herdado, mantendo a mesma assinatura do método original. 
+  @Override
+  public void attack() {
+    System.out.println("O guerreiro ataca com sua arma.");
+  }
 
   public void specialAttack() {
     if (!isAlive) {
