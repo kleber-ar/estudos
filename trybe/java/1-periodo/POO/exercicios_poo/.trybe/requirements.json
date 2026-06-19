@@ -1,0 +1,188 @@
+{
+  "requirements": [
+    {
+      "bonus": false,
+      "description": "1 - [Conta Poupança] Criar uma classe ContaPoupanca",
+      "enabled": true,
+      "identifier": null,
+      "order": 1,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "2 - [Conta Poupança] Implementar o método 'depositar'",
+      "enabled": true,
+      "identifier": null,
+      "order": 2,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "3 - [Conta Poupança] Implementar o método 'sacar'",
+      "enabled": true,
+      "identifier": null,
+      "order": 3,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "4 - [Conta Poupança] Implementar o método 'mostrarSaldo'",
+      "enabled": true,
+      "identifier": null,
+      "order": 4,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "5 - [Conta Poupança] Implementar o método 'mostrarTitularConta'",
+      "enabled": true,
+      "identifier": null,
+      "order": 5,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "1 - [Pessoa Usuárias] Valida se usuário executa regra",
+      "enabled": true,
+      "identifier": null,
+      "order": 6,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "2 - [Pessoa Usuárias] Valida se usuário é sub-classe de pessoa",
+      "enabled": true,
+      "identifier": null,
+      "order": 7,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "5 - [Pessoa Usuárias] Valida se usuário executa regra com nome vazio",
+      "enabled": true,
+      "identifier": null,
+      "order": 7,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "3 - [Pessoa Usuárias] Valida se usuário executa regra com nome nulo",
+      "enabled": true,
+      "identifier": null,
+      "order": 9,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "4 - [Pessoa Usuárias] Valida se usuário executa regra com sobrenome nulo",
+      "enabled": true,
+      "identifier": null,
+      "order": 10,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "6 - [Pessoa Usuárias] Valida se usuário executa regra com sobrenome vazio",
+      "enabled": true,
+      "identifier": null,
+      "order": 11,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "7 - [Pessoa Usuárias] Valida se método implementa na sub-classe",
+      "enabled": true,
+      "identifier": null,
+      "order": 12,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "8 - [Pessoa Usuárias] Valida se método implementado tem nome correto",
+      "enabled": true,
+      "identifier": null,
+      "order": 13,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "9 - [Pessoa Usuárias] Valida se atributos estao declarados",
+      "enabled": true,
+      "identifier": null,
+      "order": 14,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "10 - [Pessoa Usuárias] Valida se atributos declarados tem nomes corretos",
+      "enabled": true,
+      "identifier": null,
+      "order": 15,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "1 - [Sistema de Recursos Humanos] Crie um construtor para a PessoaFuncionaria que receba o nome, CPF, endereço e salário.",
+      "enabled": true,
+      "identifier": null,
+      "order": 16,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "2 - [Sistema de Recursos Humanos] Crie um método getter para o atributo nomeCompleto de PessoaFuncionaria.",
+      "enabled": true,
+      "identifier": null,
+      "order": 17,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "3 - [Sistema de Recursos Humanos] Crie um método setter para o atributo nomeCompleto de PessoaFuncionaria.",
+      "enabled": true,
+      "identifier": null,
+      "order": 18,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "4 - [Sistema de Recursos Humanos] Crie um método getter para o atributo cpf de PessoaFuncionaria.",
+      "enabled": true,
+      "identifier": null,
+      "order": 19,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "6 - [Sistema de Recursos Humanos] Crie um método setter para o atributo endereco de PessoaFuncionaria.",
+      "enabled": true,
+      "identifier": null,
+      "order": 20,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "5 - [Sistema de Recursos Humanos] Crie um método getter para o atributo endereco de PessoaFuncionaria.",
+      "enabled": true,
+      "identifier": null,
+      "order": 21,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "7 - [Sistema de Recursos Humanos] Crie um método getter para o atributo salario de PessoaFuncionaria.",
+      "enabled": true,
+      "identifier": null,
+      "order": 22,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "8 - [Sistema de Recursos Humanos] Crie um método setter para o atributo salario de PessoaFuncionaria.",
+      "enabled": true,
+      "identifier": null,
+      "order": 23,
+      "skill_ids": []
+    }
+  ]
+}
