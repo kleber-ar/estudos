@@ -1,5 +1,6 @@
-package com.trybe.acc.pessoausuaria;
+ package com.trybe.acc.pessoausuaria;
 
-public class Pessoa {
-
-}
+ public class Pessoa {
+   protected String nome;
+   protected String sobrenome;
+ }
