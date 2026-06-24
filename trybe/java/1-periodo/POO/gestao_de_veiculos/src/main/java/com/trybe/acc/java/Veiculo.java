@@ -1,13 +1,21 @@
 package com.trybe.acc.java;
 
 /**
- * Método principal.
+ * Interface que define comportamentos dos veículos.
  */
-
 public interface Veiculo {
 
   /**
-   * Atributos e Métodos.
+   * Calcula o consumo de combustível.
+   *
+   * @param distancia distância percorrida
+   * @return consumo calculado
    */
+  double calcularConsumoCombustivel(double distancia);
+
+  /**
+   * Exibe informações do veículo.
+   */
+  void exibirInformacoes();
 
 }
