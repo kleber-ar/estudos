@@ -6,7 +6,7 @@ public class Application {
     if (genericDevice instanceof Laptop) {
       Laptop specificLaptop = (Laptop) genericDevice; // downcasting seguro
     }
-    
+
     PowerBank powerBank = new PowerBank();
 
     plugDevice(laptop);
