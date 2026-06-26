@@ -8,18 +8,12 @@ public class Nomes {
     nomes.add("João");
     nomes.add("Pedro");
     nomes.add("Antonio");
-    nomes.add("Thor");
+    nomes.add("Arthur");
 
-    List<String> nomesFiltrados = new ArrayList<>();
+    List<String> nomesFiltrados = nomes.stream()
+      .filter(nome -> nome.startsWith("A")).map(String::toUpperCase)
+      .toList();
 
-    for (String nome : nomes) {
-      if (nome.startsWith("A")) {
-        nomesFiltrados.add(nome);
-      }
-    }
-
-    for (String nomesFiltrado : nomesFiltrados) {
-      System.out.println(nomesFiltrado);
-    }
+    nomesFiltrados.forEach(System.out::println);
   }
 }
