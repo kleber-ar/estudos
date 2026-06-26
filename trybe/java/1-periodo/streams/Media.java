@@ -10,20 +10,12 @@ public class Media {
     numeros.add(4);
     numeros.add(5);
 
-    int soma = 0;
-    double media;
-    List<Integer> quadradoDosPares = new ArrayList<>();
+    int soma = numeros.stream().mapToInt(Integer::intValue).sum();
+    double media = numeros.stream().mapToInt(Integer::intValue).average().orElse(0d);
 
-    for (Integer numero : numeros) {
-      soma += numero;
-    }
+    List<Integer> quadradoDosPares = numeros.stream().filter(numero -> numero % 2==0)
+      .map(numeroPar -> numeroPar * numeroPar).toList();
 
-    media = (double) soma / numeros.size();
-    for (Integer numero : numeros ) {
-      if (numero % 2 == 0) {
-        quadradoDosPares.add(numero * numero);
-      }
-    }
     quadradoDosPares.forEach(System.out::println);
     System.out.println(soma);
     System.out.println(media);
