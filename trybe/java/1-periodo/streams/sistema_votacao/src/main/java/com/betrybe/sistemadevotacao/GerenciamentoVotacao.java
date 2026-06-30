@@ -11,16 +11,18 @@ public class GerenciamentoVotacao implements GerenciamentoVotacaoInterface {
   private ArrayList<PessoaEleitora> pessoasEleitoras;
   private ArrayList<String> cpfsComputados;
 
+  /**
+ * Inicializa as listas utilizadas no gerenciamento da votação.
+ */
   public GerenciamentoVotacao() {
     this.pessoasCandidatas = new ArrayList<>();
     this.pessoasEleitoras = new ArrayList<>();
     this.cpfsComputados = new ArrayList<>();
   }
 
-  // =========================
-  // CADASTRO
-  // =========================
-
+  /**
+   * Cadastra uma pessoa candidata.
+   */
   public void cadastrarPessoaCandidata(String nome, int numero) {
 
     boolean numeroExiste = pessoasCandidatas.stream()
@@ -34,6 +36,9 @@ public class GerenciamentoVotacao implements GerenciamentoVotacaoInterface {
     pessoasCandidatas.add(new PessoaCandidata(nome, numero));
   }
 
+  /**
+   * Cadastra uma pessoa eleitora.
+   */
   public void cadastrarPessoaEleitora(String nome, String cpf) {
 
     boolean cpfExiste = pessoasEleitoras.stream()
@@ -47,10 +52,9 @@ public class GerenciamentoVotacao implements GerenciamentoVotacaoInterface {
     pessoasEleitoras.add(new PessoaEleitora(nome, cpf));
   }
 
-  // =========================
-  // VOTAÇÃO
-  // =========================
-
+  /**
+   * Registra um voto.
+   */
   public void votar(String cpfPessoaEleitora, int numeroPessoaCandidata) {
 
     if (cpfsComputados.contains(cpfPessoaEleitora)) {
@@ -66,10 +70,9 @@ public class GerenciamentoVotacao implements GerenciamentoVotacaoInterface {
     cpfsComputados.add(cpfPessoaEleitora);
   }
 
-  // =========================
-  // RESULTADO
-  // =========================
-
+  /**
+   * Mostra o resultado da votação.
+   */
   public void mostrarResultado() {
 
     if (cpfsComputados.isEmpty()) {
