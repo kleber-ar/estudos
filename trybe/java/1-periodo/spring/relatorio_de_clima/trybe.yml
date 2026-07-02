@@ -1,0 +1,7 @@
+ignore_files:
+  - src/main/java/com/betrybe/weatherreport/WeatherReportMain.java
+  - src/main/java/com/betrybe/weatherreport/WeatherReportApplication.java
+  - src/main/java/com/betrybe/weatherreport/interfaces/
+  - src/test/
+  - mvnw
+  - .mvn/
