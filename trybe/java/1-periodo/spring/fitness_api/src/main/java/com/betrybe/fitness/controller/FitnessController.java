@@ -4,6 +4,7 @@ package com.betrybe.fitness.controller;
 import com.betrybe.fitness.dto.WorkoutCreationDto;
 import com.betrybe.fitness.dto.WorkoutDto;
 import com.betrybe.fitness.service.FitnessServiceInterface;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,11 @@ public class FitnessController implements FitnessControllerInterface {
   @GetMapping
   public String getRoot() {
     return "Boas vindas à API de Fitness!";
+  }
+
+  @GetMapping("/workouts")  
+  public List<WorkoutDto> getWorkouts() {  
+    return service.getAllWorkouts();  
   }
 
   @PostMapping("/workouts")
