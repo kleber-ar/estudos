@@ -49,7 +49,7 @@ public class FitnessService implements FitnessServiceInterface {
     // Verificamos de o resultado está vazio.
     // Se sim, também retornamos um resultado vazio.
     if (workoutOptional.isEmpty()) {
-      return Optional.empty();
+      throw new WorkoutNotFoundException();
     }
 
     // Se o resultado não está vazio, extraímos o objeto original.
