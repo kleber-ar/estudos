@@ -1,0 +1,52 @@
+package com.app.alexandria.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.app.alexandria.entity.Author;
+import com.app.alexandria.repository.AuthorRepository;
+import com.app.alexandria.service.exception.AuthorNotFoundException;
+
+@Service
+public class AuthorService {
+
+  private final AuthorRepository authorRepository;
+
+  @Autowired
+  public AuthorService(AuthorRepository authorRepository) {
+    this.authorRepository = authorRepository;
+  }
+
+  public Author findById(Long id) throws AuthorNotFoundException {
+    return authorRepository.findById(id)
+        .orElseThrow(AuthorNotFoundException::new);
+  }
+
+  public List<Author> findAll() {
+    return authorRepository.findAll();
+  }
+
+  public Author create(Author author) {
+    return authorRepository.save(author);
+  }
+
+  public Author update(Long id, Author author) throws AuthorNotFoundException {
+    Author authorFromDb = findById(id);
+
+    authorFromDb.setName(author.getName());
+    authorFromDb.setNationality(author.getNationality());
+
+    return authorRepository.save(authorFromDb);
+  }
+
+  public Author deleteById(Long id) throws AuthorNotFoundException {
+    // Pegamos a entidade antes de apagar, para poder retorná-la
+    Author author = findById(id);
+
+    authorRepository.deleteById(id);
+
+    return author;
+  }
+}
