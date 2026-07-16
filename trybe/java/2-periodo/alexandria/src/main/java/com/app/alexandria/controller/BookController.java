@@ -22,6 +22,7 @@ import com.app.alexandria.entity.Book;
 import com.app.alexandria.service.BookService;
 import com.app.alexandria.service.exception.BookDetailNotFoundException;
 import com.app.alexandria.service.exception.BookNotFoundException;
+import com.app.alexandria.service.exception.PublisherNotFoundException;
 
 @RestController
 @RequestMapping(value = "/books")
@@ -96,5 +97,18 @@ public class BookController {
       throws BookDetailNotFoundException, BookNotFoundException {
     return BookDetailDto.fromEntity(
         bookService.removeBookDetail(bookId));
+  }
+
+  @PutMapping("/{bookId}/publisher/{publisherId}")
+  public BookDto setBookPublisher(@PathVariable Long bookId,
+      @PathVariable Long publisherId) throws BookNotFoundException, PublisherNotFoundException {
+    return BookDto.fromEntity(
+        bookService.setBookPublisher(bookId, publisherId));
+  }
+
+  @DeleteMapping("/{bookId}/publisher")
+  public BookDto removeBookPublisher(@PathVariable Long bookId) throws BookNotFoundException {
+    return BookDto.fromEntity(
+        bookService.removeBookPublisher(bookId));
   }
 }
