@@ -1,11 +1,7 @@
 package com.app.alexandria.controller;
 
-import com.app.alexandria.controller.dto.BookCreationDto;
-import com.app.alexandria.controller.dto.BookDto;
-import com.app.alexandria.entity.Book;
-import com.app.alexandria.service.BookService;
-import com.app.alexandria.service.exception.BookNotFoundException;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +13,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.app.alexandria.controller.dto.BookCreationDto;
+import com.app.alexandria.controller.dto.BookDetailCreationDto;
+import com.app.alexandria.controller.dto.BookDetailDto;
+import com.app.alexandria.controller.dto.BookDto;
+import com.app.alexandria.entity.Book;
+import com.app.alexandria.service.BookService;
+import com.app.alexandria.service.exception.BookDetailNotFoundException;
+import com.app.alexandria.service.exception.BookNotFoundException;
 
 @RestController
 @RequestMapping(value = "/books")
@@ -61,5 +66,35 @@ public class BookController {
   public BookDto deleteBookById(@PathVariable Long id) throws BookNotFoundException {
     return BookDto.fromEntity(
         bookService.deleteById(id));
+  }
+
+  @PostMapping("/{bookId}/detail")
+  @ResponseStatus(HttpStatus.CREATED)
+  public BookDetailDto createBookDetail(@PathVariable Long bookId,
+      @RequestBody BookDetailCreationDto bookDetailCreationDto) throws BookNotFoundException {
+    return BookDetailDto.fromEntity(
+        bookService.createBookDetail(bookId, bookDetailCreationDto.toEntity()));
+  }
+
+  @GetMapping("/{bookId}/detail")
+  public BookDetailDto getBookDetail(@PathVariable Long bookId)
+      throws BookNotFoundException, BookDetailNotFoundException {
+    return BookDetailDto.fromEntity(
+        bookService.getBookDetail(bookId));
+  }
+
+  @PutMapping("/{bookId}/detail")
+  public BookDetailDto updateBookDetail(@PathVariable Long bookId,
+      @RequestBody BookDetailCreationDto bookDetailCreationDto)
+      throws BookDetailNotFoundException, BookNotFoundException {
+    return BookDetailDto.fromEntity(
+        bookService.updateBookDetail(bookId, bookDetailCreationDto.toEntity()));
+  }
+
+  @DeleteMapping("/{bookId}/detail")
+  public BookDetailDto removeBookDetail(@PathVariable Long bookId)
+      throws BookDetailNotFoundException, BookNotFoundException {
+    return BookDetailDto.fromEntity(
+        bookService.removeBookDetail(bookId));
   }
 }
