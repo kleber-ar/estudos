@@ -27,7 +27,7 @@ import com.app.alexandria.service.exception.BookNotFoundException;
 import com.app.alexandria.service.exception.PublisherNotFoundException;
 
 @RestController
-@RequestMapping(value = "/books")
+@RequestMapping("/books")
 public class BookController {
 
   private final BookService bookService;
@@ -38,15 +38,19 @@ public class BookController {
   }
 
   @GetMapping("/{id}")
-  public BookDto getBookById(@PathVariable Long id) throws BookNotFoundException {
-    return BookDto.fromEntity(
-        bookService.findById(id));
+  public BookDto getBookById(@PathVariable Long id)
+      throws BookNotFoundException {
+    return BookDto.fromEntity(bookService.findById(id));
   }
 
   @GetMapping
-  public List<BookDto> getAllBooks() {
-    List<Book> allBooks = bookService.findAll();
-    return allBooks.stream()
+  public List<BookDto> getAllBooks(
+      @RequestParam(defaultValue = "0") int pageNumber,
+      @RequestParam(defaultValue = "20") int pageSize) {
+
+    List<Book> books = bookService.findAll(pageNumber, pageSize);
+
+    return books.stream()
         .map(BookDto::fromEntity)
         .toList();
   }
@@ -59,22 +63,30 @@ public class BookController {
   }
 
   @PutMapping("/{id}")
-  public BookDto updateBook(@PathVariable Long id,
-      @RequestBody BookCreationDto bookCreationDto) throws BookNotFoundException {
+  public BookDto updateBook(
+      @PathVariable Long id,
+      @RequestBody BookCreationDto bookCreationDto)
+      throws BookNotFoundException {
+
     return BookDto.fromEntity(
         bookService.update(id, bookCreationDto.toEntity()));
   }
 
   @DeleteMapping("/{id}")
-  public BookDto deleteBookById(@PathVariable Long id) throws BookNotFoundException {
+  public BookDto deleteBookById(@PathVariable Long id)
+      throws BookNotFoundException {
+
     return BookDto.fromEntity(
         bookService.deleteById(id));
   }
 
   @PostMapping("/{bookId}/detail")
   @ResponseStatus(HttpStatus.CREATED)
-  public BookDetailDto createBookDetail(@PathVariable Long bookId,
-      @RequestBody BookDetailCreationDto bookDetailCreationDto) throws BookNotFoundException {
+  public BookDetailDto createBookDetail(
+      @PathVariable Long bookId,
+      @RequestBody BookDetailCreationDto bookDetailCreationDto)
+      throws BookNotFoundException {
+
     return BookDetailDto.fromEntity(
         bookService.createBookDetail(bookId, bookDetailCreationDto.toEntity()));
   }
@@ -82,14 +94,17 @@ public class BookController {
   @GetMapping("/{bookId}/detail")
   public BookDetailDto getBookDetail(@PathVariable Long bookId)
       throws BookNotFoundException, BookDetailNotFoundException {
+
     return BookDetailDto.fromEntity(
         bookService.getBookDetail(bookId));
   }
 
   @PutMapping("/{bookId}/detail")
-  public BookDetailDto updateBookDetail(@PathVariable Long bookId,
+  public BookDetailDto updateBookDetail(
+      @PathVariable Long bookId,
       @RequestBody BookDetailCreationDto bookDetailCreationDto)
       throws BookDetailNotFoundException, BookNotFoundException {
+
     return BookDetailDto.fromEntity(
         bookService.updateBookDetail(bookId, bookDetailCreationDto.toEntity()));
   }
@@ -97,44 +112,46 @@ public class BookController {
   @DeleteMapping("/{bookId}/detail")
   public BookDetailDto removeBookDetail(@PathVariable Long bookId)
       throws BookDetailNotFoundException, BookNotFoundException {
+
     return BookDetailDto.fromEntity(
         bookService.removeBookDetail(bookId));
   }
 
   @PutMapping("/{bookId}/publisher/{publisherId}")
-  public BookDto setBookPublisher(@PathVariable Long bookId,
-      @PathVariable Long publisherId) throws BookNotFoundException, PublisherNotFoundException {
+  public BookDto setBookPublisher(
+      @PathVariable Long bookId,
+      @PathVariable Long publisherId)
+      throws BookNotFoundException, PublisherNotFoundException {
+
     return BookDto.fromEntity(
         bookService.setBookPublisher(bookId, publisherId));
   }
 
   @DeleteMapping("/{bookId}/publisher")
-  public BookDto removeBookPublisher(@PathVariable Long bookId) throws BookNotFoundException {
+  public BookDto removeBookPublisher(@PathVariable Long bookId)
+      throws BookNotFoundException {
+
     return BookDto.fromEntity(
         bookService.removeBookPublisher(bookId));
   }
 
   @PutMapping("/{bookId}/authors/{authorId}")
-  public BookDto addBookAuthor(@PathVariable Long bookId,
-      @PathVariable Long authorId) throws AuthorNotFoundException, BookNotFoundException {
+  public BookDto addBookAuthor(
+      @PathVariable Long bookId,
+      @PathVariable Long authorId)
+      throws AuthorNotFoundException, BookNotFoundException {
+
     return BookDto.fromEntity(
         bookService.addBookAuthor(bookId, authorId));
   }
 
   @DeleteMapping("/{bookId}/authors/{authorId}")
-  public BookDto removeBookAuthor(@PathVariable Long bookId,
-      @PathVariable Long authorId) throws AuthorNotFoundException, BookNotFoundException {
+  public BookDto removeBookAuthor(
+      @PathVariable Long bookId,
+      @PathVariable Long authorId)
+      throws AuthorNotFoundException, BookNotFoundException {
+
     return BookDto.fromEntity(
         bookService.removeBookAuthor(bookId, authorId));
-  }
-
-  @GetMapping
-  public List<BookDto> getAllBooks(
-      @RequestParam(required = false, defaultValue = "0") int pageNumber,
-      @RequestParam(required = false, defaultValue = "20") int pageSize) {
-    List<Book> paginatedBooks = bookService.findAll(pageNumber, pageSize);
-    return paginatedBooks.stream()
-        .map(BookDto::fromEntity)
-        .toList();
   }
 }
