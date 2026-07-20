@@ -15,8 +15,13 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ActiveProfiles;
 
 @SpringBootTest
+/**
+ * Poderia usar mais de um profile por exemplo: @ActiveProfiles({"dev", "test"})
+ **/
+@ActiveProfiles("dev")
 public class ProductServiceTest {
 
   @Autowired
