@@ -42,9 +42,7 @@ public class ProductService {
 
   public List<Product> findExpiredProducts() {
     LocalDate today = LocalDate.now();
-    List<Product> products = findAll();
-    return products.stream().filter(product -> product.getExpirationDate().isBefore(today))
-        .toList();
+    return productRepository.findByExpirationDateBefore(today);
   }
 
   public List<Product> findNonExpiredProducts() {
