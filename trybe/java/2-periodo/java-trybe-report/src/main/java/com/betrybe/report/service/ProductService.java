@@ -51,11 +51,7 @@ public class ProductService {
   }
 
   public List<Product> findExpiresAtProducts(LocalDate start, LocalDate end) {
-    List<Product> products = findAll();
-    return products.stream().filter(
-        product -> product.getExpirationDate().isBefore(end) && product.getExpirationDate()
-            .isAfter(start))
-        .toList();
+    return productRepository.findByExpirationDateBetween(start, end);
   }
 
 }
