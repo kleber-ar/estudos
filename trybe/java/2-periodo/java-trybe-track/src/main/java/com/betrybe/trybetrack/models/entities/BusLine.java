@@ -8,75 +8,95 @@ import java.util.List;
 
 @Entity
 @Table(name = "bus_lines")
+@EntityListeners(AuditingEntityListener.class)
 public class BusLine {
+  @CreatedDate
+  @JsonProperty("created_date")
+  private LocalDate createDate;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @LastModifiedDate
+  @JsonProperty("last_modified_date")
+  private LocalDate lastModifiedDate;
 
-    private String code;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    private String name;
+  private String code;
 
-    @OneToMany(mappedBy = "busLine", fetch = FetchType.EAGER)
-    private List<Schedule> schedules;
+  private String name;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "station_bus_lines",
-            joinColumns = @JoinColumn(name = "bus_line_id"),
-            inverseJoinColumns = @JoinColumn(name = "station_id")
-    )
-    private List<Station> stations;
+  @OneToMany(mappedBy = "busLine", fetch = FetchType.EAGER)
+  private List<Schedule> schedules;
 
-    public BusLine() {
-    }
+  @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @JoinTable(name = "station_bus_lines", joinColumns = @JoinColumn(name = "bus_line_id"), inverseJoinColumns = @JoinColumn(name = "station_id"))
+  private List<Station> stations;
 
-    public BusLine(Long id, String code, String name, List<Schedule> schedules, List<Station> stations) {
-        this.id = id;
-        this.code = code;
-        this.name = name;
-        this.schedules = schedules;
-        this.stations = stations;
-    }
+  public BusLine() {
+  }
 
-    public Long getId() {
-        return id;
-    }
+  public BusLine(Long id, String code, String name, List<Schedule> schedules, List<Station> stations) {
+    this.id = id;
+    this.code = code;
+    this.name = name;
+    this.schedules = schedules;
+    this.stations = stations;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public String getCode() {
-        return code;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
+  public String getCode() {
+    return code;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public void setCode(String code) {
+    this.code = code;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public List<Schedule> getSchedules() {
-        return schedules;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setSchedules(List<Schedule> schedules) {
-        this.schedules = schedules;
-    }
+  public List<Schedule> getSchedules() {
+    return schedules;
+  }
 
-    public List<Station> getStations() {
-        return stations;
-    }
+  public void setSchedules(List<Schedule> schedules) {
+    this.schedules = schedules;
+  }
 
-    public void setStations(List<Station> stations) {
-        this.stations = stations;
-    }
+  public List<Station> getStations() {
+    return stations;
+  }
+
+  public void setStations(List<Station> stations) {
+    this.stations = stations;
+  }
+
+  public LocalDate getCreateDate() {
+    return createDate;
+  }
+
+  public void setCreateDate(LocalDate createDate) {
+    this.createDate = createDate;
+  }
+
+  public LocalDate getLastModifiedDate() {
+    return lastModifiedDate;
+  }
+
+  public void setLastModifiedDate(LocalDate lastModifiedDate) {
+    this.lastModifiedDate = lastModifiedDate;
+  }
 }
