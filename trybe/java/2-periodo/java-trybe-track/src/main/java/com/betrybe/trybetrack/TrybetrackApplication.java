@@ -7,9 +7,13 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
+@EntityScan("com.betrybe.trybetrack.models.entities")
+@EnableJpaRepositories(basePackages = {
+    "com.betrybe.trybetrack.models.repositories" }, repositoryFactoryBeanClass = EnversRevisionRepositoryFactoryBean.class)
+@ComponentScan("com.betrybe.trybetrack")
 public class TrybetrackApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(TrybetrackApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(TrybetrackApplication.class, args);
+  }
 }

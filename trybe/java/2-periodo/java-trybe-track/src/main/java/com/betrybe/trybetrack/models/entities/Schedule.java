@@ -9,6 +9,7 @@ import java.time.LocalTime;
 @Entity
 @Table(name = "schedules")
 @EntityListeners(ScheduleListener.class)
+@Audited
 public class Schedule {
 
   @Id

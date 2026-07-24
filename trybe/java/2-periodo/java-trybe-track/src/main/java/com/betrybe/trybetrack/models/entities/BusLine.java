@@ -9,6 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "bus_lines")
 @EntityListeners(AuditingEntityListener.class)
+@Audited
 public class BusLine {
   @CreatedDate
   @JsonProperty("created_date")
