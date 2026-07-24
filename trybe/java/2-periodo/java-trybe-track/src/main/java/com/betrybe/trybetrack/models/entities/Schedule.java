@@ -8,73 +8,74 @@ import java.time.LocalTime;
 
 @Entity
 @Table(name = "schedules")
+@EntityListeners(ScheduleListener.class)
 public class Schedule {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Column(name = "departure_date")
-    private LocalDate departureDate;
+  @Column(name = "departure_date")
+  private LocalDate departureDate;
 
-    @Column(name = "departure_time")
-    private LocalTime departureTime;
+  @Column(name = "departure_time")
+  private LocalTime departureTime;
 
-    private boolean available;
+  private boolean available;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "bus_line_id")
-    @JsonIgnore
-    private BusLine busLine;
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "bus_line_id")
+  @JsonIgnore
+  private BusLine busLine;
 
-    public Schedule() {
-    }
+  public Schedule() {
+  }
 
-    public Schedule(Long id, LocalDate departureDate, LocalTime departureTime, boolean available, BusLine busLine) {
-        this.id = id;
-        this.departureDate = departureDate;
-        this.departureTime = departureTime;
-        this.available = available;
-        this.busLine = busLine;
-    }
+  public Schedule(Long id, LocalDate departureDate, LocalTime departureTime, boolean available, BusLine busLine) {
+    this.id = id;
+    this.departureDate = departureDate;
+    this.departureTime = departureTime;
+    this.available = available;
+    this.busLine = busLine;
+  }
 
-    public Long getId() {
-        return id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public LocalDate getDepartureDate() {
-        return departureDate;
-    }
+  public LocalDate getDepartureDate() {
+    return departureDate;
+  }
 
-    public void setDepartureDate(LocalDate departureDate) {
-        this.departureDate = departureDate;
-    }
+  public void setDepartureDate(LocalDate departureDate) {
+    this.departureDate = departureDate;
+  }
 
-    public LocalTime getDepartureTime() {
-        return departureTime;
-    }
+  public LocalTime getDepartureTime() {
+    return departureTime;
+  }
 
-    public void setDepartureTime(LocalTime departureTime) {
-        this.departureTime = departureTime;
-    }
+  public void setDepartureTime(LocalTime departureTime) {
+    this.departureTime = departureTime;
+  }
 
-    public boolean isAvailable() {
-        return available;
-    }
+  public boolean isAvailable() {
+    return available;
+  }
 
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
+  public void setAvailable(boolean available) {
+    this.available = available;
+  }
 
-    public BusLine getBusLine() {
-        return busLine;
-    }
+  public BusLine getBusLine() {
+    return busLine;
+  }
 
-    public void setBusLine(BusLine busLine) {
-        this.busLine = busLine;
-    }
+  public void setBusLine(BusLine busLine) {
+    this.busLine = busLine;
+  }
 }
