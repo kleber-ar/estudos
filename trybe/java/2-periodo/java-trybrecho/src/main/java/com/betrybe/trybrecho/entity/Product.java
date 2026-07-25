@@ -8,6 +8,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "products")
+@EntityListeners(AuditingEntityListener.class)
+@Audited
 public class Product {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +17,14 @@ public class Product {
 
   private String name;
   private Double price;
+
+  @CreatedDate
+  @JsonProperty("created_date")
+  private LocalDate createDate;
+
+  @LastModifiedDate
+  @JsonProperty("last_modified_date")
+  private LocalDate lastModifiedDate;
 
   public Product() {
   }
@@ -41,5 +51,21 @@ public class Product {
 
   public void setPrice(Double price) {
     this.price = price;
+  }
+
+  public LocalDate getCreateDate() {
+    return createDate;
+  }
+
+  public void setCreateDate(LocalDate createDate) {
+    this.createDate = LocalDate.from(Instant.now());
+  }
+
+  public LocalDate getLastModifiedDate() {
+    return lastModifiedDate;
+  }
+
+  public void setLastModifiedDate(LocalDate lastModifiedDate) {
+    this.lastModifiedDate = LocalDate.from(Instant.now());
   }
 }
