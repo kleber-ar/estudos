@@ -8,6 +8,7 @@ import jakarta.persistence.Table;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 @Entity
 @Table(name = "persons")
@@ -23,16 +24,18 @@ public class Person implements UserDetails {
   @Column(unique = true)
   private String username;
   private String password;
+  private String role;
 
   public Person() {
   }
 
-  public Person(Long id, String fullname, String email, String username, String password) {
+  public Person(Long id, String fullname, String email, String username, String password, String role) {
     this.id = id;
     this.fullname = fullname;
     this.email = email;
     this.username = username;
     this.password = password;
+    this.role = role;
   }
 
   public Long getId() {
@@ -61,7 +64,7 @@ public class Person implements UserDetails {
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return List.of();
+    return List.of(new SimpleGrantedAuthority(role));
   }
 
   @Override
@@ -100,5 +103,13 @@ public class Person implements UserDetails {
   @Override
   public boolean isEnabled() {
     return true;
+  }
+
+  public String getRole() {
+    return role;
+  }
+
+  public void setRole(String role) {
+    this.role = role;
   }
 }
