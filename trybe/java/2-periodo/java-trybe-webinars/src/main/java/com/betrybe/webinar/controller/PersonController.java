@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 @RestController
 @RequestMapping("/persons")
@@ -31,8 +32,8 @@ public class PersonController {
   }
 
   @GetMapping
-  @Secured("ADMIN")
-  public List<PersonDto> getAllPersons() {
+  @PreAuthorize("hasAuthority('ADMIN') or #person.email matches '^[a-zA-Z0-9._-]+@betrybe[.]com$'")
+  public List<PersonDto> getAllPersons(@AuthenticationPrincipal Person person) {
     return personService.getAll().stream()
         .map(PersonDto::fromEntity)
         .collect(Collectors.toList());
