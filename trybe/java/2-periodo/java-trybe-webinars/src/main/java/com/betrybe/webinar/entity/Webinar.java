@@ -7,8 +7,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.LastModifiedBy;
+
 @Entity
 @Table(name = "webinars")
+@EntityListeners(AuditingEntityListener.class)
 public class Webinar {
 
   @Id
@@ -18,6 +22,12 @@ public class Webinar {
   private String title;
   private String url;
   private LocalDateTime dateTime;
+
+  @CreatedBy
+  private String createdBy;
+
+  @LastModifiedBy
+  private String modifiedBy;
 
   public Webinar() {
   }
@@ -60,4 +70,21 @@ public class Webinar {
   public void setDateTime(LocalDateTime dateTime) {
     this.dateTime = dateTime;
   }
+
+  public String getCreatedBy() {
+    return createdBy;
+  }
+
+  public void setCreatedBy(String createdBy) {
+    this.createdBy = createdBy;
+  }
+
+  public String getModifiedBy() {
+    return modifiedBy;
+  }
+
+  public void setModifiedBy(String modifiedBy) {
+    this.modifiedBy = modifiedBy;
+  }
+
 }

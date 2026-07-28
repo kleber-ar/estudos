@@ -7,14 +7,17 @@ public record WebinarDto(
     Long id,
     String title,
     String url,
-    LocalDateTime dateTime) {
+    LocalDateTime dateTime,
+    String createdBy,
+    String modifiedBy) {
 
   public static WebinarDto fromEntity(Webinar webinar) {
     return new WebinarDto(
         webinar.getId(),
         webinar.getTitle(),
         webinar.getUrl(),
-        webinar.getDateTime()
-    );
+        webinar.getDateTime(),
+        webinar.getCreatedBy(),
+        webinar.getModifiedBy());
   }
 }
