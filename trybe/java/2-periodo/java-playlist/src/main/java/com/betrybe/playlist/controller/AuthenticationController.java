@@ -21,16 +21,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthenticationController {
 
   private final AuthenticationManager authenticationManager;
-
   private final PersonService personService;
+  private final TokenService tokenService;
 
   @Autowired
   public AuthenticationController(
       AuthenticationManager authenticationManager,
-      PersonService personService
-  ) {
+      PersonService personService, TokenService tokenService) {
     this.authenticationManager = authenticationManager;
     this.personService = personService;
+    this.tokenService = tokenService;
   }
 
   @PostMapping("/register")
@@ -41,14 +41,15 @@ public class AuthenticationController {
   }
 
   @PostMapping("/login")
-  public String login(@RequestBody AuthenticationDto authRequestDto) {
+  public AuthResponseDto login(@RequestBody AuthenticationDto authRequestDto) {
 
-    UsernamePasswordAuthenticationToken usernamePassword =
-        new UsernamePasswordAuthenticationToken(
-            authRequestDto.username(), authRequestDto.password());
+    UsernamePasswordAuthenticationToken usernamePassword = new UsernamePasswordAuthenticationToken(
+        authRequestDto.username(), authRequestDto.password());
 
     Authentication authenticate = authenticationManager.authenticate(usernamePassword);
 
-    return "Pessoa autenticada com sucesso: " + authenticate.getName();
+    String token = tokenService.generateToken(authenticate.getName());
+
+    return new AuthResponseDto(token);
   }
 }
