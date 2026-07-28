@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.annotation.Secured;
 
 @RestController
 @RequestMapping("/persons")
@@ -30,6 +31,7 @@ public class PersonController {
   }
 
   @GetMapping
+  @Secured("ADMIN")
   public List<PersonDto> getAllPersons() {
     return personService.getAll().stream()
         .map(PersonDto::fromEntity)
@@ -39,16 +41,14 @@ public class PersonController {
   @GetMapping("/{id}")
   public PersonDto getPersonById(@PathVariable Long id) throws PersonNotFoundException {
     return PersonDto.fromEntity(
-        personService.getById(id)
-    );
+        personService.getById(id));
   }
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public PersonDto createPerson(@RequestBody PersonCreationDto personDto) {
     Person savedPerson = personService.create(
-        personDto.toEntity()
-    );
+        personDto.toEntity());
 
     return PersonDto.fromEntity(savedPerson);
   }
@@ -56,7 +56,6 @@ public class PersonController {
   @DeleteMapping("/{id}")
   public PersonDto deletePerson(@PathVariable Long id) throws PersonNotFoundException {
     return PersonDto.fromEntity(
-        personService.deleteById(id)
-    );
+        personService.deleteById(id));
   }
 }
