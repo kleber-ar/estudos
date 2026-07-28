@@ -14,6 +14,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.http.HttpMethod;
 
+import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer.FrameOptionsConfig;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -27,7 +30,10 @@ public class SecurityConfig {
         .authorizeHttpRequests(authorize -> authorize
             .requestMatchers(HttpMethod.POST, "/persons").permitAll()
             .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+            .requestMatchers(toH2Console()).permitAll()
             .anyRequest().authenticated())
+        .headers(headers -> headers
+            .frameOptions(FrameOptionsConfig::sameOrigin))
         .build();
   }
 
