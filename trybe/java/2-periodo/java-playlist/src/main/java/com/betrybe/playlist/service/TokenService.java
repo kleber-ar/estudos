@@ -21,4 +21,23 @@ public class TokenService {
     algorithm = Algorithm.HMAC256(secret);
   }
 
+  public String generateToken(String username) {
+    return JWT.create()
+        .withSubject(username)
+        .withExpiresAt(generateExpiration())
+        .sign(algorithm);
+  }
+
+  private Instant generateExpiration() {
+    return Instant.now()
+        .plus(2, ChronoUnit.HOURS);
+  }
+
+  public String validateToken(String token) {
+    return JWT.require(algorithm)
+        .build()
+        .verify(token)
+        .getSubject();
+  }
+
 }
