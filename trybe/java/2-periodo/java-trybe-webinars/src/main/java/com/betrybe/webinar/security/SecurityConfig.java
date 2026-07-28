@@ -20,6 +20,12 @@ import org.springframework.security.config.annotation.web.configurers.HeadersCon
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+  private final JwtFilter jwtFilter;
+
+  @Autowired
+  public SecurityConfig(JwtFilter jwtFilter) {
+    this.jwtFilter = jwtFilter;
+  }
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
@@ -32,8 +38,7 @@ public class SecurityConfig {
             .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
             .requestMatchers(toH2Console()).permitAll()
             .anyRequest().authenticated())
-        .headers(headers -> headers
-            .frameOptions(FrameOptionsConfig::sameOrigin))
+        .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
         .build();
   }
 
