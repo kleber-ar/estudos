@@ -34,6 +34,44 @@ O banco para esta aplicação é o H2, um banco em memória, com suas definiçõ
 
 O Spring automaticamente criará nossas tabelas e colocará nossa aplicação no ar através do container de aplicação Tomcat.
 
-De posse de um cliente Rest API (Postman, Insomnia, entre outros) você poderá realizar requisições ao http://localhost:8080/aqui-voce-especifica-a-rota.
+De posse de um cliente Rest API (Postman, Insomnia, entre outros) você poderá realizar requisições ao <http://localhost:8080/aqui-voce-especifica-a-rota>.
 
 Você também pode ver quais as rotas disponíveis em nossa API através deste link - É importante que a API esteja rodando!
+
+## Parte 2
+
+# Jwt
+
+Vamos praticar!
+
+Hoje daremos continuidade ao nosso exercício do dia anterior. Agora, você deverá adicionar a nossa API de Gerenciamento de Músicas e Playlists a camada de autenticação utilizando o token JWT. Chegou a hora de colocar os conhecimentos recém adquiridos em prática! Bora lá?!
+Exercício 1 - Conclua a implementação da TokenService
+
+Implemente em: src/main/java/com/betrybe/playlist/service/TokenService.java
+
+Ainda nos falta os métodos de generateToken() e validateToken().
+Exercício 2 - Implemente a JwtFilter
+
+Implemente em: src/main/java/com/betrybe/playlist/security/JwtFilter.java
+
+A JwtFilter deverá estender de OncePerRequestFilter para evitar um stack overflow em nossa aplicação. Essa extensão nos permitirá implementar o método doFilterInternal responsável por repassar o nosso token e o seu respectivo usuário para o nosso mecanismo de autenticação. Além disso, é importante que você implemente o método extractToken que irá retornar uma String com o nosso token JWT.
+
+    É importante mencionar que a nossa TokenService já está implementada e deverá ser utilizada aqui em conjunto com a PersonService que você modificou anteriormente. PS.: Não esqueça das anotações.
+
+Exercício 3 - Ajuste a implementação de AuthenticationController
+
+Ajuste em: src/main/java/com/betrybe/playlist/controller/AuthenticationController.java
+
+Implemente corretamente a injeção de dependência do TokenService e garanta a geração de um novo token ao realizar o login.
+Exercício 4 - Conclua a implementação da SecurityConfig
+
+Implemente em: src/main/java/com/betrybe/playlist/security/SecurityConfig.java
+
+A SecurityConfig está quase toda implementada. No entanto, é necessário finalizar a implementação do método securityFilterChain. Adicione proteção às rotas de autenticação e autorização e o filtro jwtFilter para validar tokens JWT.
+Vamos testar nossa API?
+
+Está com tudo implementado? Chegou a hora de testar nossa API.
+
+Basta executar nossa classe principal, a TrybePlaylist.
+
+Você pode visualizar as rotas disponíveis em nossa API através deste link - É importante que a API esteja rodando! Além disso, descomente as linhas do método customise no arquivo src/main/java/com/betrybe/playlist/security/DocAuthCustomizer.java. Em seguida, registre uma nova pessoa através do endpoint /auth/register e depois realize o login em /auth/login. Como saída você receberá um token JWT. Na posse do token, vá para a parte superior da página que contém um botão verde “Authorize”, clique nesse botão e uma pop-up abrirá para que você possa inserir o token gerado e efetuar o login.
