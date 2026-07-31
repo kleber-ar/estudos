@@ -20,6 +20,7 @@ public class Person implements UserDetails {
 
   private String fullname;
   private String email;
+  private int age;
 
   @Column(unique = true)
   private String username;
@@ -29,12 +30,13 @@ public class Person implements UserDetails {
   public Person() {
   }
 
-  public Person(Long id, String fullname, String email, String username, String password, String role) {
+  public Person(Long id, String fullname, String email, String username, String password, String role, int age) {
     this.id = id;
     this.fullname = fullname;
     this.email = email;
     this.username = username;
     this.password = password;
+    this.age = age;
     this.role = role;
   }
 
@@ -103,6 +105,14 @@ public class Person implements UserDetails {
   @Override
   public boolean isEnabled() {
     return true;
+  }
+
+  public int getAge() {
+    return age;
+  }
+
+  public void setAge(int age) {
+    this.age = age;
   }
 
   public String getRole() {

@@ -8,7 +8,8 @@ public record PersonDto(
     String email,
     String username,
     String password,
-    String role) {
+    String role,
+    int age) {
 
   public static PersonDto fromEntity(Person person) {
     return new PersonDto(
@@ -17,6 +18,9 @@ public record PersonDto(
         person.getEmail(),
         person.getUsername(),
         person.getPassword(),
-        person.getRole());
+        person.getRole(),
+        person.getAge()
+
+    );
   }
 }
