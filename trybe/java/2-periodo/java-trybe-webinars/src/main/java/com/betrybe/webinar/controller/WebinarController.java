@@ -2,6 +2,7 @@ package com.betrybe.webinar.controller;
 
 import com.betrybe.webinar.controller.dto.WebinarCreationDto;
 import com.betrybe.webinar.controller.dto.WebinarDto;
+import com.betrybe.webinar.entity.Person;
 import com.betrybe.webinar.entity.Webinar;
 import com.betrybe.webinar.service.WebinarService;
 import com.betrybe.webinar.service.exception.WebinarNotFoundException;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 @RestController
 @RequestMapping("/webinars")
@@ -46,7 +49,8 @@ public class WebinarController {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public WebinarDto createWebinar(@RequestBody WebinarCreationDto webinarDto) {
+  @PreAuthorize("#person.age >= 18") // <-- Adicione esta linha
+  public WebinarDto createWebinar(@RequestBody WebinarCreationDto webinarDto, @AuthenticationPrincipal Person person) {
     Webinar savedWebinar = webinarService.create(
         webinarDto.toEntity());
 
