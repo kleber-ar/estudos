@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.annotation.Secured;
 
 @RestController
 @RequestMapping("/webinars")
@@ -30,6 +31,7 @@ public class WebinarController {
   }
 
   @GetMapping
+  @Secured({ "VIEWER", "USER", "ADMIN" })
   public List<WebinarDto> getAllWebinars() {
     return webinarService.getAll().stream()
         .map(WebinarDto::fromEntity)
@@ -39,16 +41,14 @@ public class WebinarController {
   @GetMapping("/{id}")
   public WebinarDto getWebinarById(@PathVariable Long id) throws WebinarNotFoundException {
     return WebinarDto.fromEntity(
-        webinarService.getById(id)
-    );
+        webinarService.getById(id));
   }
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public WebinarDto createWebinar(@RequestBody WebinarCreationDto webinarDto) {
     Webinar savedWebinar = webinarService.create(
-        webinarDto.toEntity()
-    );
+        webinarDto.toEntity());
 
     return WebinarDto.fromEntity(savedWebinar);
   }
@@ -56,7 +56,6 @@ public class WebinarController {
   @DeleteMapping("/{id}")
   public WebinarDto deleteWebinar(@PathVariable Long id) throws WebinarNotFoundException {
     return WebinarDto.fromEntity(
-        webinarService.deleteById(id)
-    );
+        webinarService.deleteById(id));
   }
 }
