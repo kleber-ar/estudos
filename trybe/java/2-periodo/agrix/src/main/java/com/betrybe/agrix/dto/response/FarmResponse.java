@@ -1,5 +1,8 @@
 package com.betrybe.agrix.dto.response;
 
+/**
+ * FarmResponse.
+ */
 public class FarmResponse {
   private Long id;
   private String name;

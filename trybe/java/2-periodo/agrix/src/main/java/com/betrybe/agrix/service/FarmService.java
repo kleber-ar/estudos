@@ -1,13 +1,15 @@
 package com.betrybe.agrix.service;
 
-import org.springframework.stereotype.Service;
-
 import com.betrybe.agrix.dto.request.FarmRequest;
 import com.betrybe.agrix.dto.response.FarmResponse;
 import com.betrybe.agrix.entity.Farm;
 import com.betrybe.agrix.mapper.FarmMapper;
 import com.betrybe.agrix.repository.FarmRepository;
+import org.springframework.stereotype.Service;
 
+/**
+ * FarmService.
+ */
 @Service
 public class FarmService {
 
@@ -19,11 +21,17 @@ public class FarmService {
     this.mapper = mapper;
   }
 
+  /**
+   * O Response.
+   *
+   * @param request dados da requisição
+   * @return entidade farm
+   */
   public FarmResponse create(FarmRequest request) {
     Farm farm = mapper.toEntity(request);
 
     Farm savedFarm = repository.save(farm);
 
-    return mapper.toDto(savedFarm);
+    return mapper.toResponse(savedFarm);
   }
 }

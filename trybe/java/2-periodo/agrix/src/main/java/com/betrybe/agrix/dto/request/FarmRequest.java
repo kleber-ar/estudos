@@ -1,5 +1,8 @@
 package com.betrybe.agrix.dto.request;
 
+/**
+ * FarmRequest.
+ */
 public class FarmRequest {
   private String name;
   private Double size;
