@@ -1,31 +1,34 @@
 package com.betrybe.agrix.entity;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Farm.
+ * Entidade que representa uma plantação.
  */
 @Entity
-@Table(name = "farms")
-public class Farm {
+@Table(name = "crops")
+public class Crop {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
   private String name;
 
-  private Double size;
+  private Double plantedArea;
 
-  @OneToMany(mappedBy = "farm", cascade = CascadeType.ALL)
-  private List<Crop> crops = new ArrayList<>();
+  @ManyToOne
+  @JoinColumn(name = "farm_id")
+  private Farm farm;
+
+  public Crop() {
+  }
 
   public Long getId() {
     return id;
@@ -43,20 +46,19 @@ public class Farm {
     this.name = name;
   }
 
-  public Double getSize() {
-    return size;
+  public Double getPlantedArea() {
+    return plantedArea;
   }
 
-  public void setSize(Double size) {
-    this.size = size;
+  public void setPlantedArea(Double plantedArea) {
+    this.plantedArea = plantedArea;
   }
 
-  public List<Crop> getCrops() {
-    return crops;
+  public Farm getFarm() {
+    return farm;
   }
 
-  public void setCrops(List<Crop> crops) {
-    this.crops = crops;
+  public void setFarm(Farm farm) {
+    this.farm = farm;
   }
-
 }
