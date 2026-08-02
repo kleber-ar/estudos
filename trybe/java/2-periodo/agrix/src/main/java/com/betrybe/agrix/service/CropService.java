@@ -76,4 +76,17 @@ public class CropService {
         .toList();
   }
 
+  /**
+   * Lista todas as plantações cadastradas.
+   *
+   * @return lista de plantações
+   */
+  public List<CropResponse> findAll() {
+
+    return cropRepository.findAll()
+        .stream()
+        .map(mapper::toResponse)
+        .toList();
+  }
+
 }
