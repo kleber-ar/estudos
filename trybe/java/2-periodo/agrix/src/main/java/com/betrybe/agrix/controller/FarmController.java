@@ -4,8 +4,10 @@ import com.betrybe.agrix.dto.request.FarmRequest;
 import com.betrybe.agrix.dto.response.FarmResponse;
 import com.betrybe.agrix.service.FarmService;
 import jakarta.validation.Valid;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,5 +39,10 @@ public class FarmController {
     FarmResponse response = service.create(request);
 
     return ResponseEntity.status(HttpStatus.CREATED).body(response);
+  }
+
+  @GetMapping
+  public ResponseEntity<List<FarmResponse>> findAll() {
+    return ResponseEntity.ok(service.findAll());
   }
 }

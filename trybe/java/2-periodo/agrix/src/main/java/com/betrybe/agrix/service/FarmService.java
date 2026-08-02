@@ -5,6 +5,7 @@ import com.betrybe.agrix.dto.response.FarmResponse;
 import com.betrybe.agrix.entity.Farm;
 import com.betrybe.agrix.mapper.FarmMapper;
 import com.betrybe.agrix.repository.FarmRepository;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 /**
@@ -33,5 +34,17 @@ public class FarmService {
     Farm savedFarm = repository.save(farm);
 
     return mapper.toResponse(savedFarm);
+  }
+
+  /**
+   * Retorno de todas as farms.
+   *
+   * @return o retorno
+   */
+  public List<FarmResponse> findAll() {
+    return repository.findAll()
+        .stream()
+        .map(mapper::toResponse)
+        .toList();
   }
 }
