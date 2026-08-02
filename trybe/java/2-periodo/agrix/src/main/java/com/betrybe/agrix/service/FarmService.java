@@ -3,6 +3,7 @@ package com.betrybe.agrix.service;
 import com.betrybe.agrix.dto.request.FarmRequest;
 import com.betrybe.agrix.dto.response.FarmResponse;
 import com.betrybe.agrix.entity.Farm;
+import com.betrybe.agrix.exception.NotFoundException;
 import com.betrybe.agrix.mapper.FarmMapper;
 import com.betrybe.agrix.repository.FarmRepository;
 import java.util.List;
@@ -46,5 +47,19 @@ public class FarmService {
         .stream()
         .map(mapper::toResponse)
         .toList();
+  }
+
+  /**
+   * O get de farm.
+   *
+   * @param id o id
+   * @return o farm
+   */
+  public FarmResponse findById(Long id) {
+
+    Farm farm = repository.findById(id)
+        .orElseThrow(() -> new NotFoundException("Fazenda não encontrada!"));
+
+    return mapper.toResponse(farm);
   }
 }

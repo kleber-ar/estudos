@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+  /**
+   * Exception errors.
+   *
+   * @param exception a execeção
+   * @return a mensagem de error
+   */
   @ExceptionHandler(NotFoundException.class)
   public ResponseEntity<Map<String, String>> handleNotFound(
       NotFoundException exception) {
