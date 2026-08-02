@@ -4,8 +4,10 @@ import com.betrybe.agrix.dto.request.CropRequest;
 import com.betrybe.agrix.dto.response.CropResponse;
 import com.betrybe.agrix.service.CropService;
 import jakarta.validation.Valid;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,5 +42,18 @@ public class CropController {
     CropResponse response = service.create(farmId, request);
 
     return ResponseEntity.status(HttpStatus.CREATED).body(response);
+  }
+
+  /**
+   * Lista as plantações de uma fazenda.
+   *
+   * @param farmId id da fazenda
+   * @return lista de plantações
+   */
+  @GetMapping
+  public ResponseEntity<List<CropResponse>> findByFarm(
+      @PathVariable Long farmId) {
+
+    return ResponseEntity.ok(service.findByFarm(farmId));
   }
 }

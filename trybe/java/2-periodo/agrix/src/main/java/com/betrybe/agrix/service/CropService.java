@@ -8,6 +8,7 @@ import com.betrybe.agrix.exception.NotFoundException;
 import com.betrybe.agrix.mapper.CropMapper;
 import com.betrybe.agrix.repository.CropRepository;
 import com.betrybe.agrix.repository.FarmRepository;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 /**
@@ -56,6 +57,23 @@ public class CropService {
     Crop savedCrop = cropRepository.save(crop);
 
     return mapper.toResponse(savedCrop);
+  }
+
+  /**
+   * Lista todas as plantações de uma fazenda.
+   *
+   * @param farmId id da fazenda
+   * @return lista de plantações
+   */
+  public List<CropResponse> findByFarm(Long farmId) {
+
+    farmRepository.findById(farmId)
+        .orElseThrow(() -> new NotFoundException("Fazenda não encontrada!"));
+
+    return cropRepository.findByFarmId(farmId)
+        .stream()
+        .map(mapper::toResponse)
+        .toList();
   }
 
 }
