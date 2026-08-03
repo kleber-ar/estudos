@@ -139,7 +139,9 @@ public class CropService {
     Fertilizer fertilizer = fertilizerRepository.findById(fertilizerId)
         .orElseThrow(() -> new NotFoundException("Fertilizante não encontrado!"));
 
-    crop.getFertilizers().add(fertilizer);
+    if (!crop.getFertilizers().contains(fertilizer)) {
+      crop.getFertilizers().add(fertilizer);
+    }
 
     cropRepository.save(crop);
   }
