@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -95,5 +96,23 @@ public class CropController {
       @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end) {
 
     return ResponseEntity.ok(service.search(start, end));
+  }
+
+  /**
+   * Associa um fertilizante a uma plantação.
+   *
+   * @param cropId       id da plantação
+   * @param fertilizerId id do fertilizante
+   * @return mensagem de sucesso
+   */
+  @PostMapping("/crops/{cropId}/fertilizers/{fertilizerId}")
+  public ResponseEntity<String> addFertilizer(
+      @PathVariable Long cropId,
+      @PathVariable Long fertilizerId) {
+
+    service.addFertilizer(cropId, fertilizerId);
+
+    return ResponseEntity.status(HttpStatus.CREATED)
+        .body("Fertilizante e plantação associados com sucesso!");
   }
 }
