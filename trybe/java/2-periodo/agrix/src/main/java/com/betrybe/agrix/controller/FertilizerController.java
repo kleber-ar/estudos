@@ -4,8 +4,10 @@ import com.betrybe.agrix.dto.request.FertilizerRequest;
 import com.betrybe.agrix.dto.response.FertilizerResponse;
 import com.betrybe.agrix.service.FertilizerService;
 import jakarta.validation.Valid;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,5 +37,16 @@ public class FertilizerController {
     return ResponseEntity
         .status(HttpStatus.CREATED)
         .body(service.create(request));
+  }
+
+  /**
+   * Lista todos os fertilizantes.
+   *
+   * @return lista de fertilizantes
+   */
+  @GetMapping("/fertilizers")
+  public ResponseEntity<List<FertilizerResponse>> findAll() {
+
+    return ResponseEntity.ok(service.findAll());
   }
 }

@@ -5,6 +5,7 @@ import com.betrybe.agrix.dto.response.FertilizerResponse;
 import com.betrybe.agrix.entity.Fertilizer;
 import com.betrybe.agrix.mapper.FertilizerMapper;
 import com.betrybe.agrix.repository.FertilizerRepository;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 /**
@@ -41,5 +42,18 @@ public class FertilizerService {
     Fertilizer fertilizer = mapper.toEntity(request);
 
     return mapper.toResponse(repository.save(fertilizer));
+  }
+
+  /**
+   * Lista todos os fertilizantes.
+   *
+   * @return lista de fertilizantes
+   */
+  public List<FertilizerResponse> findAll() {
+
+    return repository.findAll()
+        .stream()
+        .map(mapper::toResponse)
+        .toList();
   }
 }
