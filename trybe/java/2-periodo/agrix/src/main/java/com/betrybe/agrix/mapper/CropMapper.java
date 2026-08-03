@@ -19,8 +19,11 @@ public class CropMapper {
    */
   public Crop toEntity(CropRequest request) {
     Crop crop = new Crop();
+
     crop.setName(request.getName());
     crop.setPlantedArea(request.getPlantedArea());
+    crop.setPlantedDate(request.getPlantedDate());
+    crop.setHarvestDate(request.getHarvestDate());
 
     return crop;
   }
@@ -32,11 +35,14 @@ public class CropMapper {
    * @return DTO de resposta
    */
   public CropResponse toResponse(Crop crop) {
+
     CropResponse response = new CropResponse();
 
     response.setId(crop.getId());
     response.setName(crop.getName());
     response.setPlantedArea(crop.getPlantedArea());
+    response.setPlantedDate(crop.getPlantedDate());
+    response.setHarvestDate(crop.getHarvestDate());
     response.setFarmId(crop.getFarm().getId());
 
     return response;

@@ -1,5 +1,7 @@
 package com.betrybe.agrix.dto.response;
 
+import java.time.LocalDate;
+
 /**
  * DTO de resposta da plantação.
  */
@@ -12,6 +14,10 @@ public class CropResponse {
   private Double plantedArea;
 
   private Long farmId;
+
+  private LocalDate plantedDate;
+
+  private LocalDate harvestDate;
 
   public CropResponse() {
   }
@@ -46,5 +52,21 @@ public class CropResponse {
 
   public void setFarmId(Long farmId) {
     this.farmId = farmId;
+  }
+
+  public LocalDate getPlantedDate() {
+    return plantedDate;
+  }
+
+  public void setPlantedDate(LocalDate plantedDate) {
+    this.plantedDate = plantedDate;
+  }
+
+  public LocalDate getHarvestDate() {
+    return harvestDate;
+  }
+
+  public void setHarvestDate(LocalDate harvestDate) {
+    this.harvestDate = harvestDate;
   }
 }
