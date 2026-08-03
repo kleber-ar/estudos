@@ -3,6 +3,7 @@ package com.betrybe.agrix.service;
 import com.betrybe.agrix.dto.request.FertilizerRequest;
 import com.betrybe.agrix.dto.response.FertilizerResponse;
 import com.betrybe.agrix.entity.Fertilizer;
+import com.betrybe.agrix.exception.NotFoundException;
 import com.betrybe.agrix.mapper.FertilizerMapper;
 import com.betrybe.agrix.repository.FertilizerRepository;
 import java.util.List;
@@ -55,5 +56,19 @@ public class FertilizerService {
         .stream()
         .map(mapper::toResponse)
         .toList();
+  }
+
+  /**
+   * Busca um fertilizante pelo id.
+   *
+   * @param id id do fertilizante
+   * @return fertilizante encontrado
+   */
+  public FertilizerResponse findById(Long id) {
+
+    Fertilizer fertilizer = repository.findById(id)
+        .orElseThrow(() -> new NotFoundException("Fertilizante não encontrado!"));
+
+    return mapper.toResponse(fertilizer);
   }
 }
