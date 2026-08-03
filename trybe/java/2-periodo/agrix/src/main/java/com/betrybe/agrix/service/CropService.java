@@ -2,11 +2,13 @@ package com.betrybe.agrix.service;
 
 import com.betrybe.agrix.dto.request.CropRequest;
 import com.betrybe.agrix.dto.response.CropResponse;
+import com.betrybe.agrix.dto.response.FertilizerResponse;
 import com.betrybe.agrix.entity.Crop;
 import com.betrybe.agrix.entity.Farm;
 import com.betrybe.agrix.entity.Fertilizer;
 import com.betrybe.agrix.exception.NotFoundException;
 import com.betrybe.agrix.mapper.CropMapper;
+import com.betrybe.agrix.mapper.FertilizerMapper;
 import com.betrybe.agrix.repository.CropRepository;
 import com.betrybe.agrix.repository.FarmRepository;
 import com.betrybe.agrix.repository.FertilizerRepository;
@@ -24,6 +26,7 @@ public class CropService {
   private final FarmRepository farmRepository;
   private final FertilizerRepository fertilizerRepository;
   private final CropMapper mapper;
+  private final FertilizerMapper fertilizerMapper;
 
   /**
    * O service.
@@ -31,18 +34,21 @@ public class CropService {
    * @param cropRepository       o Repository
    * @param farmRepository       o Repository
    * @param fertilizerRepository o Repository
+   * @param fertilizerMapper     o mapper
    * @param mapper               o mapper
    */
   public CropService(
       CropRepository cropRepository,
       FarmRepository farmRepository,
+      FertilizerRepository fertilizerRepository,
       CropMapper mapper,
-      FertilizerRepository fertilizerRepository) {
+      FertilizerMapper fertilizerMapper) {
 
     this.cropRepository = cropRepository;
     this.farmRepository = farmRepository;
     this.fertilizerRepository = fertilizerRepository;
     this.mapper = mapper;
+    this.fertilizerMapper = fertilizerMapper;
   }
 
   /**
@@ -144,6 +150,23 @@ public class CropService {
     }
 
     cropRepository.save(crop);
+  }
+
+  /**
+   * Lista os fertilizantes de uma plantação.
+   *
+   * @param cropId id da plantação
+   * @return lista de fertilizantes
+   */
+  public List<FertilizerResponse> findFertilizersByCrop(Long cropId) {
+
+    Crop crop = cropRepository.findById(cropId)
+        .orElseThrow(() -> new NotFoundException("Plantação não encontrada!"));
+
+    return crop.getFertilizers()
+        .stream()
+        .map(fertilizerMapper::toResponse)
+        .toList();
   }
 
 }
