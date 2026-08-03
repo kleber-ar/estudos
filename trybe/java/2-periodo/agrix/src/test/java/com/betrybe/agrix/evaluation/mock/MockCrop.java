@@ -12,4 +12,8 @@ public class MockCrop extends HashMap<String, Object> {
   public <K, V> MockCrop(Map<K, V> source) {
     super((Map<String, Object>) source);
   }
+
+  public MockCrop clone() {
+    return new MockCrop(this);
+  }
 }
