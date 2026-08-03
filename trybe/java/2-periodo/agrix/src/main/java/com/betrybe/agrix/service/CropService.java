@@ -8,6 +8,7 @@ import com.betrybe.agrix.exception.NotFoundException;
 import com.betrybe.agrix.mapper.CropMapper;
 import com.betrybe.agrix.repository.CropRepository;
 import com.betrybe.agrix.repository.FarmRepository;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -101,6 +102,21 @@ public class CropService {
         .orElseThrow(() -> new NotFoundException("Plantação não encontrada!"));
 
     return mapper.toResponse(crop);
+  }
+
+  /**
+   * Busca plantações pelo intervalo da data de colheita.
+   *
+   * @param start data inicial
+   * @param end   data final
+   * @return lista de plantações
+   */
+  public List<CropResponse> search(LocalDate start, LocalDate end) {
+
+    return cropRepository.findByHarvestDateBetween(start, end)
+        .stream()
+        .map(mapper::toResponse)
+        .toList();
   }
 
 }

@@ -4,13 +4,16 @@ import com.betrybe.agrix.dto.request.CropRequest;
 import com.betrybe.agrix.dto.response.CropResponse;
 import com.betrybe.agrix.service.CropService;
 import jakarta.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -76,5 +79,21 @@ public class CropController {
       @PathVariable Long id) {
 
     return ResponseEntity.ok(service.findById(id));
+  }
+
+  /**
+   * Busca plantações pelo período de colheita.
+   *
+   * @param start data inicial
+   * @param end   data final
+   * @return lista de plantações
+   */
+  @GetMapping("/crops/search")
+  public ResponseEntity<List<CropResponse>> search(
+      @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate start,
+
+      @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate end) {
+
+    return ResponseEntity.ok(service.search(start, end));
   }
 }
