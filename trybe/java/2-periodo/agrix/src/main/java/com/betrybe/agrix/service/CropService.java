@@ -89,4 +89,18 @@ public class CropService {
         .toList();
   }
 
+  /**
+   * Busca uma plantação pelo id.
+   *
+   * @param id id da plantação
+   * @return plantação encontrada
+   */
+  public CropResponse findById(Long id) {
+
+    Crop crop = cropRepository.findById(id)
+        .orElseThrow(() -> new NotFoundException("Plantação não encontrada!"));
+
+    return mapper.toResponse(crop);
+  }
+
 }

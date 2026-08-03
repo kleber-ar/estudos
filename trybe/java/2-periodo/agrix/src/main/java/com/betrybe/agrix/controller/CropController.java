@@ -64,4 +64,17 @@ public class CropController {
   public ResponseEntity<List<CropResponse>> findAll() {
     return ResponseEntity.ok(service.findAll());
   }
+
+  /**
+   * Busca uma plantação pelo id.
+   *
+   * @param id id da plantação
+   * @return plantação encontrada
+   */
+  @GetMapping("/crops/{id}")
+  public ResponseEntity<CropResponse> findById(
+      @PathVariable Long id) {
+
+    return ResponseEntity.ok(service.findById(id));
+  }
 }
