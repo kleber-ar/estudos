@@ -42,6 +42,9 @@ public class SecurityConfig {
             .requestMatchers(HttpMethod.GET, "/farms")
             .hasAnyRole("USER", "MANAGER", "ADMIN")
 
+            .requestMatchers(HttpMethod.GET, "/crops")
+            .hasAnyRole("MANAGER", "ADMIN")
+
             .anyRequest().authenticated())
 
         .addFilterBefore(
