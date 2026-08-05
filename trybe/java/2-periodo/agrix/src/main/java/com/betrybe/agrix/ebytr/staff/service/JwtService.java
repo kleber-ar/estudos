@@ -1,6 +1,7 @@
 package com.betrybe.agrix.ebytr.staff.service;
 
 import com.betrybe.agrix.ebytr.staff.entity.Person;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import java.nio.charset.StandardCharsets;
@@ -9,7 +10,7 @@ import java.util.Date;
 import org.springframework.stereotype.Service;
 
 /**
- * Service responsible for JWT generation.
+ * Service responsible for JWT generation and validation.
  */
 @Service
 public class JwtService {
@@ -20,6 +21,9 @@ public class JwtService {
 
   /**
    * Generates a JWT for the authenticated user.
+   *
+   * @param person authenticated person
+   * @return generated token
    */
   public String generateToken(Person person) {
 
@@ -29,5 +33,22 @@ public class JwtService {
         .setIssuedAt(new Date())
         .signWith(key)
         .compact();
+  }
+
+  /**
+   * Validates a JWT and returns the username.
+   *
+   * @param token jwt token
+   * @return username
+   */
+  public String validateToken(String token) {
+
+    Claims claims = Jwts.parserBuilder()
+        .setSigningKey(key)
+        .build()
+        .parseClaimsJws(token)
+        .getBody();
+
+    return claims.getSubject();
   }
 }
