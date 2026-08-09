@@ -1,3 +1,3 @@
 package com.betrybe.playground
 
-class Discipline(val name: String, val code: Int)
+open class Discipline(val name: String, val code: Int)
