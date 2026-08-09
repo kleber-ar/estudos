@@ -1,0 +1,76 @@
+{
+  "requirements": [
+    {
+      "bonus": false,
+      "description": "1 - Crie uma Enum Class chamada `PeriodEnum`",
+      "enabled": true,
+      "identifier": null,
+      "order": 1,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "2 - Crie uma interface chamada `Olympic`",
+      "enabled": true,
+      "identifier": null,
+      "order": 2,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "3 - Crie uma classe chamada `Discipline`",
+      "enabled": true,
+      "identifier": null,
+      "order": 3,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "4 - Crie uma classe chamada `Person`",
+      "enabled": true,
+      "identifier": null,
+      "order": 4,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "5 - Crie uma classe chamada `Collaborator`",
+      "enabled": true,
+      "identifier": null,
+      "order": 5,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "6 - Crie uma classe chamada `Teacher`",
+      "enabled": true,
+      "identifier": null,
+      "order": 6,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "7 - Crie uma classe chamada `Director`",
+      "enabled": true,
+      "identifier": null,
+      "order": 7,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "8 - Crie uma classe chamada `Student`",
+      "enabled": true,
+      "identifier": null,
+      "order": 8,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "9 - Crie uma classe chamada `OlympicDiscipline`",
+      "enabled": true,
+      "identifier": null,
+      "order": 9,
+      "skill_ids": []
+    }
+  ]
+}
