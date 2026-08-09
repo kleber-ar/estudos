@@ -1,0 +1,100 @@
+{
+  "requirements": [
+    {
+      "bonus": false,
+      "description": "1 - Implemente a função para calcular o preço de um produto com desconto de 10%",
+      "enabled": true,
+      "identifier": null,
+      "order": 1,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "2 - Implemente cada função para calcular a comissão e o salário final de um funcionário",
+      "enabled": true,
+      "identifier": null,
+      "order": 2,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "3 - Implemente cada função para calcular a idade da pessoa em anos, meses, dias e semanas",
+      "enabled": true,
+      "identifier": null,
+      "order": 3,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "4 - Implemente cada função para calcular a média, diferença, produto e divisão entre os dois números",
+      "enabled": true,
+      "identifier": null,
+      "order": 4,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "5 - Implemente a função para calcular o custo final de um carro",
+      "enabled": true,
+      "identifier": null,
+      "order": 5,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "6 - Implemente a função para receber um salário e calcular a porcentagem de aumento",
+      "enabled": true,
+      "identifier": null,
+      "order": 6,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "7 - Implemente cada função para calcular a média das idades, a quantidade de pessoas com peso superior a 90Kg e altura inferior a 1.50m e a porcentagem de pessoas com idade entre 10 e 30 anos que medem mais de 1.90 metros de uma lista de idades, pesos e alturas",
+      "enabled": true,
+      "identifier": null,
+      "order": 7,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "8 - Implemente cada função para calcular a soma dos números pares e dos números ímpares",
+      "enabled": true,
+      "identifier": null,
+      "order": 8,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "9 - Implemente a função para calcular o valor de um carro à vista e a prazo",
+      "enabled": true,
+      "identifier": null,
+      "order": 9,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "10 - Implemente cada função para calcular os múltiplos de 2, múltiplos de 3 e os múltiplos de 2 e 3 de um array de 15 números inteiros",
+      "enabled": true,
+      "identifier": null,
+      "order": 10,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "11 - Implemente cada função para calcular a soma dos positivos e a quantidade de números negativos de uma lista com dez números reais",
+      "enabled": true,
+      "identifier": null,
+      "order": 11,
+      "skill_ids": []
+    },
+    {
+      "bonus": false,
+      "description": "12 - Implemente a funçao para multiplicar dois números de mesmo índice de uma lista e armazenar em uma terceira lista",
+      "enabled": true,
+      "identifier": null,
+      "order": 12,
+      "skill_ids": []
+    }
+  ]
+}
