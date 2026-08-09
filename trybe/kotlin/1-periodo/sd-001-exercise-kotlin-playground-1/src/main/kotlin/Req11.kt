@@ -1,11 +1,14 @@
 fun countNegativeNumbers(numbers: List<Double>): Int {
-    TODO("Use essa função para desenvolver sua lógica")
+  return numbers.count { it < 0 }
 }
 
 fun calculateSumOfPositiveNumbers(numbers: List<Double>): Double {
-    TODO("Use essa função para desenvolver sua lógica")
+  return numbers.filter { it > 0 }.sum()
 }
 
 fun main() {
-    TODO("Use essa função para rodar o codigo principal")
+  val numbers = listOf(-1.0, 2.0, -3.0, 4.0, -5.0)
+
+  println("Quantidade de negativos: ${countNegativeNumbers(numbers)}")
+  println("Soma dos positivos: ${calculateSumOfPositiveNumbers(numbers)}")
 }
