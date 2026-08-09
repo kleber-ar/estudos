@@ -1,7 +1,21 @@
 fun calculateConsumerPrice(factoryCost: Double): Double {
-    TODO("Use essa função para desenvolver sua lógica")
+  return when {
+    factoryCost <= 12000.0 -> {
+      factoryCost + (factoryCost * 0.05)
+    }
+    factoryCost <= 25000.0 -> {
+      factoryCost + (factoryCost * 0.10) + (factoryCost * 0.15)
+    }
+    else -> {
+      factoryCost + (factoryCost * 0.15) + (factoryCost * 0.20)
+    }
+  }
 }
 
 fun main() {
-    TODO("Use essa função para rodar o codigo principal")
+  val factoryCost = readLine()?.toDoubleOrNull()
+
+  if (factoryCost != null) {
+    println(calculateConsumerPrice(factoryCost))
+  }
 }
