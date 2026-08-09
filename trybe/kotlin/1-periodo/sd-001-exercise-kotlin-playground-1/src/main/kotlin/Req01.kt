@@ -1,7 +1,12 @@
 fun calculateDiscount(originalPrice: Double): Double {
-    TODO("Use essa função para desenvolver sua lógica")
+  return originalPrice * 0.9
 }
 
 fun main() {
-    TODO("Use essa função para rodar o codigo principal")
+  val price = readLine()?.toDoubleOrNull()
+
+  if (price != null) {
+    val discountedPrice = calculateDiscount(price)
+    println(discountedPrice)
+  }
 }
