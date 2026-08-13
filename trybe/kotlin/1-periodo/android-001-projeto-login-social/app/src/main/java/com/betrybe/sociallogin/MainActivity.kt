@@ -12,12 +12,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val email = findViewById<TextInputEditText>(R.id.email_edit_text)
-        val password = findViewById<TextInputEditText>(R.id.password_edit_text)
+        val email =
+            findViewById<TextInputEditText>(
+                R.id.email_edit_text,
+            )
+
+        val password =
+            findViewById<TextInputEditText>(
+                R.id.password_edit_text,
+            )
 
         val emailLayout =
             findViewById<TextInputLayout>(
                 R.id.email_text_input_layout,
+            )
+
+        val passwordLayout =
+            findViewById<TextInputLayout>(
+                R.id.password_text_input_layout,
             )
 
         val loginButton =
@@ -47,6 +59,13 @@ class MainActivity : AppCompatActivity() {
                 emailLayout.error = "Email inválido"
             } else {
                 emailLayout.error = null
+            }
+
+            if (password.text.toString().length <= 4) {
+                passwordLayout.error =
+                    "Senha deve ter mais de 4 caracteres"
+            } else {
+                passwordLayout.error = null
             }
         }
     }
