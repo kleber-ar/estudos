@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
@@ -55,17 +56,32 @@ class MainActivity : AppCompatActivity() {
             val emailRegex =
                 Regex("^[A-Za-z0-9.]+@[A-Za-z]+\\.[A-Za-z]+$")
 
-            if (!emailRegex.matches(email.text.toString())) {
+            val emailIsValid =
+                emailRegex.matches(email.text.toString())
+
+            val passwordIsValid =
+                password.text.toString().length > 4
+
+            if (!emailIsValid) {
                 emailLayout.error = "Email inválido"
             } else {
                 emailLayout.error = null
             }
 
-            if (password.text.toString().length <= 4) {
+            if (!passwordIsValid) {
                 passwordLayout.error =
                     "Senha deve ter mais de 4 caracteres"
             } else {
                 passwordLayout.error = null
+            }
+
+            if (emailIsValid && passwordIsValid) {
+                Snackbar
+                    .make(
+                        loginButton,
+                        "Login efetuado com sucesso",
+                        Snackbar.LENGTH_LONG,
+                    ).show()
             }
         }
     }
