@@ -71,6 +71,14 @@
           android:enabled="false"
           android:text="Entrar" />
 
+        <com.google.android.material.button.MaterialButton
+          android:id="@+id/forgot_password_button"
+          style="@style/Widget.Material3.Button.TextButton"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:enabled="true"
+          android:text="Esqueceu a senha?" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
