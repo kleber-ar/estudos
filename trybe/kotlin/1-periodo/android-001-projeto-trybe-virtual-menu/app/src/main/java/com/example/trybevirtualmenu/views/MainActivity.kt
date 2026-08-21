@@ -1,14 +1,18 @@
 package com.example.trybevirtualmenu.views
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trybevirtualmenu.R
 import com.example.trybevirtualmenu.adapters.MenuItemAdapter
+import com.example.trybevirtualmenu.interfaces.MenuItemListener
 import com.example.trybevirtualmenu.models.MenuItem
 
-class MainActivity : AppCompatActivity() {
+class MainActivity :
+    AppCompatActivity(),
+    MenuItemListener {
     private lateinit var menuRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,6 +85,21 @@ class MainActivity : AppCompatActivity() {
             )
 
         menuRecyclerView.layoutManager = LinearLayoutManager(this)
-        menuRecyclerView.adapter = MenuItemAdapter(menuItems)
+        menuRecyclerView.adapter =
+            MenuItemAdapter(
+                menuItems,
+                this,
+            )
+    }
+
+    override fun onMenuItemClick(menuItem: MenuItem) {
+        val intent = Intent(this, MenuItemDetailActivity::class.java)
+
+        intent.putExtra("name", menuItem.name)
+        intent.putExtra("image", menuItem.image)
+        intent.putExtra("description", menuItem.description)
+        intent.putExtra("price", menuItem.price)
+
+        startActivity(intent)
     }
 }

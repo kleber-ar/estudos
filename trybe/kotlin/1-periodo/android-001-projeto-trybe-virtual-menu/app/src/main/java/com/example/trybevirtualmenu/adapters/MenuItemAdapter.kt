@@ -7,16 +7,17 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trybevirtualmenu.R
+import com.example.trybevirtualmenu.interfaces.MenuItemListener
 import com.example.trybevirtualmenu.models.MenuItem
 
 class MenuItemAdapter(
     private val menuItems: List<MenuItem>,
+    private val listener: MenuItemListener,
 ) : RecyclerView.Adapter<MenuItemAdapter.MenuItemViewHolder>() {
     class MenuItemViewHolder(
         itemView: View,
     ) : RecyclerView.ViewHolder(itemView) {
         val image: ImageView = itemView.findViewById(R.id.item_menu_image)
-
         val name: TextView = itemView.findViewById(R.id.item_menu_name)
     }
 
@@ -44,6 +45,10 @@ class MenuItemAdapter(
 
         holder.image.setImageResource(menuItem.image)
         holder.name.text = menuItem.name
+
+        holder.itemView.setOnClickListener {
+            listener.onMenuItemClick(menuItem)
+        }
     }
 
     override fun getItemCount(): Int = menuItems.size
