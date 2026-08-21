@@ -15,10 +15,9 @@ class MenuItemAdapter(
     class MenuItemViewHolder(
         itemView: View,
     ) : RecyclerView.ViewHolder(itemView) {
-        val image: ImageView = itemView.findViewById(R.id.item_image)
-        val name: TextView = itemView.findViewById(R.id.item_name)
-        val description: TextView = itemView.findViewById(R.id.item_description)
-        val price: TextView = itemView.findViewById(R.id.item_price)
+        val image: ImageView = itemView.findViewById(R.id.item_menu_image)
+
+        val name: TextView = itemView.findViewById(R.id.item_menu_name)
     }
 
     override fun onCreateViewHolder(
@@ -28,7 +27,11 @@ class MenuItemAdapter(
         val view =
             LayoutInflater
                 .from(parent.context)
-                .inflate(R.layout.item_menu_layout, parent, false)
+                .inflate(
+                    R.layout.item_menu_layout,
+                    parent,
+                    false,
+                )
 
         return MenuItemViewHolder(view)
     }
@@ -41,8 +44,6 @@ class MenuItemAdapter(
 
         holder.image.setImageResource(menuItem.image)
         holder.name.text = menuItem.name
-        holder.description.text = menuItem.description
-        holder.price.text = menuItem.price
     }
 
     override fun getItemCount(): Int = menuItems.size
