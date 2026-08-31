@@ -5,14 +5,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.betrybe.currencyview.data.models.CurrencyRateResponse
 
 class CurrencyRateAdapter(
-    private var rates: List<Pair<String, Double>> = emptyList(),
+    private var rates: List<CurrencyRateResponse> = emptyList(),
+    private var currencyNames: Map<String, String> = emptyMap(),
 ) : RecyclerView.Adapter<CurrencyRateAdapter.CurrencyRateViewHolder>() {
     class CurrencyRateViewHolder(
         itemView: View,
     ) : RecyclerView.ViewHolder(itemView) {
-        val currencyText: TextView = itemView.findViewById(android.R.id.text1)
+        val currencyText: TextView =
+            itemView.findViewById(android.R.id.text1)
     }
 
     override fun onCreateViewHolder(
@@ -33,14 +36,23 @@ class CurrencyRateAdapter(
         holder: CurrencyRateViewHolder,
         position: Int,
     ) {
-        val (currency, rate) = rates[position]
-        holder.currencyText.text = "$currency: $rate"
+        val rate = rates[position]
+
+        val currencyName =
+            currencyNames[rate.quote] ?: "Moeda"
+
+        holder.currencyText.text =
+            "${rate.quote} - $currencyName: ${rate.rate}"
     }
 
     override fun getItemCount(): Int = rates.size
 
-    fun updateRates(newRates: Map<String, Double>) {
-        rates = newRates.toList()
+    fun updateRates(
+        newRates: List<CurrencyRateResponse>,
+        names: Map<String, String>,
+    ) {
+        rates = newRates
+        currencyNames = names
         notifyDataSetChanged()
     }
 }

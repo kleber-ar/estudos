@@ -1,6 +1,6 @@
 package com.betrybe.currencyview.data.models
 
 data class CurrencySymbolResponse(
-    val success: Boolean,
-    val symbol: Map<String, String>,
+    val iso_code: String,
+    val name: String,
 )
