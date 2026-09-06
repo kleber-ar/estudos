@@ -10,9 +10,9 @@ import androidx.lifecycle.lifecycleScope
 import com.betrybe.trybnb.common.ApiIdlingResource
 import com.betrybe.trybnb.data.repository.CreateBookingRepository
 import com.betrybe.trybnb.databinding.FragmentCreateReservationBinding
+import java.io.IOException
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
-import java.io.IOException
 
 class CreateReservationFragment : Fragment() {
     private var binding: FragmentCreateReservationBinding? = null
@@ -21,13 +21,13 @@ class CreateReservationFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View {
         binding =
             FragmentCreateReservationBinding.inflate(
                 inflater,
                 container,
-                false,
+                false
             )
 
         return binding!!.root
@@ -35,11 +35,11 @@ class CreateReservationFragment : Fragment() {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ) {
         super.onViewCreated(
             view,
-            savedInstanceState,
+            savedInstanceState
         )
 
         binding!!.createReservationButton.setOnClickListener {
@@ -146,7 +146,7 @@ class CreateReservationFragment : Fragment() {
                 checkin = checkin,
                 checkout = checkout,
                 additionalNeeds = additionalNeeds,
-                totalPrice = totalPrice,
+                totalPrice = totalPrice
             )
         }
     }
@@ -157,7 +157,7 @@ class CreateReservationFragment : Fragment() {
         checkin: String,
         checkout: String,
         additionalNeeds: String,
-        totalPrice: String,
+        totalPrice: String
     ) {
         viewLifecycleOwner.lifecycleScope.launch {
             try {
@@ -172,9 +172,9 @@ class CreateReservationFragment : Fragment() {
                         additionalNeeds = additionalNeeds,
                         totalPrice = totalPrice.toInt(),
                         depositPaid =
-                            binding!!
-                                .depositpaidCreateReservation
-                                .isChecked,
+                        binding!!
+                            .depositpaidCreateReservation
+                            .isChecked
                     )
 
                 if (response.isSuccessful) {
@@ -182,7 +182,7 @@ class CreateReservationFragment : Fragment() {
                         .makeText(
                             requireContext(),
                             "Reserva feita com sucesso!",
-                            Toast.LENGTH_SHORT,
+                            Toast.LENGTH_SHORT
                         ).show()
                 }
 

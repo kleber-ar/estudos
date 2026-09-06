@@ -15,7 +15,7 @@ import retrofit2.http.Path
 interface ApiService {
     @POST("auth")
     suspend fun createToken(
-        @Body request: AuthRequest,
+        @Body request: AuthRequest
     ): Response<AuthResponse>
 
     @GET("booking")
@@ -23,11 +23,11 @@ interface ApiService {
 
     @GET("booking/{id}")
     suspend fun getBooking(
-        @Path("id") id: Int,
+        @Path("id") id: Int
     ): Response<Booking>
 
     @POST("booking")
     suspend fun createBooking(
-        @Body request: CreateBookingRequest,
+        @Body request: CreateBookingRequest
     ): Response<CreateBookingResponse>
 }

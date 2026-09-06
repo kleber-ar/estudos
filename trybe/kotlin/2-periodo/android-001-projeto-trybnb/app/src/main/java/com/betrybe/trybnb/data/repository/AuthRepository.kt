@@ -10,12 +10,12 @@ class AuthRepository {
 
     suspend fun login(
         username: String,
-        password: String,
+        password: String
     ): Response<AuthResponse> {
         val request =
             AuthRequest(
                 username = username,
-                password = password,
+                password = password
             )
 
         return apiService.createToken(request)

@@ -12,7 +12,7 @@ object RetrofitConfig {
             .Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(
-                GsonConverterFactory.create(),
+                GsonConverterFactory.create()
             ).build()
 
     val apiService: ApiService =

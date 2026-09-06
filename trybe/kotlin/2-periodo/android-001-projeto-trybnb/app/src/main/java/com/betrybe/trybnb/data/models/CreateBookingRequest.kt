@@ -6,5 +6,5 @@ data class CreateBookingRequest(
     val totalprice: Int,
     val depositpaid: Boolean,
     val bookingdates: BookingDates,
-    val additionalneeds: String?,
+    val additionalneeds: String?
 )

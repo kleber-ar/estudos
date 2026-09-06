@@ -21,13 +21,13 @@ class ReservationFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View {
         binding =
             FragmentReservationBinding.inflate(
                 inflater,
                 container,
-                false,
+                false
             )
 
         return binding!!.root
@@ -35,11 +35,11 @@ class ReservationFragment : Fragment() {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ) {
         super.onViewCreated(
             view,
-            savedInstanceState,
+            savedInstanceState
         )
 
         binding!!.reservationRecyclerView.apply {

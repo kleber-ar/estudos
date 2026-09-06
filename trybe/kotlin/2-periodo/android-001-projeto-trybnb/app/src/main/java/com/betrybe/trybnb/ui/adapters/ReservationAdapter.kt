@@ -7,17 +7,17 @@ import com.betrybe.trybnb.data.models.Booking
 import com.betrybe.trybnb.databinding.ListItemReservationBinding
 
 class ReservationAdapter(
-    private var reservations: List<Booking> = emptyList(),
+    private var reservations: List<Booking> = emptyList()
 ) : RecyclerView.Adapter<ReservationAdapter.ReservationViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
-        viewType: Int,
+        viewType: Int
     ): ReservationViewHolder {
         val binding =
             ListItemReservationBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
-                false,
+                false
             )
 
         return ReservationViewHolder(binding)
@@ -25,7 +25,7 @@ class ReservationAdapter(
 
     override fun onBindViewHolder(
         holder: ReservationViewHolder,
-        position: Int,
+        position: Int
     ) {
         holder.bind(reservations[position])
     }
@@ -38,7 +38,7 @@ class ReservationAdapter(
     }
 
     class ReservationViewHolder(
-        private val binding: ListItemReservationBinding,
+        private val binding: ListItemReservationBinding
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(reservation: Booking) {
             binding.nameItemReservation.text =
@@ -64,7 +64,7 @@ class ReservationAdapter(
                 }
 
             binding.depositpaidItemReservation.setImageResource(
-                depositIcon,
+                depositIcon
             )
         }
     }

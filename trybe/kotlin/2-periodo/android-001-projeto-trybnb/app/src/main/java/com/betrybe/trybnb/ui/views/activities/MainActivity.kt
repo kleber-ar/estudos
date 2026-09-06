@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
                 .beginTransaction()
                 .replace(
                     R.id.main_fragment_container,
-                    ReservationFragment(),
+                    ReservationFragment()
                 ).commit()
         }
 

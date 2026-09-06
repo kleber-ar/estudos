@@ -10,9 +10,9 @@ import androidx.lifecycle.lifecycleScope
 import com.betrybe.trybnb.common.ApiIdlingResource
 import com.betrybe.trybnb.data.repository.AuthRepository
 import com.betrybe.trybnb.databinding.FragmentProfileBinding
+import java.io.IOException
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
-import java.io.IOException
 
 class ProfileFragment : Fragment() {
     private var binding: FragmentProfileBinding? = null
@@ -21,13 +21,13 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ): View {
         binding =
             FragmentProfileBinding.inflate(
                 inflater,
                 container,
-                false,
+                false
             )
 
         return binding!!.root
@@ -35,11 +35,11 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?,
+        savedInstanceState: Bundle?
     ) {
         super.onViewCreated(
             view,
-            savedInstanceState,
+            savedInstanceState
         )
 
         binding!!.loginButtonProfile.setOnClickListener {
@@ -79,14 +79,14 @@ class ProfileFragment : Fragment() {
         if (login.isNotBlank() && password.isNotBlank()) {
             authenticate(
                 login,
-                password,
+                password
             )
         }
     }
 
     private fun authenticate(
         login: String,
-        password: String,
+        password: String
     ) {
         viewLifecycleOwner.lifecycleScope.launch {
             try {
@@ -95,7 +95,7 @@ class ProfileFragment : Fragment() {
                 val response =
                     authRepository.login(
                         login,
-                        password,
+                        password
                     )
 
                 if (response.isSuccessful) {
@@ -103,7 +103,7 @@ class ProfileFragment : Fragment() {
                         .makeText(
                             requireContext(),
                             "Login feito com sucesso!",
-                            Toast.LENGTH_SHORT,
+                            Toast.LENGTH_SHORT
                         ).show()
                 }
 

@@ -212,10 +212,10 @@ class MainInstrumentedTest {
                             hasDescendant(withId(getId("checkin_item_reservation"))),
                             hasDescendant(withId(getId("checkout_item_reservation"))),
                             hasDescendant(withId(getId("additional_needs_item_reservation"))),
-                            hasDescendant(withId(getId("total_price_item_reservation"))),
-                        ),
-                    ),
-                ),
+                            hasDescendant(withId(getId("total_price_item_reservation")))
+                        )
+                    )
+                )
             )
     }
 
