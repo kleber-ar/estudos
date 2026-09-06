@@ -4,11 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import com.betrybe.trybnb.common.ApiIdlingResource
+import com.betrybe.trybnb.data.repository.AuthRepository
 import com.example.trybnb.databinding.FragmentProfileBinding
+import kotlinx.coroutines.launch
+import retrofit2.HttpException
+import java.io.IOException
 
 class ProfileFragment : Fragment() {
     private var binding: FragmentProfileBinding? = null
+    private val authRepository = AuthRepository()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -67,6 +75,45 @@ class ProfileFragment : Fragment() {
             } else {
                 null
             }
+
+        if (login.isNotBlank() && password.isNotBlank()) {
+            authenticate(
+                login,
+                password,
+            )
+        }
+    }
+
+    private fun authenticate(
+        login: String,
+        password: String,
+    ) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                ApiIdlingResource.increment()
+
+                val response =
+                    authRepository.login(
+                        login,
+                        password,
+                    )
+
+                if (response.isSuccessful) {
+                    Toast
+                        .makeText(
+                            requireContext(),
+                            "Login feito com sucesso!",
+                            Toast.LENGTH_SHORT,
+                        ).show()
+                }
+
+                ApiIdlingResource.decrement()
+            } catch (e: HttpException) {
+                ApiIdlingResource.decrement()
+            } catch (e: IOException) {
+                ApiIdlingResource.decrement()
+            }
+        }
     }
 
     override fun onDestroyView() {
