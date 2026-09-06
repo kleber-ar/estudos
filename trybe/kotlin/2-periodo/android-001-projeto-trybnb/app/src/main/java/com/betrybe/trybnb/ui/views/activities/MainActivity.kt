@@ -2,7 +2,11 @@ package com.betrybe.trybnb.ui.views.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.trybnb.databinding.ActivityMainBinding
+import com.betrybe.trybnb.R
+import com.betrybe.trybnb.databinding.ActivityMainBinding
+import com.betrybe.trybnb.ui.views.fragments.CreateReservationFragment
+import com.betrybe.trybnb.ui.views.fragments.ProfileFragment
+import com.betrybe.trybnb.ui.views.fragments.ReservationFragment
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -28,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                 when (item.itemId) {
                     R.id.reservation_menu_item -> ReservationFragment()
                     R.id.create_reservation_menu_item -> CreateReservationFragment()
-                    R.id.profile_menu_tem -> ProfileFragment()
+                    R.id.profile_menu_item -> ProfileFragment()
                     else -> return@setOnItemSelectedListener false
                 }
 

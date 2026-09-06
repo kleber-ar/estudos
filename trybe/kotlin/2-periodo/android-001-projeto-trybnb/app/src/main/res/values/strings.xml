@@ -1,3 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Trybnb</string>
+
+    <string name="profile_image_description">Imagem do perfil</string>
+    <string name="deposit_paid">Depósito pago</string>
 </resources>

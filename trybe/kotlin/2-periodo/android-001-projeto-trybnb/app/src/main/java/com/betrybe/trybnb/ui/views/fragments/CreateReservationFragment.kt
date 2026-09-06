@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.betrybe.trybnb.common.ApiIdlingResource
 import com.betrybe.trybnb.data.repository.CreateBookingRepository
-import com.example.trybnb.databinding.FragmentCreateReservationBinding
+import com.betrybe.trybnb.databinding.FragmentCreateReservationBinding
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException

@@ -9,8 +9,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.betrybe.trybnb.common.ApiIdlingResource
 import com.betrybe.trybnb.data.repository.BookingRepository
+import com.betrybe.trybnb.databinding.FragmentReservationBinding
 import com.betrybe.trybnb.ui.views.adapters.ReservationAdapter
-import com.example.trybnb.databinding.FragmentReservationBinding
 import kotlinx.coroutines.launch
 
 class ReservationFragment : Fragment() {

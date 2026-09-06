@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.betrybe.trybnb.data.models.Booking
-import com.example.trybnb.databinding.ListItemReservationBinding
+import com.betrybe.trybnb.databinding.ListItemReservationBinding
 
 class ReservationAdapter(
     private var reservations: List<Booking> = emptyList(),
