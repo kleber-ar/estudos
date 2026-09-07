@@ -16,7 +16,7 @@ class CreateBookingRepository {
         checkout: String,
         additionalNeeds: String,
         totalPrice: Int,
-        depositPaid: Boolean
+        depositPaid: Boolean,
     ): Response<CreateBookingResponse> {
         val request =
             CreateBookingRequest(
@@ -25,13 +25,15 @@ class CreateBookingRepository {
                 totalprice = totalPrice,
                 depositpaid = depositPaid,
                 bookingdates =
-                BookingDates(
-                    checkin = checkin,
-                    checkout = checkout
-                ),
-                additionalneeds = additionalNeeds
+                    BookingDates(
+                        checkin = checkin,
+                        checkout = checkout,
+                    ),
+                additionalneeds = additionalNeeds,
             )
 
-        return apiService.createBooking(request)
+        val response = apiService.createBooking(request)
+
+        return response
     }
 }

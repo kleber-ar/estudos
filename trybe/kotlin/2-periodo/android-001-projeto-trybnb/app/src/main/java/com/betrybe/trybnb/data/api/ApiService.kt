@@ -9,25 +9,28 @@ import com.betrybe.trybnb.data.models.CreateBookingResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Headers
 import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface ApiService {
     @POST("auth")
     suspend fun createToken(
-        @Body request: AuthRequest
+        @Body request: AuthRequest,
     ): Response<AuthResponse>
 
     @GET("booking")
     suspend fun getBookingIds(): Response<List<BookingId>>
 
+    @Headers("Accept: application/json")
     @GET("booking/{id}")
     suspend fun getBooking(
-        @Path("id") id: Int
+        @Path("id") id: Int,
     ): Response<Booking>
 
+    @Headers("Accept: application/json")
     @POST("booking")
     suspend fun createBooking(
-        @Body request: CreateBookingRequest
+        @Body request: CreateBookingRequest,
     ): Response<CreateBookingResponse>
 }

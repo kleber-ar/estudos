@@ -8,12 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.betrybe.trybnb.common.ApiIdlingResource
+import com.betrybe.trybnb.data.models.Booking
 import com.betrybe.trybnb.data.repository.BookingRepository
 import com.betrybe.trybnb.databinding.FragmentReservationBinding
 import com.betrybe.trybnb.ui.views.adapters.ReservationAdapter
 import kotlinx.coroutines.launch
 
-class ReservationFragment : Fragment() {
+class ReservationFragment(
+    private val createdReservation: Booking? = null,
+) : Fragment() {
     private var binding: FragmentReservationBinding? = null
     private val bookingRepository = BookingRepository()
     private val reservationAdapter = ReservationAdapter()
@@ -21,13 +24,13 @@ class ReservationFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         binding =
             FragmentReservationBinding.inflate(
                 inflater,
                 container,
-                false
+                false,
             )
 
         return binding!!.root
@@ -35,11 +38,11 @@ class ReservationFragment : Fragment() {
 
     override fun onViewCreated(
         view: View,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ) {
         super.onViewCreated(
             view,
-            savedInstanceState
+            savedInstanceState,
         )
 
         binding!!.reservationRecyclerView.apply {
@@ -57,7 +60,14 @@ class ReservationFragment : Fragment() {
 
                 val reservations = bookingRepository.getBookings()
 
-                reservationAdapter.updateReservations(reservations)
+                val finalReservations =
+                    if (createdReservation != null) {
+                        listOf(createdReservation)
+                    } else {
+                        reservations
+                    }
+
+                reservationAdapter.updateReservations(finalReservations)
 
                 ApiIdlingResource.decrement()
             } catch (exception: Exception) {
